@@ -1,0 +1,141 @@
+<style>
+@import "/pages/my/address/address.wxss";
+@import "../pay/pay.wxss";
+</style>
+<template>
+<view class="container mb1">
+  <view class="header">
+    <image src="/images/order-bg.jpg"></image>
+    <view class="header-content flex">
+      <image src="/images/receive.png"></image>
+      <text class="fs22 colorf">等待买家收货</text>
+    </view>
+  </view>
+  <view class="address">
+    <view class="address-img"><image src="/images/local.png"></image></view>
+    <view class="top ">
+      <view class="flex">
+        <text class="name fs24">收件人： 某某某</text>
+        <text class="phone fs24">188888888</text>
+      </view>
+    </view>
+    <view class="bottom">
+      <text class="detail fs22">浙江省宁波市海曙区丽园北路668号美丽园大厦602</text>
+    </view>
+    <view class="bg"></view>
+  </view>
+  <view class="list">
+    <view class="content flex">
+      <view><image src="/images/goods1-1.jpg"></image></view>
+      <view class="mes flex-col">
+        <text class="mes1 fs24">绵软粉糯即食板栗仁</text>
+        <text class="mes2 fs20">味BACK 燕山板栗仁 2袋入</text>
+        <view class="price">
+          <text class="price1 fs22">35.00</text>
+          <text class="price2 fs20">59.00</text>
+        </view>
+      </view>
+    </view>
+    <view class="shop-number fs22">
+      <image src="/images/icon.jpg"></image>
+      <text class="shop-num fs22">1</text>
+    </view>
+  </view> 
+  <view class="list">
+    <view class="content flex">
+      <view><image src="/images/goods1-1.jpg"></image></view>
+      <view class="mes flex-col">
+        <text class="mes1 fs24">绵软粉糯即食板栗仁</text>
+        <text class="mes2 fs20">味BACK 燕山板栗仁 2袋入</text>
+        <view class="price">
+          <text class="price1 fs22">35.00</text>
+          <text class="price2 fs20">59.00</text>
+        </view>
+      </view>
+    </view>
+    <view class="shop-number fs22">
+      <image src="/images/icon.jpg"></image>
+      <text class="shop-num fs22">1</text>
+    </view>
+  </view> 
+  <view>
+    <view class="goods-mes flex">
+      <text class="fs22">商品总计</text>
+      <text class="fs22">￥100.00</text>
+    </view>
+    <view class="goods-mes flex">
+      <text class="fs22">运费</text>
+      <text class="fs22">￥6.00</text>
+    </view>
+    <view class="goods-mes flex">
+      <text class="fs22">优惠</text>
+      <text class="fs22">￥100.00</text>
+    </view>
+    <view class="goods-mes flex">
+      <text class="fs22">订单总价</text>
+      <text class="fs22">￥100.00</text>
+    </view>
+    <view class="price-all">
+      <text class="fs22">实付金额 ￥ </text>
+      <text class="fs32">106.00</text>
+    </view>
+  </view>
+  <view class="bg"></view>
+  <view class="bill flex-col">
+    <view class="flex">
+      <text class="fs22 m">开具发票:</text>
+      <text class="fs22"></text>
+    </view>
+    <view class="flex">
+      <text class="fs22 m">发票抬头:</text>
+      <text class="fs22">宁波创领网络科技有限公司</text>
+    </view>
+    <view class="flex">
+      <text class="fs22 m">税号</text>
+      <text class="fs22">78945623202146</text>
+    </view>
+    <view class="flex">
+      <text class="fs22 m">发票内容:</text>
+      <text class="fs22">商品明细</text>
+    </view>
+  </view>
+  <view class="bg"></view>
+  <view class="bill mb flex-col">
+    <view class="flex">
+      <text class="fs22 m">订单编号:</text>
+      <text class="fs22">0000000000001</text>
+    </view>
+    <view class="flex">
+      <text class="fs22 m">下单时间:</text>
+      <text class="fs22">2018-01-21 08 : 40 : 53</text>
+    </view>
+    <view class="flex">
+      <text class="fs22 m">支付方式:</text>
+      <text class="fs22"></text>
+    </view>
+    <view class="flex">
+      <text class="fs22 m">支付时间:</text>
+      <text class="fs22"></text>
+    </view>
+  </view>
+  <view class="footer flex">
+    <text class="cancle fs22">联系客服</text>
+    <text class="cancle fs22">查看物流 </text>
+    <text class="pay fs22">确认收货</text>
+  </view>
+</view>
+</template>
+<script>
+import wepy from 'wepy'
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: '订单详情'
+  }
+  data = {
+  }
+  methods = {
+  }
+  onLoad() {
+  }
+}
+</script>

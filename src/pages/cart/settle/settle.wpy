@@ -1,0 +1,345 @@
+<style >
+@import "/pages/my/address/address.wxss";
+</style>
+<style lang='less'>
+.address .bottom{text-align: left;}
+.top image{
+  width:36rpx;
+  height:36rpx;
+}
+.name{
+  margin-right: 60rpx;
+}
+.list{
+  position: relative;
+  padding:0 20rpx;
+}
+.list .content{  border-bottom: 1px solid #eee;}
+.list image{
+  width:200rpx;
+  height:200rpx;
+}
+.mes{
+  padding-left: 10px;
+  width:500rpx;
+  align-items: flex-start;
+}
+.mes1{
+  color:#232323;
+}
+.mes2{
+  color:#787878;
+  margin-top: 5rpx;
+}
+.price{margin-top: 20rpx;}
+.price1{
+  color:#f23737;
+  margin-right: 6px;
+}
+.price1:before{
+  content:"￥";
+  color:#f23737;
+  font-size:24rpx;
+}
+.price2{
+  color:#787878;
+  text-decoration: line-through;
+}
+.price2:before{
+  content:"￥";
+  color:#787878;
+  font-size:22rpx;
+}
+.shop-number{
+  position: absolute;
+  right:20rpx;
+  bottom:20rpx;
+  color:#303030;
+  
+}
+.shop-number image{
+  width:14rpx;
+  height:14rpx;
+}
+.delivery,.bill{
+  padding:30rpx 20rpx; 
+  border-bottom: 1px solid #eee;
+}
+.bill-top{
+  display: block;
+  color:#303030;
+  background: #eeeeee;
+  padding:20rpx 40rpx;
+}
+.bill-type >.true{
+  border:1px solid #f23737;
+  color:#f23737;
+}
+.bill-type{
+  padding:30rpx 60rpx 0;
+}
+.bill-type >text{
+  display: inline-block;
+  box-sizing: border-box;
+  width:180rpx;
+  text-align: center;
+  color:#828282;
+  border:1px solid #c9c9c9;
+  padding:10rpx 40rpx;
+  border-radius: 5px;
+}
+.bill-mes{
+  display: block;
+  padding:40rpx 60rpx;
+  color:#828282;
+}
+.bill-personal text{
+  margin-right: 40rpx;
+}
+.ipt-p{color:#bebebe}
+.ipt{
+  padding:40rpx 60rpx;
+}
+.ipt1{
+  padding-top: 0;
+}
+.ipt input{
+  border:1px solid #c9c9c9;
+  border-radius: 10rpx;
+  padding-left: 20rpx;
+}
+.buyermsg{
+  padding: 40rpx 20rpx; 
+  border-top:1px solid #eee;
+  border-bottom:1px solid #eee;
+  /* height:1rpx; */
+}
+.buyermsg text,
+.buyermsg textarea{
+   height:60rpx; 
+   line-height: 60rpx;
+}
+.buyermsg text{
+  display: inline-block;
+  margin-right: 8px;
+}
+.buyermsg input{
+  width:580rpx;
+}
+.bottom{
+  padding: 0 40rpx;
+  text-align: right;
+}
+.price{
+  color:#f23737;
+}
+.bottom-address{
+  height:200rpx;
+  /* background: #f1f1f1; */
+}
+.bottom-address image{
+  width: 100%;
+  height:12rpx;
+}
+.bottom-address .bg{
+  margin: 0;
+  margin-bottom: -30rpx;
+}
+.bottom-address text{
+  display: block;
+  margin-top: 6px;
+  padding-left: 20rpx;
+  color:#747474;
+}
+
+.foot{
+  position: fixed;
+  left:0;
+  bottom:0;
+  width:100%;
+  background: #fff;
+  z-index: 9999;
+  height:100rpx;
+}
+.foot >view{
+  height:100rpx;
+  line-height: 100rpx;
+}
+.price-all{
+  color:#f23737;
+}
+.price-all:before{
+  content:"￥";
+  color:#f23737;
+  font-size:28rpx;
+}
+.account{
+  margin-left: 40rpx;
+  width:250rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  color:#fff;
+  background: #f23737;
+  text-align: center;
+}
+</style>
+<template>
+<view class="container mb">
+  <view class="address">
+    <view class="top flex" bindtap="address">
+      <view>
+        <text class="name fs30">某某某</text>
+        <text class="phone fs30">188888888</text>
+      </view>
+      <image  src="/images/more-1.jpg"></image>
+    </view>
+    <view class="bottom">
+      <text class="default fs15">默认</text>
+      <text class="detail fs24">浙江省宁波市海波市海曙区丽园北路668号美丽园大厦602</text>
+    </view>
+    <view class="bg-img">
+      <image src="/images/address-bg.jpg"></image>
+      <view class="bg"></view>
+    </view>
+  </view>
+  <view class="list">
+    <view class="content flex">
+      <view><image src="/images/goods1-1.jpg"></image></view>
+      <view class="mes flex-col">
+        <text class="mes1 fs24">绵软粉糯即食板栗仁</text>
+        <text class="mes2 fs20">味BACK 燕山板栗仁 2袋入</text>
+        <view class="price">
+          <text class="price1 fs22">35.00</text>
+          <text class="price2 fs20">59.00</text>
+        </view>
+      </view>
+    </view>
+    <view class="shop-number fs22">
+      <image src="/images/icon.jpg"></image>
+      <text class="shop-num fs22">1</text>
+    </view>
+  </view> 
+  <view class="list">
+    <view class="content flex">
+      <view><image src="/images/goods1-1.jpg"></image></view>
+      <view class="mes flex-col">
+        <text class="mes1 fs24">绵软粉糯即食板栗仁</text>
+        <text class="mes2 fs20">味BACK 燕山板栗仁 2袋入</text>
+        <view class="price">
+          <text class="price1 fs22">35.00</text>
+          <text class="price2 fs20">59.00</text>
+        </view>
+      </view>
+    </view>
+    <view class="shop-number fs22">
+      <image src="/images/icon.jpg"></image>
+      <text class="shop-num fs22">1</text>
+    </view>
+  </view> 
+  <view class="flex  delivery">
+    <text class="fs22">配送方式</text>
+    <text class="fs22">快递： ￥6.00</text>
+  </view>
+  <view class="flex bill">
+    <text class="fs22">开具发票</text>
+    <switch checked bindchange="switchChange"></switch>
+  </view>
+  <view wx:if="{{isShow}}">
+    <view >
+      <text class="bill-top fs22">发票类型</text>
+      <view class="bill-type flex">
+        <text class="{{index==id1}} fs18" data-id="{{index}}" wx:for="{{billType}}" bindtap="billType">{{item}}</text>
+      </view>
+      <text class="bill-mes fs18">电子发票与纸质发票举报同等法律效力，可支持报销入账</text>
+    </view>
+    <view >
+      <text class="bill-top fs22">发票抬头</text>
+      <view class="bill-type bill-personal">
+        <text class="{{index==id2}} fs18" data-id="{{index}}" wx:for="{{billPersonal}}" bindtap="billPersonal">{{item}}</text>
+      </view>
+      <view class="ipt"><input class="fs22" placeholder-class="ipt-p" placeholder='请输入单位名称'></input></view>
+      <view class="ipt ipt1"><input class="fs22" placeholder-class="ipt-p" placeholder='税号'></input></view>
+    </view>
+    <view >
+      <text class="bill-top fs22">收票人信息</text>
+      <view class="ipt"><input class="fs22" placeholder-class="ipt-p" placeholder='请输入手机号'></input></view>
+      <view class="ipt ipt1"><input class="fs22" placeholder-class="ipt-p" placeholder='请输入电子邮箱，可选填'></input></view>
+    </view>
+    <view >
+      <text class="bill-top fs22">发票内容</text>
+      <view class="bill-type bill-personal">
+        <text class="{{index==id3}} fs18" data-id="{{index}}" wx:for="{{billMes}}" bindtap="billMes">{{item}}</text>
+      </view>
+       <text class="bill-mes fs18">发票内容将显示详细商品名称与价格信息</text>
+    </view>
+  </view>
+  <view class="buyermsg flex">
+     <text class="fs22">买家留言</text>
+     <input class="fs22" placeholder-class="ipt-p" placeholder='可选填'></input>
+  </view>
+  <view class="bottom">
+    <text class="fs22">共2件商品 小计</text>
+    <text class="price fs26">￥100.00</text>
+  </view>
+  <view class="bottom-address">
+    <view class="bg"></view>
+    <image src="/images/address-bg.jpg"></image>  
+    <text class="fs20">收货地址：浙江省宁波市海曙区丽园北路668号美丽园大厦602</text>
+  </view> 
+  <view class="foot clearfix">
+    <navigator url="/pages/shoppingCart/order/pay/pay" class="account fr" bindtap="settle">
+     <text class="fs24">提交订单</text>
+    </navigator>
+    <view class="flex fr">
+      <text class="fs24">总计</text>
+      <text class="fs20 color-78">(不含运费) </text>
+      <text class="price-all fs34">90.00</text>
+    </view>
+  </view>    
+</view>
+</template>
+<script>
+import wepy from 'wepy'
+export default class Index extends wepy.page {
+  config = {
+    'navigationBarTitleText': '结算',
+    'navigationBarBackgroundColor': '#da2524',
+    'navigationBarTextStyle': '#fff'
+  }
+  data = {
+    isShow: true,
+    billType: ['电子发票', '普通发票', '专用发票'],
+    id1: 0,
+    billPersonal: ['个人', '单位'],
+    id2: 0,
+    billMes: ['商品明细', '商品类别'],
+    id3: 0
+  }
+  methods = {
+    switchChange(e) {
+      let val = e.detail.value
+      this.isShow = val
+    },
+    billType(e) {
+      let id = e.target.dataset.id
+      this.id1 = id
+      console.log(e, id)
+    },
+    billPersonal(e) {
+      let id = e.target.dataset.id
+      this.id2 = id
+      console.log(e, id)
+    },
+    billMes(e) {
+      let id = e.target.dataset.id
+      this.id3 = id
+      console.log(e, id)
+    },
+    address() {
+      this.$navigate('/pages/account/address/address')
+    }
+  }
+  onLoad() {
+  }
+}
+</script>

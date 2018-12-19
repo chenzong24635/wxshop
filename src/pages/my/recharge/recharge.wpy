@@ -1,0 +1,43 @@
+<style >
+@import "../withdraw/withdraw.wxss";
+</style>
+<style lang='less'>
+.container{
+  padding:50rpx 30rpx;
+}
+.container> text{
+  color:#252525;
+}
+.amout{
+  margin: 40rpx 0 0;
+  border-bottom:none;
+}
+.recharge{
+  margin: 0;
+  margin-top: 40rpx;
+}
+</style>
+<template>
+<view class="container mb">
+  <text class="fs20">充值金额 (元)</text>
+  <view class="amout">
+    <text class="fs30">￥</text>
+    <input class="fs72" placeholder="0.00" placeholder-style="color:#aaa" auto-focus/>
+  </view>  
+  <button class="recharge btn fs30">提交</button>
+</view>
+</template>
+<script>
+import wepy from 'wepy'
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: '充值'
+  }
+  data = {
+  }
+  methods = {
+  }
+  onLoad() {
+  }
+}
+</script>

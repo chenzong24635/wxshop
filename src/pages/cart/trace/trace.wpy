@@ -1,0 +1,85 @@
+<style>
+@import "../cart.wxss";
+</style>
+<style lang='less'>
+.shop-cart{
+  position: absolute;
+  right:20rpx;
+  bottom:20rpx;
+}
+.shop-cart image{
+  width:54rpx;
+  height:42rpx;
+}
+</style>
+<template>
+<view class="container mb">
+  <view class="main">
+    <view class="list">
+      <view class="check"></view>
+      <view class="content flex">
+        <view><image src="/images/goods1-1.jpg"></image></view>
+        <view class="mes flex-col">
+          <text class="mes1 fs30">绵软粉糯即食板栗仁</text>
+          <text class="mes2 fs24">味BACK 燕山板栗仁 2袋入</text>
+          <view class="price">
+            <text class="price1 fs24">35.00</text>
+            <text class="price2 fs20">59.00</text>
+          </view>
+        </view>
+      </view>
+      <view class="shop-cart">
+        <image  src="/images/cart.png"></image>
+      </view>
+    </view>
+    <view class="list">
+      <view class="check"></view>
+      <view class="content flex">
+        <view><image src="/images/goods1-1.jpg"></image></view>
+        <view class="mes flex-col">
+          <text class="mes1 fs30">绵软粉糯即食板栗仁</text>
+          <text class="mes2 fs24">味BACK 燕山板栗仁 2袋入</text>
+          <view class="price">
+            <text class="price1 fs24">35.00</text>
+            <text class="price2 fs20">59.00</text>
+          </view>
+        </view>
+      </view>
+      <view class="shop-cart">
+        <image  src="/images/cart.png"></image>
+      </view>
+    </view>    
+    <view class="list">
+      <view class="check"></view>
+      <view class="content flex">
+        <view><image src="/images/goods1-1.jpg"></image></view>
+        <view class="mes flex-col">
+          <text class="mes1 fs30">绵软粉糯即食板栗仁</text>
+          <text class="mes2 fs24">味BACK 燕山板栗仁 2袋入</text>
+          <view class="price">
+            <text class="price1 fs24">35.00</text>
+            <text class="price2 fs20">59.00</text>
+          </view>
+        </view>
+      </view>
+      <view class="shop-cart">
+        <image  src="/images/cart.png"></image>
+      </view>
+    </view>
+  </view>
+</view>
+</template>
+<script>
+import wepy from 'wepy'
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: '收藏'
+  }
+  data = {
+  }
+  methods = {
+  }
+  onLoad() {
+  }
+}
+</script>

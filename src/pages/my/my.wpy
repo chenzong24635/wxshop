@@ -1,0 +1,277 @@
+<style lang='less'>
+.container{
+  background:#eeeeee;
+  border-top: none;
+}
+.container > view{background:#fff}
+.top{position: relative;}
+.top-set-mes{
+  position: absolute;
+  top:0;
+  left:0;
+  width:100%;
+  box-sizing: border-box;
+  padding:30rpx;
+}
+.top-set-mes image{
+  width:54rpx;
+  height:48rpx;
+}
+.top-bg{
+  width:100%;
+  height:250rpx;
+}
+.avator{
+  position: absolute;
+  left:0;
+  right:0;
+  top:80rpx;
+  margin: 0 auto;
+  width:360rpx;
+  text-align: center;
+}
+.avator image{
+  width:140rpx;
+  height:140rpx;
+}
+.top > .mes{
+  padding:20rpx 110rpx;
+  text-align: center;
+}
+.account{
+  height:36rpx;
+  line-height: 36rpx;
+  margin-top: 4px;
+}
+.phone{
+  color:#3f3f3f;
+  /* margin-left: 40rpx; */
+}
+.level{
+  width: 54rpx;
+  height:16rpx;
+  line-height: 16rpx;
+  border-radius: 14rpx;
+  padding:10rpx 0;
+  background:#bfbfbf;
+  color:#fff;
+  margin-left: 14px;
+}
+.mes .num{
+  color:#e91414;
+}
+.mes .message{
+  color:#3f3f3f;
+}
+
+.order{
+  margin:16px 0;
+  padding:36rpx 20rpx 48rpx;
+}
+.order-top{
+ border-bottom:1px solid #eeeeee;
+ padding-bottom: 30rpx;
+}
+.order-top-myorder{
+  color:#252525;
+}
+.order-top-all{
+  color:#7e7e7e;
+}
+.order-top-all:after{
+  content:">";
+  padding-left: 4px;
+}
+.order-main{
+  padding:42rpx 20rpx;
+}
+.order-main-list image{
+  width:90rpx;
+  height:50rpx;
+}
+.order-main-list .num{
+  color:#e91414;
+}
+.order-main-list .message{
+  padding-top: 4px;
+  padding-right: 4px;
+  display: inline-block;
+  color:#7e7e7e;
+}
+.bottom{
+  flex-wrap:wrap;
+  padding:20rpx 4rpx;
+}
+.bottom  image{
+  width:62rpx;
+  height:50rpx;
+}
+.bottom-list{
+  width:22%;
+  height:160rpx;
+  justify-content: center;
+}
+.bottom-list text{
+  color:#7e7e7e;
+  margin-top: 4px;
+}
+</style>
+<template>
+<view class="container">
+  <view class="top">
+    <image class="top-bg" src="/images/account-bg.jpg"></image>
+    <view class="top-set-mes flex">
+      <image bindtap="accountSet" src="/images/account-set.png"></image>
+      <image bindtap="accountMes" src="/images/account-mes.png"></image>
+    </view>
+    <view class="avator flex-col">
+      <image src="/images/account-img.png"></image>
+      <view class="account flex">
+        <text class="phone fs20">138688888</text>
+        <text class="level fs15">白银</text>
+      </view>
+    </view>
+    <view class="mes flex">
+      <view class="flex-col" bindtap="cardVoucher">
+        <text class="num fs22">0</text>
+        <text class="message fs24">卡/券</text>
+      </view>
+      <view class="flex-col">
+        <text class="num fs22">103</text>
+        <text class="message fs24">积分</text>
+      </view>
+      <view class="flex-col" bindtap="overage">
+        <text class="num fs22">30.18</text>
+        <text class="message fs24">余额</text>
+      </view>
+    </view>
+  </view>
+  <view class="order">
+    <view class="order-top clearfix">
+      <text class="order-top-myorder fs24 fl">我的订单</text>
+      <text class="order-top-all fs24 fr" bindtap="order">查看全部</text>
+    </view>
+    <view class="order-main flex">
+      <view class="order-main-list" bindtap='order'>
+        <image src="/images/account_1.jpg"></image>
+        <view><text class="message fs24">待付款</text><text class="num fs24">1</text></view>
+      </view>
+      <view class="order-main-list" bindtap='order'>
+        <image  src="/images/account_2.jpg"></image>
+        <view><text class="message fs24">待发货</text><text class="num fs24">1</text></view>
+      </view>
+      <view class="order-main-list" bindtap='order'>
+        <image src="/images/account_3.jpg"></image>
+        <view><text class="message fs24">待收货</text><text class="num fs24">1</text></view>
+      </view>
+      <view class="order-main-list" bindtap='order'>
+        <image  src="/images/account_4.jpg"></image>
+        <view><text class="message fs24">待评价</text><text class="num fs24">1</text></view>
+      </view>
+    </view>
+  </view>
+  <view class="bottom flex">
+    <navigator class="bottom-list" url="/pages/cart/collection/collection" hover-class="none"> 
+      <view class=" flex-col">
+        <image src="/images/account-1.png"></image>
+        <text class="message fs24">收藏</text>
+      </view>
+    </navigator>
+    <navigator class="bottom-list" url="/pages/cart/trace/trace" hover-class="none"> 
+      <view class=" flex-col">
+        <image src="/images/account-2.png"></image>
+        <text class="message fs24">足迹</text>
+      </view>
+    </navigator>
+    <navigator class="bottom-list" url="/pages/my/appraise/appraise?type=2" hover-class="none"> 
+      <view class=" flex-col">
+        <image src="/images/account-3.png"></image>
+        <text class="message fs24">评价</text>
+      </view>
+    </navigator>
+    <navigator class="bottom-list" url="" hover-class="none"> 
+      <view class=" flex-col">
+        <image src="/images/account-4.png"></image>
+        <text class="message fs24">退换货</text>
+      </view>
+    </navigator>
+    <navigator class="bottom-list" url="/pages/my/teamwork/teamwork" hover-class="none">    
+      <view class=" flex-col">
+        <image src="/images/account-5.png"></image>
+        <text class="message fs24">拼团</text>
+      </view>
+    </navigator>
+    <navigator class="bottom-list" url="/pages/my/cut/myCut/myCut" hover-class="none">    
+      <view class=" flex-col">
+        <image src="/images/account-6.png"></image>
+        <text class="message fs24">砍价</text>
+      </view>
+    </navigator>
+    <navigator class="bottom-list" url="/pages/my/lottery/lottery" hover-class="none">  
+      <view class=" flex-col">
+        <image src="/images/account-7.png"></image>
+        <text class="message fs24">抽奖</text>
+      </view>
+    </navigator>
+    <navigator class="bottom-list" url="" hover-class="none">  
+      <view class=" flex-col">
+        <image src="/images/account-8.png"></image>
+        <text class="message fs24">红包</text>
+      </view>
+    </navigator>
+    <navigator class="bottom-list" url="/pages/my/address/address" hover-class="none"> 
+      <view class=" flex-col" >
+        <image src="/images/account-9.png"></image>
+        <text class="message fs24">地址管理</text>
+      </view>
+    </navigator>
+    <navigator class="bottom-list" url="" hover-class="none">  
+      <view class=" flex-col">
+        <image src="/images/account-10.png"></image>
+        <text class="message fs24">财务</text>
+      </view>
+    </navigator>
+    <navigator class="bottom-list" url="/pages/my/distribution/distribution" hover-class="none">  
+      <view class=" flex-col">
+        <image src="/images/account-11.png"></image>
+        <text class="message fs24">我的分销</text>
+      </view>
+    </navigator>
+    <navigator class="bottom-list" url="" hover-class="none">  
+      <view class=" flex-col">
+        <image src="/images/account-12.png"></image>
+        <text class="message fs24">更多</text>
+      </view>
+    </navigator>
+  </view>
+</view>
+</template>
+<script>
+  import wepy from 'wepy'
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '我的'
+    }
+    data = {
+    }
+    methods = {
+      accountSet() {
+        this.$navigate('/pages/my/accountSet/accountSet')
+      },
+      accountMes() {
+        this.$switch('/pages/message/message')
+      },
+      cardVoucher() {
+        this.$navigate('/pages/my/cardVoucher/cardVoucher?type=2')
+      },
+      overage() {
+        this.$navigate('/pages/my/overange/overange')
+      },
+      order() {
+        this.$navigate('/pages/cart/order/order')
+      }
+    }
+    onLoad() {
+    }
+  }
+</script>

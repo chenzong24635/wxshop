@@ -1,0 +1,220 @@
+<style>
+@import "/pages/cart/cart.wxss";
+</style>
+<style lang='less'>
+.main-top{
+  position: relative;
+  height:260rpx;
+}
+.main-top text{
+  color:#fff;
+}
+.top-bg{
+  width:100%;
+  height:260rpx;
+}
+.top-mes1{
+  position: absolute;
+  top:30rpx;
+  left:0;
+  width:100%;
+  text-align: center;
+}
+.top-mes2{
+  position: absolute;
+  bottom:30rpx;
+  left:0;
+  box-sizing:border-box;
+  padding:0 85rpx;
+  width:100%;
+  text-align: center;
+}
+.list{
+  padding: 20rpx;
+}
+.content{width:100%}
+.price1{
+ display: block;
+ height: 150rpx;
+}
+.price1:before{
+  font-size:42rpx;
+}
+.mes-top{align-items:flex-start;}
+.mes-bottom{
+  align-items:flex-start;
+  margin-top: 30rpx;
+}
+.mes3{
+  color:#787878;
+}
+.mes4{
+  color:#f23737;
+  margin-top: 5rpx;
+}
+.shop{
+  position: absolute;
+  right:30rpx;
+  bottom:20rpx;
+  border-radius: 10rpx;
+  padding:4rpx 20rpx;
+  color:#fff;
+  background: #f23737;
+  z-index: 99;
+}
+</style>
+<template>
+<view class="container">
+  <view class="main-top">
+    <image class="top-bg" src="/images/cut-banner.jpg"></image>
+    <view class="top-mes1"><text class="fs20">如何免费获得心仪商品</text></view>
+    <view class="top-mes2 flex">
+      <view class="flex-col">
+        <text class="fs18">选择心仪商品</text>
+        <text class="fs18">点击免费拿</text>
+      </view>
+      <view class="flex-col">
+        <text class="fs18">分享活动页面</text>
+        <text class="fs18">邀请好友帮忙砍价</text>
+      </view> 
+      <view class="flex-col">
+        <text class="fs18">砍价成功后</text>
+        <text class="fs18">包邮发货</text>
+      </view> 
+    </view>
+  </view>
+  <view class="main-content sort-one">
+    <view class="list">
+      <view class="content flex" >
+        <view><image src="/images/goods1-2.jpg"></image></view>
+        <view class="mes flex-col">
+            <view class="mes-top flex-col">
+              <text class="mes1 fs24">绵软粉糯即食板栗仁</text>
+              <text class="mes2 fs20">味BACK 燕山板栗仁 2袋入</text>
+            </view>
+            <view class="mes-bottom flex-col">
+              <text class="mes3 fs20">价值69元</text>
+              <text class="mes4 fs20">1.3万人免费拿</text>
+            </view>
+        </view>
+        <text class="price1 fs36 color-red">5.00</text>
+      </view>
+      <navigator url="./cutDetail/cutDetail" class="shop" >
+        <text class="fs22">立即砍价</text>
+      </navigator>
+    </view> 
+    <view class="list">
+      <view class="content flex" >
+        <view><image src="/images/goods1-2.jpg"></image></view>
+        <view class="mes flex-col">
+            <view class="mes-top flex-col">
+              <text class="mes1 fs24">绵软粉糯即食板栗仁</text>
+              <text class="mes2 fs20">味BACK 燕山板栗仁 2袋入</text>
+            </view>
+            <view class="mes-bottom flex-col">
+              <text class="mes3 fs20">价值69元</text>
+              <text class="mes4 fs20">1.3万人免费拿</text>
+            </view>
+        </view>
+        <text class="price1 fs36 color-red">5.00</text>
+      </view>
+      <navigator url="./cutDetail/cutDetail" class="shop" >
+        <text class="fs22">立即砍价</text>
+      </navigator>
+    </view> 
+    <view class="list">
+      <view class="content flex" >
+        <view><image src="/images/goods1-2.jpg"></image></view>
+        <view class="mes flex-col">
+            <view class="mes-top flex-col">
+              <text class="mes1 fs24">绵软粉糯即食板栗仁</text>
+              <text class="mes2 fs20">味BACK 燕山板栗仁 2袋入</text>
+            </view>
+            <view class="mes-bottom flex-col">
+              <text class="mes3 fs20">价值69元</text>
+              <text class="mes4 fs20">1.3万人免费拿</text>
+            </view>
+        </view>
+        <text class="price1 fs36 color-red">5.00</text>
+      </view>
+      <navigator url="./cutDetail/cutDetail" class="shop" >
+        <text class="fs22">立即砍价</text>
+      </navigator>
+    </view> 
+    <view class="list">
+      <view class="content flex" >
+        <view><image src="/images/goods1-2.jpg"></image></view>
+        <view class="mes flex-col">
+            <view class="mes-top flex-col">
+              <text class="mes1 fs24">绵软粉糯即食板栗仁</text>
+              <text class="mes2 fs20">味BACK 燕山板栗仁 2袋入</text>
+            </view>
+            <view class="mes-bottom flex-col">
+              <text class="mes3 fs20">价值69元</text>
+              <text class="mes4 fs20">1.3万人免费拿</text>
+            </view>
+        </view>
+        <text class="price1 fs36 color-red">5.00</text>
+      </view>
+      <navigator url="./cutDetail/cutDetail" class="shop" >
+        <text class="fs22">立即砍价</text>
+      </navigator>
+    </view> 
+    <view class="list">
+      <view class="content flex" >
+        <view><image src="/images/goods1-2.jpg"></image></view>
+        <view class="mes flex-col">
+            <view class="mes-top flex-col">
+              <text class="mes1 fs24">绵软粉糯即食板栗仁</text>
+              <text class="mes2 fs20">味BACK 燕山板栗仁 2袋入</text>
+            </view>
+            <view class="mes-bottom flex-col">
+              <text class="mes3 fs20">价值69元</text>
+              <text class="mes4 fs20">1.3万人免费拿</text>
+            </view>
+        </view>
+        <text class="price1 fs36 color-red">5.00</text>
+      </view>
+      <navigator url="./cutDetail/cutDetail" class="shop" >
+        <text class="fs22">立即砍价</text>
+      </navigator>
+    </view> 
+    <view class="list">
+      <view class="content flex" >
+        <view><image src="/images/goods1-2.jpg"></image></view>
+        <view class="mes flex-col">
+            <view class="mes-top flex-col">
+              <text class="mes1 fs24">绵软粉糯即食板栗仁</text>
+              <text class="mes2 fs20">味BACK 燕山板栗仁 2袋入</text>
+            </view>
+            <view class="mes-bottom flex-col">
+              <text class="mes3 fs20">价值69元</text>
+              <text class="mes4 fs20">1.3万人免费拿</text>
+            </view>
+        </view>
+        <text class="price1 fs36 color-red">5.00</text>
+      </view>
+      <navigator url="./cutDetail/cutDetail" class="shop" >
+        <text class="fs22">立即砍价</text>
+      </navigator>
+    </view> 
+  </view>
+  <view class="no-more">
+    <text class="fs20">没有更多了</text>
+  </view>
+</view>
+</template>
+<script>
+import wepy from 'wepy'
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: '一起来砍价'
+  }
+  data = {
+  }
+  methods = {
+  }
+  onLoad() {
+  }
+}
+</script>

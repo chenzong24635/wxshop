@@ -1,0 +1,73 @@
+<style lang='less'>
+.container{
+  margin-bottom: 0;
+}
+.number{color:#1c1c1c;}
+.out{color:#57a090;}
+.in{color:#f23737;}
+.head-nav .true{
+  color:#f23838;
+  border-bottom:2px solid #f23838;
+}
+.head-nav{
+  border-bottom: 1px solid #eee;
+  padding:16rpx 20rpx 0;
+  background: #fff;
+}
+.head-nav text{
+  color:#232323;
+  padding-bottom: 16rpx;
+}
+.list{
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid #eee;
+  padding:40rpx 20rpx 20rpx;
+  height:150rpx;
+}
+.list >text{color:#b0b0b0}
+.list-top{width:100%;}
+</style>
+<template>
+<view class="container">
+  <view class="head-nav flex" >
+    <text class="fs24 {{index==id}}" data-id="{{index}}" wx:for="{{array}}" wx:key="this" bindtap="active">{{item}}</text>
+  </view>
+  <view class="list flex-col">
+    <view class="list-top flex">
+      <text class="number fs24">订单编号： 88888888888</text>
+      <text class="out fs26">-35.00</text>
+    </view>
+    <text class="fs20">绵软粉糯即食板栗仁</text>
+    <text class="fs20">2018-05-30   16:30:23</text>
+  </view>
+  <view class="list flex-col">
+    <view class="list-top flex">
+      <text class="number fs24">充值</text>
+      <text class="in fs26">+135.00</text>
+    </view>
+    <text class="fs20">2018-05-30   16:30:23</text>
+  </view>
+</view>
+</template>
+<script>
+import wepy from 'wepy'
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: '账户余额明细'
+  }
+  data = {
+    array: ['全部', '收入', '支出'],
+    id: 0
+  }
+  active(e) {
+    let id = e.target.dataset.id
+    this.id = id
+    console.log(e, id)
+  }
+  methods = {
+  }
+  onLoad() {
+  }
+}
+</script>

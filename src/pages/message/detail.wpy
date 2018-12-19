@@ -1,0 +1,36 @@
+<style>
+.container{
+  padding: 20rpx 50rpx;
+  color:#7e7e7e;
+}
+image{
+  width:100%;
+  height:270rpx;
+}
+</style>
+<template>
+<view class="container">
+  <text class="fs24" space="emsp">
+  清仓活动是帮助店家们清理宝贝库存、回笼资金的一个活动平台来的，目前已经深受店家们的喜爱，而清仓活动也没有辜负店家们的期望，帮助店家实现了高流量、高转化的承诺，下面小编和大家分享一下一位店家用反季宝贝参加清仓活动的技巧。
+
+  库存中最具有代表性的无疑就是反季宝贝了，想要做反季宝贝的清仓活动，需要特别有讲究的，虽然质量上和价格上具有优势，但是因为是反季宝贝，肯定会受到季节的局限的，很多店家用反季宝贝参加清仓活动，不但没有达到预期的效果，有些反而亏本了。今天小编主要是和大家说说反季商品参加清仓活动成功的案例，让大家学习一下。
+
+  这是一家销售皮草的店铺，以下的数据是7月份的，大家都知道，7月份是夏季最热的时候，皮草肯定是没有生意了的。
+  </text>
+  <image src="/images/message-detail.jpg"></image>
+</view>
+</template>
+<script>
+  import wepy from 'wepy'
+  export default class Detail extends wepy.page {
+    config = {
+      navigationBarTitleText: '消息中心'
+    }
+    data = {
+    }
+    methods = {
+    }
+    onLoad() {
+    }
+  }
+</script>

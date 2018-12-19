@@ -1,0 +1,96 @@
+<style lang='less'>
+/* overange/overange.wxss */
+.container{background: #eee;border-top: none;}
+.top .amout{
+  z-index: 99;
+}
+.top text{
+  display: block;
+  color:#fff; 
+}
+.bottom{
+  margin-top: 30rpx;
+  padding:0 20rpx;
+  background: #fff;
+}
+.bottom > view{
+  height:114rpx;
+  border-bottom: 1px solid #eee;
+  padding:0 30rpx;
+}
+.txt{
+  margin-left: 10px;
+}
+.recharge >image,
+.withdraw >image{
+  width:20rpx;
+  height:34rpx;
+}
+.recharge view image{
+  width:54rpx;
+  height:43rpx;
+}
+.withdraw view image{
+  width:54rpx;
+  height:30rpx;
+}
+.top{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding:0 40rpx;
+  height:250rpx;
+  background: #f71516;
+}
+</style>
+<template>
+<view class="container mb">
+  <view class="top" >
+      <view class="flex">
+        <text class="fs24">账户余额(元)</text>
+        <navigator url="../overangeDetail/overangeDetail" hover-class="none">
+          <text class="fs24">明细</text>
+        </navigator>
+      </view>
+      <text class="amout fs72">31.05</text>
+  </view>
+  <view class="bottom">
+    <view class="recharge flex" bindtap="recharge">
+      <view class="flex">
+        <image src="/images/recharge.png"></image>
+        <text class="txt fs24">充值</text> 
+      </view>
+      <image src="/images/link1.jpg"></image>
+    </view>
+    <view class="withdraw flex" bindtap="withdraw">
+      <view class="flex">
+        <image src="/images/widthdraw.png"></image>
+        <text class="txt fs24">提现</text>
+      </view>
+      <image src="/images/link1.jpg"></image>
+    </view>
+  </view>
+</view>
+</template>
+<script>
+import wepy from 'wepy'
+export default class Index extends wepy.page {
+  config = {
+    'navigationBarBackgroundColor': '#f71516',
+    'navigationBarTextStyle': '#fff',
+    'navigationBarTitleText': '账户余额'
+  }
+  data = {
+  }
+  methods = {
+    recharge() {
+      this.$navigate('/pages/my/recharge/recharge')
+    },
+    withdraw() {
+      this.$navigate('/pages/my/withdraw/withdraw')
+    }
+  }
+  onLoad() {
+  }
+}
+</script>

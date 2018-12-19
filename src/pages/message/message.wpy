@@ -1,0 +1,102 @@
+<style lang='less'>
+.container{border-top: 1px solid #eeeeee;}
+.list{
+  padding:30rpx 20rpx;
+  &>view{
+    padding: 30rpx 0;
+    border-bottom:1px solid #eee;
+  }
+  image{
+    width:72rpx;
+    height:72rpx;
+  }
+}
+.message{
+  width:600rpx;
+  align-items: flex-start;
+  margin-left: 30rpx;
+  .top{
+    width:100%;
+  }
+}
+.mes1{
+  color:#2e2e2e;
+}
+.date{
+  color:#9e9e9e;
+}
+.mes2{
+  margin-top: 4px;
+  color:#7e7e7e;
+  width: 100%;
+}
+</style>
+<template>
+  <view class="container">
+    <view class="list">
+      <block wx:for="{{list}}" wx:key="list">
+        <view class="flex" bindtap="detail">
+          <view><image src="{{item.icon}}"></image></view>
+          <view class="message flex-col">
+            <view class="top flex">
+              <text class="mes1 fs24 ov1">{{item.title}}</text>
+              <text class="date fs20">{{item.created}}</text>
+            </view>
+            <text class="mes2 fs24 ov1">{{item.mes}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+  export default class Message extends wepy.page {
+    config = {
+      navigationBarTitleText: '消息中心'
+    }
+    data = {
+      list: [
+        {
+          id: 1,
+          icon: '/images/mes1.jpg',
+          title: '活动',
+          created: '201.5.9',
+          mes: '年末清仓，满500元减300元，等等等等等等等等等等'
+        },
+        {
+          id: 2,
+          icon: '/images/mes2.jpg',
+          title: '活动2',
+          created: '201.5.9',
+          mes: '年末清仓，满500元减300元，等等等等等等等等等等'
+        },
+        {
+          id: 2,
+          icon: '/images/mes3.jpg',
+          title: '活动3',
+          created: '201.5.9',
+          mes: '年末清仓，满500元减300元，等等等等等等等等等等'
+        },
+        {
+          id: 3,
+          icon: '/images/mes4.jpg',
+          title: '活动4',
+          created: '201.5.9',
+          mes: '年末清仓，满500元减300元，等等等等等等等等等等'
+        }
+      ]
+    }
+    methods = {
+      detail() {
+        this.$navigate('/pages/message/detail')
+      }
+    }
+    onLoad() {
+      wepy.setTabBarBadge({
+        index: 2,
+        text: '2'
+      })
+    }
+  }
+</script>

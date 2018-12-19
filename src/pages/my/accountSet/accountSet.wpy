@@ -1,0 +1,96 @@
+<style lang='less'>
+.container{background: #eee; border-top: 1px solid #eeeeee;}
+.container>view{background: #fff}
+.avatar{
+  position: relative;
+  width:100%;
+  height:300rpx;
+  margin-bottom: 30rpx;
+  image{
+    position: absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    width:140rpx;
+    height:140rpx;
+    margin:auto;
+  }
+}
+.bottom{
+  padding:0 20rpx;
+  view{
+    padding: 0 20rpx;
+    height:108rpx;
+    border-bottom: 1px solid #eeeeee;
+  }
+  text{
+    color:#252525;
+    line-height:108rpx;
+  }
+  image{
+    width:20rpx;
+    height:34rpx; 
+  }
+}
+input{
+  width:500rpx;
+  color:#7e7e7e;
+}
+.btn{
+  position: fixed;
+  bottom:40rpx;
+  width:94%;
+}
+</style>
+<template>
+<view class="container">
+  <view class="avatar">
+    <image src="/images/account-img.png"></image>
+  </view>
+  <view class="bottom">
+    <view class="name flex">
+      <text class="fs24">昵称</text>
+      <input class="fs24" value="18888888"></input>
+    </view>
+    <view class="phone flex">
+      <text class="fs24">手机号码</text>
+      <input class="fs24" value="18888888"></input>
+    </view>
+    <view class="verified flex">
+      <text class="fl fs24">实名认证</text>
+      <image src="/images/link1.jpg"></image>
+    </view>
+    <view class="address-manage flex" bindtap="address">
+      <text class="fl fs24">地址管理</text>
+      <image src="/images/link1.jpg"></image>
+    </view>
+    <view class="change-password flex" bindtap="password">
+      <text class="fl fs24">修改密码</text>
+      <image src="/images/link1.jpg"></image>
+    </view>
+    <button class="out btn fs36">退出登录</button>
+  </view>
+</view>
+</template>
+<script>
+import wepy from 'wepy'
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: '账号设置'
+  }
+  data = {
+  }
+  methods = {
+    address() {
+      this.$navigate('/pages/my/address/address')
+    },
+    password() {
+      this.$navigate('/pages/my/password/password')
+    }
+
+  }
+  onLoad() {
+  }
+}
+</script>

@@ -1,0 +1,140 @@
+<style lang='less'>
+.top{
+  position: relative;
+  padding:0 20rpx;
+  height:444rpx;
+}
+.top text{
+  color:#fff;
+}
+.top-bg{
+  position: absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:444rpx;
+  z-index: -1;
+}
+.top1{
+  justify-content:flex-start;
+  height:234rpx;
+  border-bottom: 1px solid #f9a9a7;
+}
+.top1 .flex-col{
+  align-items: flex-start;
+}
+.top1 .img{
+  width:180rpx;
+  height:234rpx;
+  line-height: 234rpx;
+  text-align: center;
+}
+.top1 image{
+  width:140rpx;
+  height:140rpx;
+  vertical-align: middle;
+}
+.level{
+  display: inline-block;
+  text-align: center;
+  width:50rpx;
+  height:26rpx;
+  line-height: 26rpx;
+  border-radius:16rpx;
+  padding:2px 4px;
+  background:#bfbfbf;
+  color:#fff;
+  margin-left:14px;
+}
+.top2{
+  padding: 30rpx 20rpx 0;
+}
+.withdraw{
+  display: inline-block;
+  padding:4rpx 6rpx;
+  border:1px solid #fff;
+}
+.middle{
+  flex-flow: row wrap;
+  justify-content:flex-start;
+}
+.middle>navigator{ 
+  box-sizing: border-box;
+  border-bottom:1px solid #f2f2f2;
+  width:33.3%;
+  padding:50rpx 0;
+  height: 213rpx;
+  color:#7e7e7e;
+}
+.item image{
+  width:80rpx;
+  height:72rpx;
+  margin-bottom: 10rpx;
+}
+.br{
+  border-right:1px solid #f2f2f2;
+}
+</style>
+<template>
+<view class="container">
+  <view class="top">
+    <image class="top-bg" src="/images/distribution.jpg"></image>
+    <view class="top1 flex">
+      <view class="img"><image src="/images/account-img.png"></image></view>
+      <view  class="flex-col">
+        <view class="flex">
+          <text class="fs30">138888888</text>
+          <text class="fs15 level">白银</text>
+        </view>
+        <text class="fs20">推荐人： 某某某</text>
+      </view>
+    </view>
+    <view class="top2">
+      <view class="flex">
+        <text class="fs22">可提现佣金 (元)</text>
+        <text class="withdraw fs22">提现</text>
+      </view>
+      <text class="fs72">30.18</text>
+    </view>
+  </view>
+  <view class="bg"></view>
+  <view class="middle flex">
+    <navigator url="/pages/my/distribution/myTeam/myTeam" hover-class="none" class="item br flex-col">
+        <image src="/images/distribution1.png"></image>
+        <text class="fs24">我的团队</text>
+    </navigator>
+    <navigator url="/pages/my/distribution/myEarn/myEarn" hover-class="none" class="item br flex-col">
+        <image src="/images/distribution2.png"></image>
+        <text class="fs24">我的分润</text>
+    </navigator>
+    <navigator url="/pages/my/distribution/distributionOrder/distributionOrder" hover-class="none" class="item flex-col">
+        <image src="/images/distribution3.png"></image>
+        <text class="fs24">分销订单</text>
+    </navigator>
+    <navigator url="/pages/my/distribution/withdrawDetail/withdrawDetail" hover-class="none" class="item br flex-col">
+        <image src="/images/distribution4.png"></image>
+        <text class="fs24">提现明细</text>
+    </navigator>
+    <navigator url="/pages/my/distribution/QRcode/QRcode"  hover-class="none" class="item br flex-col">
+        <image src="/images/distribution5.png"></image>
+        <text class="fs24">推广二维码</text>
+    </navigator>
+    <view class="item  flex-col">
+    </view>
+  </view>
+</view>
+</template>
+<script>
+import wepy from 'wepy'
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: '分销中心'
+  }
+  data = {
+  }
+  methods = {
+  }
+  onLoad() {
+  }
+}
+</script>

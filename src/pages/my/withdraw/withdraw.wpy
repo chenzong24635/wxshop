@@ -1,0 +1,83 @@
+<style lang='less'>
+.top{
+  padding:0 40rpx;
+  padding-top: 54rpx;
+}
+.top .left{
+  color:#252525;
+}
+.top .right{
+  color:#7e7e7e;
+}
+.middle{
+  padding:54rpx 40rpx 0;
+}
+.amout{
+  position: relative;
+  border-bottom: 1px solid #eeeeee;
+  padding-bottom: 60rpx;
+}
+.amout > text{
+  position: absolute;
+  left:0;
+  top:40rpx;
+  width:60rpx;
+  height:40rpx;
+  color:#aaaaaa;
+}
+.amout input{
+  height:120rpx;
+  margin-left: 60rpx; 
+  color:#aaaaaa;
+}
+.middle-bottom{padding-top: 20rpx;}
+.middle-bottom .left{
+  color:#252525;
+}
+.middle-bottom .right{
+  color:#f23737;
+}
+.withdraw{
+  margin:120rpx 20rpx 0;
+  background:#f23737;
+  color:#fff;
+}
+</style>
+<template>
+<view class="container mb">
+  <view class="top clearfix">
+    <text class="left fl fs20">提现金额 (元)</text>
+    <view class="right fr">
+      <text class="fs20">最低提现金额 100 元</text>
+    </view>
+  </view>
+  <view class="middle">
+    <view class="amout">
+      <text class="fs30">￥</text>
+      <input class="fs72" placeholder="0.00"  placeholder-style="color:#aaa" auto-focus/>
+    </view>  
+    <view class="middle-bottom clearfix">
+      <view class="left fl">
+        <text class="fs20">可提现金额 100 元</text>
+      </view>
+      <text class="right fr fs20">全部提现</text>
+    </view> 
+  </view>
+  <button class="withdraw btn fs30">提交</button>
+</view>
+</template>
+<script>
+import wepy from 'wepy'
+
+export default class Withdraw extends wepy.page {
+  config = {
+    navigationBarTitleText: '提现'
+  }
+  data = {
+  }
+  methods = {
+  }
+  onLoad() {
+  }
+}
+</script>

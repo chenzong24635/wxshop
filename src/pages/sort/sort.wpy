@@ -1,0 +1,288 @@
+<style lang='less'>
+text{color:#232323}
+.container .top{
+  padding:20rpx;
+}
+.search{
+  position: relative;
+  width:640rpx;
+  height:60rpx;
+  border-radius:30rpx;
+  background: #f6f6f6;
+  color:#7e7e7e;
+  image{
+    width:36rpx;
+    height:36rpx;
+    margin:0 12rpx;
+  }
+  input{
+    width:600rpx;
+  }
+}
+.mes image{
+  width:46rpx;
+  height:42rpx;
+}
+.main{
+  border-top: 1px solid #d0d0d0;
+}
+.scroll-left{
+  width:24%;
+}
+.nav-bar{
+  width:100%;
+}
+.scroll-right{
+  width:76%;
+}
+.bar-show{
+  width:100%;
+}
+.nav-bar > view{
+  box-sizing: border-box;
+  width:100%;
+  text-align: center;
+  background: #f2f2f2;
+  padding:30rpx 0 ;
+  margin-bottom: 1px;
+}
+.nav-bar > view >text{
+  display:block;
+  box-sizing: border-box;
+  width:100%;
+}
+.nav-bar > view.active{
+  background: #fff;
+}
+.active > text{
+  border-left:10rpx solid #ff0000;
+  font-weight: bold;
+}
+.bar-show{ 
+  box-sizing: border-box;
+  padding:30rpx 20rpx;
+}
+.bar-show-list{
+  margin-bottom: 90rpx;
+}
+.bar-show-top{
+  display: block;
+  width:100%;
+  border-bottom:1rpx solid #d0d0d0;
+  padding-bottom: 20rpx;
+}
+.bar-show-main{
+  flex-flow: wrap;
+  justify-content: flex-start;
+  &>view{
+    width:32%;
+    height: 180rpx;
+    margin: 10rpx 0;
+    view{
+      width: 96%;  
+      text-align: center;
+    }
+  }
+  &>view:nth-child(3n+2){
+    margin: 10rpx 2%;
+  }
+  image{
+    width:100%;
+    height:100%;
+  }
+}
+</style>
+<template>
+<view class="container">
+  <view class="top flex">
+    <view class="search flex">
+      <image src="/images/search1.png"></image>
+      <input />
+    </view>
+    <view class="mes" bindtap="message"><image src="/images/message.png"></image></view>
+  </view>
+  <view class="main clearfix" style="height:{{height}}px">
+    <scroll-view scroll-y  class="scroll-left fl"  style="height:{{height}}px">
+      <view  class="nav-bar flex-col ">
+          <view class="{{index==id?'active':''}}" wx:for="{{barList}}" data-id="{{index}}" bindtap="active" wx:key="bar">
+            <text class="fs24" >{{item}}</text>
+          </view>
+      </view>
+    </scroll-view>
+    <scroll-view scroll-y  class="scroll-right fr" style="height:{{height}}px">
+      <view class="bar-show">
+        <block wx:for="{{list}}" wx:key="list">
+          <view class="bar-show-list">
+            <text class="bar-show-top fs24">{{item.title}}</text>
+            <view class="bar-show-main flex">
+              <block wx:for="{{item.list1}}" wx:key="list1" wx:for-item="item1">
+                <view class="flex-col" bindtap="productList">
+                  <image src="{{item1.img}}"></image>
+                  <view class="fs22 ov1">{{item1.name}}</view>
+                </view>
+              </block>
+            </view>
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+  </view>
+</view>
+</template>
+<script>
+  import wepy from 'wepy'
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '产品'
+    }
+    data = {
+      barList: ['热门推荐', '家居百货', '家用电器', '服饰鞋包', '休息美食', '水果生鲜', '美妆个护', '母婴文具', '户外运动', '汽车用品', '宠物生活', '医药保健', '医药保健', '医药保健', '医药保健'],
+      id: 0,
+      list: [
+        {
+          id: 0,
+          title: '家居百货',
+          list1: [
+            {
+              id: 0,
+              name: '衣物衣衣物衣物衣物衣物物衣物衣物',
+              img: '/images/sort1.jpg'
+            },
+            {
+              id: 0,
+              name: '衣物',
+              img: '/images/sort1.jpg'
+            },
+            {
+              id: 1,
+              name: '衣物',
+              img: '/images/sort1.jpg'
+            },
+            {
+              id: 2,
+              name: '衣物',
+              img: '/images/sort1.jpg'
+            },
+            {
+              id: 3,
+              name: '衣物',
+              img: '/images/sort1.jpg'
+            }
+          ]
+        },
+        {
+          id: 1,
+          title: '家居百货',
+          list1: [
+            {
+              id: 0,
+              name: '衣物',
+              img: '/images/sort1.jpg'
+            },
+            {
+              id: 0,
+              name: '衣物',
+              img: '/images/sort1.jpg'
+            },
+            {
+              id: 1,
+              name: '衣物',
+              img: '/images/sort1.jpg'
+            },
+            {
+              id: 2,
+              name: '衣物',
+              img: '/images/sort1.jpg'
+            },
+            {
+              id: 3,
+              name: '衣物',
+              img: '/images/sort1.jpg'
+            }
+          ]
+        },
+        {
+          id: 2,
+          title: '家居百货',
+          list1: [
+            {
+              id: 0,
+              name: '衣物',
+              img: '/images/sort1.jpg'
+            },
+            {
+              id: 0,
+              name: '衣物',
+              img: '/images/sort1.jpg'
+            },
+            {
+              id: 1,
+              name: '衣物',
+              img: '/images/sort1.jpg'
+            },
+            {
+              id: 2,
+              name: '衣物',
+              img: '/images/sort1.jpg'
+            },
+            {
+              id: 3,
+              name: '衣物',
+              img: '/images/sort1.jpg'
+            }
+          ]
+        },
+        {
+          id: 3,
+          title: '家居百货',
+          list1: [
+            {
+              id: 0,
+              name: '衣物',
+              img: '/images/sort1.jpg'
+            },
+            {
+              id: 0,
+              name: '衣物',
+              img: '/images/sort1.jpg'
+            },
+            {
+              id: 1,
+              name: '衣物',
+              img: '/images/sort1.jpg'
+            },
+            {
+              id: 2,
+              name: '衣物',
+              img: '/images/sort1.jpg'
+            },
+            {
+              id: 3,
+              name: '衣物',
+              img: '/images/sort1.jpg'
+            }
+          ]
+        }
+      ],
+      height: 1000
+    }
+    methods = {
+      active(e) {
+        let id = e.currentTarget.dataset.id
+        this.id = id
+        this.$apply()
+        console.log(e, id)
+      },
+      productList() {
+        this.$navigate('/pages/sort/product/product')
+      },
+      message: function () {
+        this.$switch('/pages/message/message')
+      }
+    }
+    onLoad() {
+      this.height = wepy.getSystemInfoSync().windowHeight
+      this.$apply()
+    }
+  }
+</script>

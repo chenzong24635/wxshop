@@ -1,0 +1,280 @@
+<style lang='less'>
+/* pages/account/cut/cutDetail.wxss */
+.cutDetail-bg{
+  position: absolute;
+  top:0;
+  left:0;
+  z-index: -1;
+  width:100%;
+  height:1824rpx;
+}
+.content{
+  padding:20rpx;
+}
+.product{
+  border-radius: 20rpx;
+  padding:20rpx;
+  background: #fce6e9;
+}
+.avator{
+  justify-content:flex-start;
+}
+.avator image{
+  width:70rpx;
+  height: 70rpx;
+  margin-right: 10rpx;
+}
+.avator>view{
+  align-items: flex-start;
+}
+.product-detail{
+  position: relative;
+  border-radius: 20rpx;
+  margin-top: 30rpx;
+  padding: 0 20rpx;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+.product-detail image{
+  width:200rpx;
+  height:200rpx;
+}
+.mes{
+  padding-left: 10px;
+  width:500rpx;
+  align-items: flex-start;
+}
+.mes1{
+  color:#232323;
+}
+.mes2{
+  color:#787878;
+  margin-top: 5rpx;
+}
+.mes3{color:#5d5d5d;}
+.price{
+  width:100%;
+  margin-top: 20rpx;
+}
+.cut-price{
+  margin: 30rpx 0;
+  text-align: center;
+}
+.cut-price text{
+  color:#ffd200;
+}
+.cut-bar{position: relative}
+.cut-bar1{
+  position: absolute;
+  left:0;
+  top:0;
+  width:42rpx;
+  height:22rpx;
+  border-radius:10rpx;
+  background: #ffd200;
+  z-index: 99;
+}
+.cut-bar2{
+  position: relative;
+  background: #a70000;
+  width:100%;
+  height:22rpx;
+  border-radius: 10rpx;
+}
+.cut-bar2 .circle{
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left:0;
+  right:0;
+  margin:auto;
+  width:42rpx;
+  height:42rpx;
+  text-align: center;
+  color:#ffd200;
+  border-radius:21rpx;
+  background: #a70000;
+  z-index: 999;
+}
+.share-btn{
+  position: relative;
+  text-align: center;
+  margin: 50rpx 0 30rpx;
+}
+.share-btn text{
+  color:#e81515;
+  line-height: 88rpx;
+}
+.share-bg{
+  position: absolute;
+  top:0;
+  left:0;
+  z-index: -1;
+  width:100%;
+  height:88rpx;
+}
+.friend-cut{
+  position: relative;
+  box-sizing: border-box;
+  width:610rpx;
+  padding: 20rpx 30rpx;
+  margin: auto;
+  background: rgba(255,208,194,.4);
+}
+.friend-cut-top{
+  padding-bottom: 10rpx;
+  text-align: center;
+  border-bottom:1px solid #ffb4b4;
+}
+.friend-cut-content{
+  position: relative;
+  overflow: hidden;
+}
+.more{
+  position: absolute;
+  bottom: -19rpx;
+  left:0;
+  right:0;
+  justify-content: center;
+  background: rgba(255,208,194,.7);
+  border-radius:  0 0 10rpx 10rpx;
+  margin: 0 auto;
+  width: 160rpx;
+  height: 20rpx;
+}
+.more image{
+  width: 26rpx;
+  height: 12rpx;
+}
+.friend-cut .item{
+  margin-top: 20rpx;
+  height: 60rpx;
+}
+.friend-cut text{
+  color:#fff;
+}
+.cuted text{
+  color:#ffff52;
+}
+.cuted image{
+  margin-right: 10rpx;
+  width: 38rpx;
+  height: 36rpx;
+}
+</style>
+<template>
+<view class="container">
+  <image class="cutDetail-bg" src="/images/cutDetail.jpg"></image>
+  <view class="content">
+      <view class="product">
+        <view class="avator flex">
+          <image src="/images/client-pic.png"></image>
+          <view class="flex-col">
+            <text class="fs24">某某某2231</text>
+            <text class="fs20">我发现一件好货，来帮我一起砍价吧！</text>
+          </view>
+        </view>
+        <navigator url="/pages/sort/detail/detail" hover-class="none" class="product-detail flex">
+            <view><image src="/images/goods1-3.jpg"></image></view>
+            <view class="mes flex-col">
+              <text class="mes1 fs24">绵软粉糯即食板栗仁</text>
+              <text class="mes2 fs20">味BACK 燕山板栗仁 2袋入</text>
+              <view class="price flex">
+                <text class="price1 fs30">35.00</text>
+                <text class="mes3 fs20">1.3万人已免费拿 ></text>
+              </view>
+            </view>
+        </navigator>
+      </view>
+      <view class="cut">
+        <view class="cut-price fs24 colorf">已砍
+          <text class="fs36">{{cut1}}</text>元，还差
+          <text class="fs24">{{cut2}}</text>元
+        </view>
+        <view class="cut-bar">
+          <view class="cut-bar1" style="width:{{cut1/(cut1+cut2)*100}}%"></view>
+          <view class="cut-bar2"><view class="circle"><text>￥</text></view></view>
+        </view>
+      </view>
+      <view class="share-btn" bindtap="onShareAppMessage">
+        <image class="share-bg" src="/images/btn.png"></image>
+        <text class="fs30">分享给好友，帮忙砍价</text>
+      </view>
+      <view class="friend-cut">
+         <view class="more flex" bindtap="more"><image src="/images/more.png"></image></view>
+         <view class="friend-cut-top"><text class="fs24">好友砍价</text></view>
+         <view class="friend-cut-content" style="height:{{height}}rpx;">
+            <view class="item flex">
+              <view class="avator flex">
+                <image src="/images/client-pic.png"></image>
+                <text class="fs24">某某某2231</text>
+              </view>
+              <view class="cuted flex">
+                <image src="/images/cutDetail-cut.png"></image>
+                <text class="fs24">砍掉了3.21元</text>
+              </view>
+            </view> 
+            <view class="item flex">
+              <view class="avator flex">
+                <image src="/images/client-pic.png"></image>
+                <text class="fs24">某某某2231</text>
+              </view>
+              <view class="cuted flex">
+                <image src="/images/cutDetail-cut.png"></image>
+                <text class="fs24">砍掉了3.21元</text>
+              </view>
+            </view> 
+            <view class="item flex">
+              <view class="avator flex">
+                <image src="/images/client-pic.png"></image>
+                <text class="fs24">某某某2231</text>
+              </view>
+              <view class="cuted flex">
+                <image src="/images/cutDetail-cut.png"></image>
+                <text class="fs24">砍掉了3.21元</text>
+              </view>
+            </view> 
+            <view class="item flex">
+              <view class="avator flex">
+                <image src="/images/client-pic.png"></image>
+                <text class="fs24">某某某2231</text>
+              </view>
+              <view class="cuted flex">
+                <image src="/images/cutDetail-cut.png"></image>
+                <text class="fs24">砍掉了3.21元</text>
+              </view>
+            </view> 
+         </view>
+      </view>
+  </view>
+</view>
+</template>
+<script>
+import wepy from 'wepy'
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: '一起来砍价'
+  }
+  data = {
+    cut1: 93.16,
+    cut2: 27.05,
+    height: 160
+  }
+  methods = {
+    more() {
+      this.height = this.height + 80
+    }
+  }
+  onShareAppMessage(res) {
+    if (res.from === 'button') {
+      console.log(res.target)
+    }
+    return {
+      title: '自定义转发标题',
+      path: '/page/user?id=123'
+    }
+  }
+  onLoad() {
+  }
+}
+</script>

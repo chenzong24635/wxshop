@@ -1,0 +1,97 @@
+<style>
+@import '/pages/my/cardVoucher/cardVoucher'
+</style>
+<template>
+<view class="container">
+  <view class="list">
+    <image class="list-bg" src="/images/cardVoucher1.jpg"></image>
+    <view class="list-content">
+      <view class="list-top flex">
+        <view class="flex">
+          <text class="price fs60">20.00</text>
+          <view class="left2 flex-col">
+            <text class="fs26">全品类商品</text>
+            <text class="fs22">无门槛</text>
+          </view>
+        </view>
+        <view class="use"><text class="fs24">立即领取</text></view>
+      </view>
+      <view class="list-bottom flex-col">
+        <view><text class="fs20">有效日期： 领取7天有效</text></view>
+        <view><text class="fs20">适用范围： 全场通用</text></view>
+      </view>
+    </view>
+  </view>
+  <view class="list">
+    <image class="list-bg" src="/images/cardVoucher2.jpg"></image>
+    <view class="list-content">
+      <view class="list-top flex">
+        <view class="flex">
+          <text class="discount fs60">9</text>
+          <view class="left2 flex-col">
+            <text class="fs26">全品类商品</text>
+            <text class="fs22">满300可用</text>
+          </view>
+        </view>
+        <view class="use"><text class="fs24">立即领取</text></view>
+      </view>
+      <view class="list-bottom flex-col">
+        <view><text class="fs20">有效日期： 领取7天有效</text></view>
+        <view><text class="fs20">适用范围： 全场通用</text></view>
+      </view>
+    </view>
+  </view>
+  <view class="list">
+    <image class="list-bg" src="/images/cardVoucher1.jpg"></image>
+    <view class="list-content">
+      <view class="list-top flex">
+        <view class="flex">
+          <text class="price fs60">20.00</text>
+          <view class="left2 flex-col">
+            <text class="fs26">全品类商品</text>
+            <text class="fs22">无门槛</text>
+          </view>
+        </view>
+        <view class="use"><text class="fs24">立即领取</text></view>
+      </view>
+      <view class="list-bottom flex-col">
+        <view><text class="fs20">有效日期： 领取7天有效</text></view>
+        <view><text class="fs20">适用范围： 全场通用</text></view>
+      </view>
+    </view>
+  </view>
+  <view class="list">
+    <image class="list-bg" src="/images/cardVoucher2.jpg"></image>
+    <view class="list-content">
+      <view class="list-top flex">
+        <view class="flex">
+          <text class="discount fs60">9</text>
+          <view class="left2 flex-col">
+            <text class="fs26">全品类商品</text>
+            <text class="fs22">满300可用</text>
+          </view>
+        </view>
+        <view class="use"><text class="fs24">立即领取</text></view>
+      </view>
+      <view class="list-bottom flex-col">
+        <view><text class="fs20">有效日期： 领取7天有效</text></view>
+        <view><text class="fs20">适用范围： 全场通用</text></view>
+      </view>
+    </view>
+  </view>
+</view>
+</template>
+<script>
+import wepy from 'wepy'
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: '领券中心'
+  }
+  data = {
+  }
+  methods = {
+  }
+  onLoad() {
+  }
+}
+</script>

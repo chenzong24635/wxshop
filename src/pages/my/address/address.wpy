@@ -1,0 +1,259 @@
+<style lang='less'>
+/* pages/account/address/address.wxss */
+page{position: relative;}
+.container{
+  position: relative;
+  border-top: 1px solid #eee;
+}
+.address,.address-list{position: relative;}
+.address > view{
+  padding:0 22rpx;
+}
+.addressManage > view{
+   padding:0 40rpx 0 60rpx; 
+}
+.address .check{
+  position: absolute;
+  top:40rpx;
+  left:10rpx;
+  padding: 0;
+  width:30rpx;
+  height:30rpx;
+  border:1px solid #b2b2b2;
+  border-radius:50%;
+}
+.address-list{border-bottom: 1px solid #eee}
+.top{
+  margin-top: 30rpx;
+}
+.bottom{
+  margin: 20rpx 0 40rpx;
+}
+.top > text{
+  color:#1c1c1c;
+}
+.default{
+  color:#2165e3;
+  border:1px solid #2165e3;
+  padding:1px 5px;
+  border-radius:12%;
+  margin-right:4px;
+}
+.detail{
+  color:#747474;
+  line-height:2; 
+}
+.address .bg-img{
+  padding: 0;
+}
+.bg-img image{
+  width:100%;
+  height:12rpx;
+}
+.bg{
+  width:100%;
+  height:24rpx;
+  background: #eee;
+  margin-top: -10rpx;
+}
+.btns{
+  position: fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:80rpx;
+}
+.btns button{
+  display: inline-block;
+  margin:0;
+}
+.btn1{
+  width:20%;
+  background: #eee;
+  color:#000;
+}
+.btn2{
+  width:80%;
+}
+
+.foot{
+  position: fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:100rpx;
+  background: #fff;
+}
+.foot .add{
+  width:20%;  
+  height: 100%;
+}
+.foot .add image{
+  width:54rpx;
+  height:54rpx;
+  margin-top: 4px;
+}
+.foot .add text{
+  color:#434343;
+}
+.foot .update,
+.foot .del{
+  justify-content: center;
+  width:40%;
+  height: 100%;
+  background: #f4b148;
+  text-align: center;
+}
+.foot .del{background: #f23737;}
+.foot .update image,
+.foot .del image{
+  width:42rpx;
+  height:42rpx;
+  margin-right:4px ;
+}
+.foot .update text,
+.foot .del text{
+  color:#fff;
+}
+</style>
+<template>
+<view class="container mb">
+  <view class="address {{manage?'addressManage':''}}">
+    <view class="{{manage?'check':''}}"><text></text></view>
+    <view class="top flex">
+      <text class="name fs26">某某某</text>
+      <text class="phone fs26">188888888</text>
+    </view>
+    <view class="bottom">
+      <text class="default fs15">默认</text>
+      <text class="detail fs22">浙江省宁波市海曙区丽园北路668号美丽园大厦602</text>
+    </view>
+    <view class="bg-img">
+      <image src="/images/address-bg.jpg"></image>
+      <view class="bg"></view>
+    </view>
+  </view>
+  <view class="address {{manage?'addressManage':''}}">
+    <view class="address-list">
+      <view class="check" wx:if="{{manage}}"><text></text></view>
+      <view class="top flex">
+        <text class="name fs26">某某某</text>
+        <text class="phone fs26">188888888</text>
+      </view>
+      <view class="bottom">
+        <text class="detail fs22">浙江省宁波市海曙区丽园北路668号美丽园大厦602</text>
+      </view>
+    </view>
+    <view class="address-list">
+      <view class="check" wx:if="{{manage}}"><text></text></view>
+      <view class="top flex">
+        <text class="name fs26">某某某</text>
+        <text class="phone fs26">188888888</text>
+      </view>
+      <view class="bottom">
+        <text class="detail fs22">浙江省宁波市海曙区丽园北路668号美丽园大厦602</text>
+      </view>
+    </view>
+    <view class="address-list">
+      <view class="check" wx:if="{{manage}}"><text></text></view>
+      <view class="top flex">
+        <text class="name fs26">某某某</text>
+        <text class="phone fs26">188888888</text>
+      </view>
+      <view class="bottom">
+        <text class="detail fs22">浙江省宁波市海曙区丽园北路668号美丽园大厦602</text>
+      </view>
+    </view>
+    <view class="address-list">
+      <view class="check" wx:if="{{manage}}"><text></text></view>
+      <view class="top flex">
+        <text class="name fs26">某某某</text>
+        <text class="phone fs26">188888888</text>
+      </view>
+      <view class="bottom">
+        <text class="detail fs22">浙江省宁波市海曙区丽园北路668号美丽园大厦602</text>
+      </view>
+    </view>
+    <view class="address-list">
+      <view class="check" wx:if="{{manage}}"><text></text></view>
+      <view class="top flex">
+        <text class="name fs26">某某某</text>
+        <text class="phone fs26">188888888</text>
+      </view>
+      <view class="bottom">
+        <text class="detail fs22">浙江省宁波市海曙区丽园北路668号美丽园大厦602</text>
+      </view>
+    </view>
+    <view class="address-list">
+      <view class="check" wx:if="{{manage}}"><text></text></view>
+      <view class="top flex">
+        <text class="name fs26">某某某</text>
+        <text class="phone fs26">188888888</text>
+      </view>
+      <view class="bottom">
+        <text class="detail fs22">浙江省宁波市海曙区丽园北路668号美丽园大厦602</text>
+      </view>
+    </view>
+    <view class="address-list">
+      <view class="check" wx:if="{{manage}}"><text></text></view>
+      <view class="top flex">
+        <text class="name fs26">某某某</text>
+        <text class="phone fs26">188888888</text>
+      </view>
+      <view class="bottom">
+        <text class="detail fs22">浙江省宁波市海曙区丽园北路668号美丽园大厦602</text>
+      </view>
+    </view>
+    <view class="address-list">
+      <view class="check" wx:if="{{manage}}"><text></text></view>
+      <view class="top flex">
+        <text class="name fs26">某某某</text>
+        <text class="phone fs26">188888888</text>
+      </view>
+      <view class="bottom">
+        <text class="detail fs22">浙江省宁波市海曙区丽园北路668号美丽园大厦602</text>
+      </view>
+    </view>
+  </view>
+  <view class="btns" wx:if="{{!manage}}">
+    <button class="btn btn1" bindtap="manage" >管理</button>
+    <button class="btn btn2" bindtap="add">添加新地址</button>
+  </view>
+  <view class="foot flex" wx:if="{{manage}}">
+    <view class="add flex-col" bindtap="add">
+      <image src="/images/add.png"></image>
+      <text class="fs15">添加新地址</text>
+    </view>
+    <view class="update flex" bindtap="add">
+      <image src="/images/update.png"></image>
+      <text class="fs30">修改</text>
+    </view>
+    <view class="del flex">
+      <image src="/images/del.png"></image>
+      <text class="fs30">删除</text>
+    </view>
+  </view>
+</view>
+</template>
+<script>
+import wepy from 'wepy'
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: 'Index'
+  }
+  data = {
+    manage: false
+  }
+  methods = {
+    manage() {
+      this.manage = true
+      this.$apply()
+    },
+    add() {
+      this.$navigate('/pages/my/addressManage/addressManage')
+    }
+  }
+  onLoad() {
+  }
+}
+</script>

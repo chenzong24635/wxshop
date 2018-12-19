@@ -1,0 +1,33 @@
+<style type="less">
+
+</style>
+<template> 
+  <view class="group">
+    <view wx:for="{{lists}}">
+      {{ item.a }}
+      {{item.b}}
+    </view>
+    <!-- <button @tap.stop="getProps">child-getProps</button> -->
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+
+  export default class child extends wepy.component {
+    props = {
+      title: String,
+      lists: {
+        type: Array,
+        default: []
+      }
+    }
+    components = {
+    }
+    methods = {
+      getProps() {
+        let num = this.twoWayTitle
+        this.twoWayTitle = ++num
+      }
+    }
+  }
+</script>

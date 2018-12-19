@@ -1,0 +1,184 @@
+<style lang='less'>
+/* pages/account/distribution/withdrawDetail/withdrawDetail.wxss */
+.container{
+  margin-bottom: 0;
+  padding:50rpx 18rpx 50rpx 40rpx;
+}
+.number{
+  color:#222;
+}
+.time{
+  color:#7e7e7e;
+}
+.list{
+  position: relative;
+  height:190rpx;
+  padding:0 20rpx 30rpx 30rpx;
+}
+.line{
+  position: absolute;
+  left:0;
+  height:220rpx;
+  width:2px;
+  background: #eee;
+}
+.circle{
+  position: absolute;
+  bottom:66rpx;
+  left:-4rpx;
+  width:12rpx;
+  height:12rpx;
+  border-radius:50%;
+}
+.circle0{
+  width:20rpx;
+  height:20rpx;
+	top: 36rpx;
+	left: 32rpx;
+  z-index: 9999;
+}
+.list-bottom{
+  position: relative;
+  justify-content: space-around;
+  background: #eee;
+  width:100%;
+   height:120rpx; 
+  /* padding:20rpx 10rpx; */
+  border-radius:10rpx;
+  margin-top:20rpx;
+}
+.list-bottom:before{
+  content:'';
+  position: absolute;
+  left:-10rpx;
+  bottom:0rpx;
+  transform: rotate(60deg);
+  width:0;
+  height:0;
+  border:20rpx solid transparent;
+  border-left-color:#eee;
+}
+.list-bottom >view{
+  justify-content:space-around;
+  width:33.3%;
+  height:80%;
+}
+.list-bottom text{
+  width:100%;
+  height:50%;
+  text-align: center;
+}
+.c1{color:#ffa800;}
+.c2{color:#ff4800;}
+.c3{color:#64a793;}
+.c4{color:#703f3f;}
+.c0{color:#515151;}
+.bg1{background:#ffa800;}
+.bg2{background:#ff4800;}
+.bg3{background:#64a793;}
+.bg4{background:#703f3f;}
+.bg0{background:#ffa1a1;}
+</style>
+<template>
+<view class="container">
+  <text class="circle circle0 bg0"></text>
+  <view class="list">
+    <view class="line"><text class="circle bg1"></text></view>
+    <view class="list-top flex">
+      <text class="number fs22">提现单号：1233443</text>
+      <text class="time fs20">2018-05-30  18:13:20</text>
+    </view>
+    <view class="list-bottom flex">
+      <view class="flex-col">
+        <text class="fs22">金额</text>
+        <text class="color-red fs22">120.0</text>
+      </view>
+      <view class="flex-col">
+        <text class="fs22">状态</text>
+        <text class="c1 fs22">审核中</text>
+      </view>
+      <view class="flex-col">
+        <text class="fs22">备注</text>
+        <text class="c0 fs22"></text>
+      </view>
+    </view>
+  </view>
+  <view class="list">
+    <view class="line"><text class="circle bg2"></text></view>
+    <view class="list-top flex">
+      <text class="number fs22">提现单号：1233443</text>
+      <text class="time fs20">2018-05-30  18:13:20</text>
+    </view>
+    <view class="list-bottom flex">
+      <view class="flex-col">
+        <text class="fs22">金额</text>
+        <text class="color-red fs22">120.0</text>
+      </view>
+      <view class="flex-col">
+        <text class="fs22">状态</text>
+        <text class="c2 fs22">待打款</text>
+      </view>
+      <view class="flex-col">
+        <text class="fs22">备注</text>
+        <text class="c0 fs22"></text>
+      </view>
+    </view>
+  </view>
+  <view class="list">
+    <view class="line"><text class="circle bg3"></text></view>
+    <view class="list-top flex">
+      <text class="number fs22">提现单号：1233443</text>
+      <text class="time fs20">2018-05-30  18:13:20</text>
+    </view>
+    <view class="list-bottom flex">
+      <view class="flex-col">
+        <text class="fs22">金额</text>
+        <text class="color-red fs22">120.0</text>
+      </view>
+      <view class="flex-col">
+        <text class="fs22">状态</text>
+        <text class="c3 fs22">已打款</text>
+      </view>
+      <view class="flex-col">
+        <text class="fs22">备注</text>
+        <text class="c0 fs22"></text>
+      </view>
+    </view>
+  </view>
+  <view class="list">
+    <view class="line"><text class="circle bg4"></text></view>
+    <view class="list-top flex">
+      <text class="number fs22">提现单号：1233443</text>
+      <text class="time fs20">2018-05-30  18:13:20</text>
+    </view>
+    <view class="list-bottom flex">
+      <view class="flex-col">
+        <text class="fs22">金额</text>
+        <text class="color-red fs22">120.0</text>
+      </view>
+      <view class="flex-col">
+        <text class="fs22">状态</text>
+        <text class="c4 fs22">无效</text>
+      </view>
+      <view class="flex-col">
+        <text class="fs22">备注</text>
+        <text class="c0 fs22">审核未通过</text>
+      </view>
+    </view>
+  </view>
+</view>
+</template>
+<script>
+import wepy from 'wepy'
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: '提现明细'
+  }
+  data = {
+  }
+  methods = {
+  }
+  onLoad() {
+  }
+}
+</script>

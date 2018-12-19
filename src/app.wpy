@@ -1,0 +1,280 @@
+<style lang="less">
+  page,view,text{
+    font:normal 14px/1.5 "微软雅黑";
+  }
+  .container{
+    position: relative;
+    border-top:1px solid #eee;
+  }
+  .flex{
+    display:flex;
+    flex-flow:row nowrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .flex-col{
+    display:flex;
+    flex-flow:column nowrap;
+    align-items: center; 
+  }
+  .fl{float:left}
+  .fr{float:right}
+  .clearfix:before,
+  .clearfix:after{
+    content: '';
+    display: block;
+    clear: both;
+    overflow: hidden;
+    height: 0;
+    line-height: 0;
+  }
+  .bg{
+    background: #eee;
+    height: 30rpx;
+  }
+  .bold{font-weight: bold;}
+  .mb{margin-bottom: 110rpx;}
+  .mb1{margin-bottom: 230rpx;}
+  .colorf{color:#fff;}
+  .color0{color:#000;}
+  .color-red{color:#f23737;}
+  .color-23{color:#232323}
+  .color-49{color:#494949}
+  .color-78{color:#787878}
+
+  .fs14{font-size:16rpx;}
+  .fs15{font-size:18rpx;}
+  .fs16{font-size:20rpx;}
+  .fs18{font-size:22rpx;}
+  .fs20{font-size:24rpx;}
+  .fs22{font-size:27rpx;}
+  .fs24{font-size:30rpx;}
+  .fs26{font-size:32rpx;}
+  .fs28{font-size:34rpx;}
+  .fs30{font-size:36rpx;}
+  .fs32{font-size:38rpx;}
+  .fs34{font-size:40rpx;}
+  .fs36{font-size:42rpx;}
+  .fs38{font-size:44rpx;}
+  .fs48{font-size:50rpx;} 
+  .fs60{font-size:72rpx;} 
+  .fs72{font-size:86rpx;} 
+
+  .ov1{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .ov2{
+    position: relative;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    display: -moz-box;
+    -moz-line-clamp: 2;
+    -moz-box-orient: vertical;
+  }
+  .btn{
+    color:#fff;
+    background: #f23737;
+    height:80rpx;
+    line-height: 80rpx;
+    border-radius: 0;
+  }
+  .price1{
+    color:#f23737;
+    margin-right: 20rpx;
+    &:before{
+      content:"￥";
+      color:#f23737;
+      font-size:24rpx;
+    }
+  }
+  .price2{
+    color:#787878;
+    text-decoration: line-through;
+    &:before{
+      content:"￥";
+      color:#787878;
+    }
+  }
+  .no-more{
+    color:#dddddd;
+    text-align: center;
+    background:#fff;
+    padding:10rpx 0;
+    text{color:#dddddd;}
+  }
+  .float-bottom{
+    position: fixed;
+    bottom:0;
+    left:0;
+    box-sizing: border-box;
+    width:100%;
+    height:110rpx;
+    justify-content: space-around;
+    padding:10rpx 0;
+    background: #fff;
+    border-top:1px solid #eee;
+    z-index: 999999;
+    image{
+      width:60rpx;
+      height:60rpx;
+    }
+    text{
+      color:#787878;
+      font-size:22rpx;
+    }
+  }
+  .bar-num{
+    position: relative;
+    height:60rpx;
+    &>text{
+      position:absolute;
+      top:4rpx;
+      right:-3rpx;
+      width:30rpx;
+      height:30rpx;
+      line-height:30rpx;
+      border-radius:50%;
+      background:#e91414;
+      text-align:center;
+      color:#fff;
+    }
+  }
+</style>
+
+<script>
+import wepy from 'wepy'
+import 'wepy-async-function'
+import {
+  USER_SPECICAL_INFO,
+  SYSTEM_INFO
+} from './utils/constant'
+// import {login} from './api'
+
+export default class extends wepy.app {
+  config = {
+    pages: [
+      'pages/index',
+      'pages/sort/sort',
+      'pages/sort/product/product',
+      'pages/sort/detail/detail',
+      'pages/sort/appraise/appraise',
+      'pages/message/message',
+      'pages/message/detail',
+      'pages/cart/cart',
+      'pages/cart/collection/collection',
+      'pages/cart/settle/settle',
+      'pages/cart/trace/trace',
+      'pages/cart/order/order',
+      'pages/cart/order/pay/pay',
+      'pages/cart/order/deliver/deliver',
+      'pages/cart/order/receive/receive',
+      'pages/my/my',
+      'pages/my/accountSet/accountSet',
+      'pages/my/address/address',
+      'pages/my/addressManage/addressManage',
+      'pages/my/appraise/appraise',
+      'pages/my/applyDistribution/applyDistribution',
+      'pages/my/cardVoucher/cardVoucher',
+      'pages/my/distribution/withdrawDetail/withdrawDetail',
+      'pages/my/distribution/distribution',
+      'pages/my/distribution/distributionOrder/distributionOrder',
+      'pages/my/distribution/myEarn/myEarn',
+      'pages/my/distribution/myTeam/myTeam',
+      'pages/my/distribution/QRcode/QRcode',
+      'pages/my/recharge/recharge',
+      'pages/my/password/password',
+      'pages/my/overange/overange',
+      'pages/my/overangeDetail/overangeDetail',
+      'pages/my/withdraw/withdraw',
+      'pages/my/cut/cut',
+      'pages/my/cut/cutDetail/cutDetail',
+      'pages/my/cut/myCut/myCut',
+      'pages/my/teamwork/teamwork',
+      'pages/my/teamwork/detail',
+      'pages/my/lottery/lottery'
+    ],
+    window: {
+      backgroundTextStyle: 'light',
+      navigationBarBackgroundColor: '#fff',
+      navigationBarTitleText: 'WeChat',
+      navigationBarTextStyle: 'black'
+    },
+    tabBar: {
+      color: '#7d7d7d',
+      selectedColor: '#936554',
+      backgroundColor: '#ffffff',
+      borderStyle: 'black',
+      list: [
+        {
+          pagePath: 'pages/index',
+          text: '首页',
+          iconPath: 'images/bottom1.png',
+          selectedIconPath: 'images/bottom1-1.png'
+        },
+        {
+          pagePath: 'pages/sort/sort',
+          text: '分类',
+          iconPath: 'images/bottom2.png',
+          selectedIconPath: 'images/bottom2-1.png'
+        },
+        {
+          pagePath: 'pages/message/message',
+          text: '消息',
+          iconPath: 'images/bottom3.png',
+          selectedIconPath: 'images/bottom3-1.png'
+        },
+        {
+          pagePath: 'pages/cart/cart',
+          text: '购物车',
+          iconPath: 'images/bottom4.png',
+          selectedIconPath: 'images/bottom4-1.png'
+        },
+        {
+          pagePath: 'pages/my/my',
+          text: '我的',
+          iconPath: 'images/bottom5.png',
+          selectedIconPath: 'images/bottom5-1.png'
+        }
+      ]
+    }
+  }
+  globalData = {
+    token: '',
+    mchid: 0,
+    has_userinfo: false,
+    device: ''
+  }
+
+  constructor () {
+    super()
+    this.use('requestfix')
+    this.use('promisify')
+  }
+
+  async onLaunch(options) {
+    console.log(options)
+    let _this = this
+    if (options.query.mchid) {
+      _this.globalData.mchid = options.query.mchid
+    }
+  }
+
+  async setGlobalData(obj) {
+    let _this = this
+    _this.globalData.token = obj.token
+    _this.globalData.has_userinfo = obj.has_userinfo
+    if (_this.globalData.mchid <= 0 && obj.is_merchant) {
+      _this.globalData.mchid = obj.id
+    }
+    let systemInfo = await wepy.getSystemInfo()
+    _this.globalData.device = systemInfo.model + '|' + systemInfo.system
+    wepy.setStorageSync(SYSTEM_INFO, systemInfo)
+  }
+}
+</script>

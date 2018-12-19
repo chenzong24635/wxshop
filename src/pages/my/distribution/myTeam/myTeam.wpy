@@ -1,0 +1,67 @@
+<style>
+@import "/pages/my/overangeDetail/overangeDetail.wxss";
+</style>
+<style lang='less'>
+.in{
+  font-weight: bold;
+}
+</style>
+<template>
+<view class="container">
+  <view class="head-nav flex" >
+    <text class="fs24 {{index==id}}" data-id="{{index}}" wx:for="{{array}}" wx:key="this" bindtap="active">{{item}}</text>
+  </view>
+  <view class="list flex-col">
+    <view class="list-top flex">
+      <text class="number fs24">某某某</text>
+      <text class="in fs26">+1135.00</text>
+    </view>
+    <text class="fs20">[累计消费]</text>
+    <text class="fs20">申请时间  2018-05-30   16:30:23</text>
+  </view>
+  <view class="list flex-col">
+    <view class="list-top flex">
+      <text class="number fs24">某某某</text>
+      <text class="in fs26">+1135.00</text>
+    </view>
+    <text class="fs20">[累计消费]</text>
+    <text class="fs20">申请时间  2018-05-30   16:30:23</text>
+  </view>
+  <view class="list flex-col">
+    <view class="list-top flex">
+      <text class="number fs24">某某某</text>
+      <text class="in fs26">+1135.00</text>
+    </view>
+    <text class="fs20">[累计消费]</text>
+    <text class="fs20">申请时间  2018-05-30   16:30:23</text>
+  </view>
+  <view class="list flex-col">
+    <view class="list-top flex">
+      <text class="number fs24">某某某</text>
+      <text class="in fs26">+1135.00</text>
+    </view>
+    <text class="fs20">[累计消费]</text>
+    <text class="fs20">申请时间  2018-05-30   16:30:23</text>
+  </view>
+</view>
+</template>
+<script>
+import wepy from 'wepy'
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: '我的团队'
+  }
+  data = {
+    array: ['一级', '二级', '三级'],
+    id: 0
+  }
+  methods = {
+    active(e) {
+      let id = e.target.dataset.id
+      this.id = id
+    }
+  }
+  onLoad() {
+  }
+}
+</script>

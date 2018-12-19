@@ -1,0 +1,595 @@
+<style lang="less">
+  .container > .top{
+    height:100rpx;
+    padding: 0 20rpx;
+  }
+  .search{
+    width:100rpx;
+    height:100rpx;
+    line-height: 100rpx;
+    text-align: center;
+    image{
+      width:38rpx;
+      height:40rpx;
+      vertical-align: middle;
+    }
+  }
+  .search-ipt{
+    position: relative;
+    width:620rpx;
+    height:60rpx;
+    border-radius:30rpx;
+    color:#7e7e7e;
+    background: #f6f6f6;
+    image{
+      width:36rpx;
+      height:36rpx;
+      margin:0 12rpx;
+    }
+    input{
+      width:600rpx;
+    }
+  }
+  .logo image{
+    width:100rpx;
+    height:32rpx;
+  }
+  .message{
+    position: relative;
+    width:60rpx; 
+    image{
+      width:46rpx;
+      height:41rpx;
+    }
+    .mes{
+      position: absolute;
+      top:-10rpx;
+      right:0;
+      width:30rpx;
+      height:30rpx;
+      line-height: 30rpx;
+      border-radius: 50%;
+      background: #e91414;
+      text-align: center;
+      color:#fff;
+    }
+  }
+  .swiper-container{
+    position: relative;
+    .swiper{
+      height: 400rpx;
+      .img{
+        width:100%;
+        height: 400rpx;
+      }
+    }
+    .dots{
+      position: absolute;
+      right: 20rpx;
+      bottom: 20rpx;
+      display: flex;
+      justify-content: center;
+      .dot{
+        position: relative;
+        width: 8px;
+        height: 8px;
+        background: #fff;
+        border-radius: 50%;
+        margin-right: 6px;
+        &:after{
+          content:'';
+          position: absolute;
+          top:2px;
+          left:2px;
+          width: 4px;
+          height: 4px;
+          border-radius: 50%;
+          background: #cecece;
+        }
+      }
+      .active:after{
+        background: #fff;
+      }
+    }
+  }
+  .activity{
+    padding:72rpx 30rpx 60rpx;
+    border-bottom:1px solid #eeeeee;
+  }
+  .activity image{
+    width:78rpx;
+    height:78rpx;
+  }
+  .activity-item{
+    text-align: center;
+    text{
+      margin-top:18rpx;
+      color:#232323;
+    }
+  }
+  .swiper2{
+    text-align: left;
+    image{
+      height:400rpx;  
+    }
+    .top{
+      padding: 50rpx 36rpx 20rpx;
+    }
+    .mes1{
+      color:#232323;
+    }
+    .mes2{
+      font-family: "Arial";
+      color:#cdcdcd; 
+    }
+    .index{
+      color:#232323;
+    }
+    .mes3{
+      justify-content:flex-start;
+      color:#fffefe; 
+      margin-top:12rpx;
+      text{
+        font-size:26rpx;
+        display: inline-block;
+        text-align: center;
+        background: #232323;
+        font-family: "Arial";
+        width:30rpx;
+        height:30rpx;
+        line-height: 30rpx;
+        margin-right: 2px;
+      }
+      text.colon{
+        width:24rpx;
+        background: #fff;
+        color:#000;
+      }
+    }
+    .bottom{
+      align-items:flex-start;
+      padding:10rpx 20rpx;
+      text{display: inline-block}
+    }
+    .b1{
+      color:#f23737;
+      margin-top:20rpx;
+      font-weight:600;
+    }
+    .b2{
+      color:#f23737;
+      margin-top:20rpx;
+      font-weight:600;
+    }
+  }
+  .scroll-view-x{
+    white-space: nowrap; 
+    display: flex;
+  } 
+  .scroll-item{
+    display: inline-block;
+    width:680rpx;
+    margin:0 10rpx;
+    image{
+      width:680rpx;
+    }
+  }
+  .border-l{
+    width:100%;
+    padding-bottom:26rpx;
+    border-bottom:1px solid #eeeeee;
+  }
+  .goods{
+    padding:30rpx 20rpx 0;
+    .goods-mian {flex-wrap:wrap;}
+    text{text-align: left;} 
+    .top .left{
+      color:#232323;
+    }
+    .top .right{
+      color:#f23737;
+    }
+  }
+  .goods-list{
+    width:49%;
+    align-items:flex-start;
+    padding-bottom: 36rpx;
+    border-bottom:1px solid #eeeeee;
+    image{
+      width:360rpx;
+      height:360rpx;
+    }
+    .txt1,.txt2{
+      display: block;
+      width: 90%;
+    }
+  }
+  .txt1{
+    text-align:left;
+    color:#232323;
+  }
+  .txt2{
+    margin: 8rpx 0 16rpx;
+    color:#787878;
+  }
+</style>
+<template>
+  <view class="container">
+    <!-- <list :lists="arr"></list> -->
+    <view class="top flex">
+      <view class="search" wx:if="{{searchShow}}" @tap="search">
+        <image src="/images/search.png"></image>
+      </view>
+      <view wx:else class="search-ipt flex">
+        <image src="/images/search1.png"></image>
+        <input />
+      </view>
+      <view class="logo" wx:if="{{searchShow}}" >
+        <image src="/images/logo.png"></image>
+      </view>
+      <view class="message" @tap="message">
+        <image  src="/images/message.png"></image>
+        <text class="mes fs16">1</text>
+      </view>
+    </view>
+    <view class="swiper-container">
+      <swiper class="swiper" autoplay="auto" interval="5000" duration="500" indicator-dots="{{indicatorDots}}" @change="swiperChange" curren-item-id="{{swiperCurrent}}"  >
+        <block wx:for="{{imgs1}}" wx:key="*this">
+          <swiper-item>
+            <image src="{{item}}" class="img" data-id="{{index}}" @tap="link1To" />
+          </swiper-item>
+        </block>
+      </swiper>
+      <view class="dots">
+        <block wx:for="{{imgs1}}" wx:key="*this1">
+          <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
+        </block>
+      </view>  
+    </view>  
+
+    <view class="activity flex">
+      <navigator url="/pages/my/lottery/lottery" hover-class="none">
+        <view class="flex-col activity-item">
+          <image src="/images/index-1.png"></image>
+          <text class="fs20">抽奖</text>
+        </view>
+      </navigator>
+      <navigator url="/pages/my/cut/cut" hover-class="none">
+        <view class="flex-col activity-item">
+          <image src="/images/index-2.png"></image>
+          <text class="fs20">砍价</text>
+        </view>
+      </navigator>
+      <navigator url="/pages/my/applyDistribution/applyDistribution" hover-class="none">
+        <view class="flex-col activity-item">
+          <image src="/images/index-3.png"></image>
+          <text class="fs20">申请分销商</text>
+        </view>
+      </navigator>
+      <navigator url="/pages/my/teamwork/teamwork" hover-class="none">
+        <view class="flex-col activity-item">
+          <image src="/images/index-4.png"></image>
+          <text class="fs20">邀请领红包</text>
+        </view>
+      </navigator>
+      <navigator url="/pages/my/teamwork/teamwork" hover-class="none">
+        <view class="flex-col activity-item">
+          <image src="/images/index-5.png"></image>
+          <text class="fs20">拼团</text>
+        </view>
+      </navigator>
+    </view>
+    <view class="swiper2">
+      <view class="top">
+        <view class="clearfix">
+          <text class="fs30 mes1 fl">限时优惠</text>
+          <view class="mes2 fr">
+            <text class="index fs32">{{scrollLeft}}</text>
+            <text class="index-len  fs18">/{{activity.length}}</text>
+          </view>
+        </view>
+        <view wx:if="{{timeOut}}"><text >活动结束</text></view>
+        <view wx:else="{{!timeOut}}" class="mes3 flex">
+          
+          <text class="number">{{day1}}</text>
+          <text class="number">{{day%10}}</text><text class="colon">:</text>
+          <text class="number">{{hr1}}</text>
+          <text class="number">{{hr%10}}</text><text class="colon">:</text>
+          <text class="number">{{min1}}</text>
+          <text class="number">{{min%10}}</text><text class="colon">:</text>
+          <text class="number">{{sec1}}</text> 
+          <text class="number">{{sec%10}}</text>
+        </view>
+      </view> 
+      <scroll-view scroll-x class="scroll-view-x" @scroll="scroll">
+        <block wx:for="{{activity}}" wx:key="this" >
+          <view class="scroll-item" >
+            <image src="{{item.img}}" data-id="{{id}}" @tap="link2To" ></image>
+            <view class="bottom flex-col">
+              <text class="fs24 color-23">{{item.title}}</text>
+              <text class="fs20 color-78">{{item.mes}}</text>
+              <view class="border-l"><text class="b1 fs26">{{item.price}}元</text><text class="b2 fs18">/件</text></view> 
+            </view>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+    <block wx:for="{{goods}}" wx:key="goods">
+      <view class="goods">
+        <view class="top clearfix">
+          <text class="left fs30 fl">{{item.title}}</text>
+          <navigator url="/pages/sort/product/product" hover-class="none"><text class="right fs20 fr">查看更多</text></navigator>
+        </view>
+        <text class="fs20 color-78">{{item.time}}</text>
+        <view class="goods-mian flex">
+          <block wx:for="{{item.list}}" wx:key="goods1" wx:for-item="item1">
+            <navigator url="/pages/sort/detail/detail" hover-class="none" class="goods-list flex-col ">
+              <image src="{{item1.img}}"></image>
+              <text class="fs24 txt1 ov1">{{item1.name}}</text>
+              <text class="fs20 txt2 ov1">{{item1.introduce}}</text>
+              <view><text class="price1 fs22">{{item1.price}}</text><text class="price2 fs16">{{item1.delprice}}</text></view>
+            </navigator>
+          </block>
+        </view>
+      </view>
+    </block>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import List from '../components/myList'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '首页'
+    }
+    components = {
+      list: List
+    }
+    data = {
+      activity: [
+        {
+          id: 1,
+          title: 'FlowerPlus 花 + 情人节进口玫瑰',
+          mes: '给爱人一份永恒的爱',
+          price: 299,
+          img: '/images/banner2-1.jpg'
+        },
+        {
+          id: 2,
+          title: 'FlowerPlus 花 + 情人节进口玫瑰',
+          mes: '给爱人一份永恒的爱',
+          price: 299,
+          img: '/images/banner2-1.jpg'
+        },
+        {
+          id: 3,
+          title: 'FlowerPlus 花 + 情人节进口玫瑰',
+          mes: '给爱人一份永恒的爱',
+          price: 299,
+          img: '/images/banner2-1.jpg'
+        },
+        {
+          id: 4,
+          title: 'FlowerPlus 花 + 情人节进口玫瑰',
+          mes: '给爱人一份永恒的爱',
+          price: 299,
+          img: '/images/banner2-1.jpg'
+        }
+      ],
+      goods: [
+        {
+          id: 0,
+          title: '好味食品',
+          time: '每日9时准时上新',
+          list: [
+            {
+              id: 0,
+              name: '日常最佳饮用酒款',
+              introduce: '印尼 丽芝士丽巧克纳宝帝纳宝帝纳宝帝巧',
+              img: '/images/goods1-2.jpg',
+              price: '35.00',
+              delprice: '55.00'
+            },
+            {
+              id: 0,
+              name: '日常最佳饮用酒款',
+              introduce: '印尼 丽芝士丽巧克纳宝帝纳宝帝纳宝帝巧',
+              img: '/images/goods1-2.jpg',
+              price: '35.00',
+              delprice: '55.00'
+            }
+          ]
+        },
+        {
+          id: 0,
+          title: '好味食品',
+          time: '每日9时准时上新',
+          list: [
+            {
+              id: 0,
+              name: '日常最佳饮用酒款',
+              introduce: '印尼 丽芝士丽巧克纳宝帝纳宝帝纳宝帝巧',
+              img: '/images/goods1-2.jpg',
+              price: '35.00',
+              delprice: '55.00'
+            },
+            {
+              id: 0,
+              name: '日常最佳饮用酒款',
+              introduce: '印尼 丽芝士丽巧克纳宝帝纳宝帝纳宝帝巧',
+              img: '/images/goods1-2.jpg',
+              price: '35.00',
+              delprice: '55.00'
+            }
+          ]
+        },
+        {
+          id: 0,
+          title: '好味食品',
+          time: '每日9时准时上新',
+          list: [
+            {
+              id: 0,
+              name: '日常最佳饮用酒款',
+              introduce: '印尼 丽芝士丽巧克纳宝帝纳宝帝纳宝帝巧',
+              img: '/images/goods1-2.jpg',
+              price: '35.00',
+              delprice: '55.00'
+            },
+            {
+              id: 0,
+              name: '日常最佳饮用酒款',
+              introduce: '印尼 丽芝士丽巧克纳宝帝纳宝帝纳宝帝巧',
+              img: '/images/goods1-2.jpg',
+              price: '35.00',
+              delprice: '55.00'
+            },
+            {
+              id: 0,
+              name: '日常最佳饮用酒款',
+              introduce: '印尼 丽芝士丽巧克纳宝帝纳宝帝纳宝帝巧',
+              img: '/images/goods1-2.jpg',
+              price: '35.00',
+              delprice: '55.00'
+            }
+          ]
+        }
+      ],
+      arr: [
+        {
+          a: 1,
+          b: 12,
+          c: 13
+        }
+      ],
+      totalSeconds: 60000,
+      width: 0,
+      searchShow: true,
+      imgs1: [
+        '/images/banner1-1.jpg',
+        '/images/banner1-1.jpg'
+      ],
+      indicatorDots: false,
+      autoplay: true,
+      interval: 5000,
+      duration: 1000,
+      indicatorActiveColor: '#fff',
+      swiperCurrent: 0,
+      timeOut: false,
+      day: 0,
+      day1: 0,
+      hr: 0,
+      hr1: 0,
+      min: 0,
+      min1: 0,
+      sec: 0,
+      sec1: 0,
+      scrollLeft: 1
+    }
+    methods = {
+      search() {
+        this.searchShow = false
+        this.$apply()
+      },
+      swiperChange(e) {
+        this.swiperCurrent = e.detail.current
+        this.$apply()
+      },
+      link1To(e) {
+        console.log(e)
+        // let id = e.currentTarget.dataset.id
+        // this.$navigate(this.imgs1Link[id])
+      },
+      link2To(e) {
+        // let id = e.currentTarget.dataset.id
+        // this.$navigate(this.imgs2Link[id])
+      },
+      scroll(e) {
+        let left = e.detail.scrollLeft
+        let width = this.width / 1.2
+        if (left >= 0 && left <= width) {
+          this.scrollLeft = 1
+        } else if (left > width && left <= width * 2) {
+          this.scrollLeft = 2
+        } else if (left > width * 2 && left <= width * 3) {
+          this.scrollLeft = 3
+        } else if (left > width * 3 && left <= width * 4) {
+          this.scrollLeft = 4
+        } else if (left > width * 4 && left <= width * 5) {
+          this.scrollLeft = 5
+        } else if (left > width * 5 && left <= width * 6) {
+          this.scrollLeft = 6
+        } else if (left > width * 6 && left <= width * 7) {
+          this.scrollLeft = 7
+        } else {
+          this.scrollLeft = 8
+        }
+        this.$apply()
+      },
+      message() {
+        this.$switch('/pages/message/message')
+      }
+    }
+    onLoad() {
+      this.width = wepy.getSystemInfoSync().windowWidth
+      console.log(this.totalSeconds)
+      this.countDown()
+      this.$apply()
+    }
+    onShareAppMessage() {
+    }
+    onShow() {
+    }
+    onHide() {
+      this.searchShow = true
+      this.$apply()
+    }
+    countDown() {
+      let _this = this
+      let totalSeconds = this.totalSeconds
+      this.day = this.dateFormat(totalSeconds).day
+      this.day1 = this.dateFormat(totalSeconds).day1
+      this.hr = this.dateFormat(totalSeconds).hr
+      this.hr1 = this.dateFormat(totalSeconds).hr1
+      this.min = this.dateFormat(totalSeconds).min
+      this.min1 = this.dateFormat(totalSeconds).min1
+      this.sec = this.dateFormat(totalSeconds).sec
+      this.sec1 = this.dateFormat(totalSeconds).sec1
+      if (totalSeconds <= 0) {
+        this.timeOut = true
+        return
+      }
+      setTimeout(function () {
+        _this.totalSeconds -= 10
+        _this.countDown()
+      }, 10)
+      this.$apply()
+    }
+    dateFormat(microSecond) {
+      let second = Math.floor(microSecond / 1000)
+      let day = this.fillZeroPrefix(Math.floor(Math.floor(second / 3600 / 24)))
+      let day1 = parseInt(this.fillZeroPrefix(Math.floor(Math.floor(second / 3600 / 24))) / 10)
+      let hr = this.fillZeroPrefix(Math.floor(Math.floor(second / 3600 % 24)))
+      let hr1 = parseInt(this.fillZeroPrefix(Math.floor(Math.floor(second / 3600 % 24))) / 10)
+      let min = this.fillZeroPrefix(Math.floor((second - day * 24 * 3600 - hr * 3600) / 60))
+      let min1 = parseInt(this.fillZeroPrefix(Math.floor((second - day * 24 * 3600 - hr * 3600) / 60)) / 10)
+      let sec = this.fillZeroPrefix((second - day * 24 * 3600 - hr * 3600 - min * 60))
+      let sec1 = parseInt(this.fillZeroPrefix((second - day * 24 * 3600 - hr * 3600 - min * 60)) / 10)
+      return {
+        day: day,
+        day1: day1,
+        hr: hr,
+        hr1: hr1,
+        min: min,
+        min1: min1,
+        sec: sec,
+        sec1: sec1
+      }
+    }
+    fillZeroPrefix(num) {
+      return num < 10 ? '0' + num : num
+    }
+  }
+</script>

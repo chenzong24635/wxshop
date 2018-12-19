@@ -1,0 +1,168 @@
+<style>
+@import "/pages/my/overangeDetail/overangeDetail.wxss";
+</style>
+<style lang='less'>
+.container{
+  margin-bottom: 0;
+}
+.top{
+  height:144rpx;
+  padding:0 20rpx;
+}
+.price::before{
+  content:"￥";
+  color:#f23737;
+  font-size:42rpx;
+}
+.rank{
+  display: inline-block;
+  text-align: center;
+  margin-right: 10rpx;
+  padding:5rpx;
+  width:60rpx;
+  height:60rpx;
+  line-height: 60rpx;
+  border-radius: 50%;
+  font-weight: bold;
+  color:#fff; 
+}
+.one{background: #eb6100;}
+.two{background: #f8b551;}
+.three{background: #cfa972;}
+.list-bottom{
+  height:84rpx;
+  justify-content:space-between;
+  align-items:flex-start;
+  padding-left:80rpx;
+}
+.list-bottom >text{
+  color:#b0b0b0;
+}
+</style>
+<template>
+<view class="container">
+  <view class="top flex">
+    <text class="fs30">累计收益</text>
+    <text class="price color-red fs48 bold">13131.00</text>
+  </view>
+  <view class="bg"></view>
+  <view class="list flex-col">
+    <view class="list-top flex">
+      <view>
+        <text class="rank one fs18">一级</text>
+        <text class="number fs24">某某某</text>
+      </view>
+      <text class="in bold fs26">+1135.00</text>
+    </view>
+    <view class="list-bottom flex-col">
+      <text class="fs20">[消费收益]</text>
+      <text class="fs20">2018-05-30   16:30:23</text>
+    </view>
+  </view>
+  <view class="list flex-col">
+    <view class="list-top flex">
+      <view>
+        <text class="rank one fs18">一级</text>
+        <text class="number fs24">某某某</text>
+      </view>
+      <text class="in bold fs26">+1135.00</text>
+    </view>
+    <view class="list-bottom flex-col">
+      <text class="fs20">[消费收益]</text>
+      <text class="fs20">2018-05-30   16:30:23</text>
+    </view>
+  </view>
+  <view class="list flex-col">
+    <view class="list-top flex">
+      <view>
+        <text class="rank two fs18">二级</text>
+        <text class="number fs24">某某某</text>
+      </view>
+      <text class="in bold fs26">+1135.00</text>
+    </view>
+    <view class="list-bottom flex-col">
+      <text class="fs20">[申请分销商收益]</text>
+      <text class="fs20">2018-05-30   16:30:23</text>
+    </view>
+  </view>
+  <view class="list flex-col">
+    <view class="list-top flex">
+      <view>
+        <text class="rank three fs18">三级</text>
+        <text class="number fs24">某某某</text>
+      </view>
+      <text class="in bold fs26">+1135.00</text>
+    </view>
+    <view class="list-bottom flex-col">
+      <text class="fs20">[消费收益]</text>
+      <text class="fs20">2018-05-30   16:30:23</text>
+    </view>
+  </view>
+  <view class="list flex-col">
+    <view class="list-top flex">
+      <view>
+        <text class="rank one fs18">一级</text>
+        <text class="number fs24">某某某</text>
+      </view>
+      <text class="in bold fs26">+1135.00</text>
+    </view>
+    <view class="list-bottom flex-col">
+      <text class="fs20">[消费收益]</text>
+      <text class="fs20">2018-05-30   16:30:23</text>
+    </view>
+  </view>
+  <view class="list flex-col">
+    <view class="list-top flex">
+      <view>
+        <text class="rank one fs18">一级</text>
+        <text class="number fs24">某某某</text>
+      </view>
+      <text class="in bold fs26">+1135.00</text>
+    </view>
+    <view class="list-bottom flex-col">
+      <text class="fs20">[消费收益]</text>
+      <text class="fs20">2018-05-30   16:30:23</text>
+    </view>
+  </view>
+  <view class="list flex-col">
+    <view class="list-top flex">
+      <view>
+        <text class="rank two fs18">二级</text>
+        <text class="number fs24">某某某</text>
+      </view>
+      <text class="in bold fs26">+1135.00</text>
+    </view>
+    <view class="list-bottom flex-col">
+      <text class="fs20">[申请分销商收益]</text>
+      <text class="fs20">2018-05-30   16:30:23</text>
+    </view>
+  </view>
+  <view class="list flex-col">
+    <view class="list-top flex">
+      <view>
+        <text class="rank three fs18">三级</text>
+        <text class="number fs24">某某某</text>
+      </view>
+      <text class="in bold fs26">+1135.00</text>
+    </view>
+    <view class="list-bottom flex-col">
+      <text class="fs20">[消费收益]</text>
+      <text class="fs20">2018-05-30   16:30:23</text>
+    </view>
+  </view>
+</view>
+</template>
+<script>
+import wepy from 'wepy'
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: '我的分润'
+  }
+  data = {
+  }
+  methods = {
+  }
+  onLoad() {
+  }
+}
+</script>

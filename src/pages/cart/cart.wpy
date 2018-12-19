@@ -1,0 +1,459 @@
+<style lang='less'>
+.top>view{padding:0 20rpx;}
+.bg{padding:0;background: #eee;height:20rpx;}
+.top-left,.top-right{
+  padding: 30rpx 0;
+}
+.top-left{
+  image{
+    width:32rpx;
+    height:32rpx;
+    margin-right:4px;
+    position: relative;
+    top:6rpx;
+  }
+  text{
+    color:#494949;
+  }
+}
+.top-right {
+  color:#f23737;
+}
+
+.list{
+  position: relative;
+  padding:0 10rpx 0 60rpx;
+  border-bottom: 1px solid #eee;
+}
+.check{
+  position: absolute;
+  top:0;
+  bottom:0;
+  left:14rpx;
+  margin:auto 0;
+  width:32rpx;
+  height:32rpx;
+  border:1px solid #afafaf;
+  border-radius: 50%;
+}
+.check1:after{
+  content:'';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 60%;
+  height: 60%;
+  border-radius: 50%;
+  background-color: #f23737;
+}
+.content{
+  position: relative;
+  z-index:5;
+  transition:left 0.2s ease-in-out;
+}
+.list-l image{
+  width:200rpx;
+  height:200rpx;
+}
+.list-r{
+  width: 470rpx;
+}
+.mes1{
+  color:#232323;
+}
+.mes2{
+  color:#787878;
+  margin-top: 5rpx;
+}
+.price{margin-top: 36rpx;}
+.number{
+  position: absolute;
+  right:10rpx;
+  bottom:24rpx;
+  width:150rpx;
+  height:42rpx;
+  border-radius: 6rpx;
+  border:1px solid #e4e4e4;
+}
+.number image{
+  width:40rpx;
+  height:40rpx;
+}
+.img1{border-right:1px solid #e4e4e4;}
+.img2{border-left:1px solid #e4e4e4;}
+input{
+  width:60rpx;
+  height: 40rpx;
+  text-align: center;
+  color:#494949;
+}
+.collect-del{
+  position: fixed;
+  bottom:100rpx;
+  left:0;
+  width:100%;
+  height:100rpx;
+  color:#fff;
+  background: #fff;
+  z-index: 999999;
+}
+.collect-del > view, .collect-del-right > view{
+  width:50%;
+}
+ .collect-del-right view > text{
+  display: inline-block;
+  height:100rpx;
+  line-height:100rpx;
+  text-align: center;
+  vertical-align: middle;
+} 
+ .collect-del-right .collect{
+  background: #f4b148;
+  justify-content:center;
+}
+ .collect-del-right image{
+   width:42rpx;
+   height:42rpx;
+ }
+ .collect-del-right .del{
+  background: #f23737;
+  justify-content:center;
+}
+.collect-del2{
+  position: absolute;
+  right:0;
+  bottom:0;
+  width:230rpx;
+  height:100%;
+  z-index:4;
+}
+.collect-del2 >view{
+  width:50%;
+  height: 100%;
+  line-height: 200rpx;
+  text-align: center;
+  color:#fff;
+}
+.collect-del2 .collect{
+  background: #f4b148;
+}
+.collect-del2 .del{
+  background: #f23737;
+}
+
+.main{
+  position: relative;
+  margin-bottom: 320rpx;
+}
+.foot{
+  position: fixed;
+  left:0;
+  bottom:0;
+  width:100%;
+  background: #fff;
+  z-index: 9999;
+  .top{
+    border-bottom:1px solid #eee;
+    &>view{background: #fdfafa;}
+    .mj{
+      position: relative;
+      top:-2rpx;
+      color:#f23737;
+      padding:0 8rpx;
+      border:1px solid #f23737;
+      text-align: center;
+      border-radius: 16rpx;
+      margin-right: 6px;
+    }
+  }
+  .bottom{height:100rpx;}
+}
+.bottom-1{
+  position: relative;
+  top:4rpx;
+}
+.check-all{
+  display: inline-block;
+  width:32rpx;
+  height:32rpx;
+  border:1px solid #afafaf;
+  border-radius: 50%;
+  margin-right: 6px;
+  position: relative;
+  top:4px;
+  margin-left: 10rpx;
+}
+.price-all{
+  color:#f23737;
+}
+.price-all:before{
+  content:"￥";
+  color:#f23737;
+  font-size:28rpx;
+}
+.account{
+  width:189rpx;
+  height:100rpx;
+  line-height: 100rpx;
+  color:#fff;
+  background: #f23737;
+  text-align: center;
+}
+</style>
+<template>
+<view class="container">
+  <view class="top">
+    <view class="flex">
+      <view class="top-left fs22">
+        <image src="/images/cart1.jpg"></image>
+        <text class="fs22">满88元包邮</text>      
+      </view>
+      <navigator url="/pages/my/cardVoucher/cardVoucher?type=1" class="top-right fs22" hover-class="none">
+        优惠券 &gt;
+      </navigator> 
+    </view>
+    <view class="bg"></view>
+  </view>
+  <view class="main" @longpress="collectDel">
+    <block wx:for="{{list}}" wx:key="list">
+      <view class="list"  @touchstart="touchS" @touchmove="touchM" @touchend="touchE">
+        <view wx:if="{{txtStyle === 0}}" class="check {{item.check?'check1':''}}" @tap="check({{item.id}}, {{index}})"></view>
+        <view class="content flex" style="{{'left:-'+txtStyle+'rpx'}}">
+          <view class="list-l"><image src="{{item.img}}"></image></view>
+          <view class="list-r">
+            <view class="mes1 fs24 ov1">{{item.title}}</view>
+            <view class="mes2 fs20 ov1">{{item.title1}}</view>
+            <view class="clearfix">
+              <view class="price fl">
+                <text class="price1 fs24">{{item.price}}</text>
+                <text class="price2 fs20">{{item.price1}}</text>
+              </view>
+              <view class="number flex fr" >
+                <image class="img1" src="/images/jian.png" @tap="cut({{item.value}}, {{item.id}}, {{index}})"></image>
+                <input class="fs20" disabled value="{{item.value}}" />
+                <image class="img2" src="/images/jia.png" @tap="add({{item.value}}, {{item.id}}, {{index}})"></image>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="collect-del2 flex" wx:if="{{txtStyle !== 0}}">
+          <view class="collect">
+            <text class="fs24">收藏</text>
+          </view>
+          <view class="del">
+            <text class="fs24">删除</text>
+          </view>
+        </view>
+      </view>
+    </block>
+    <view class="collect-del flex" hidden='{{flag ? true : false}}'>
+      <view class="collect-del-left" @tap="checkAll">
+        <text class="check-all {{isCheckAll ? 'check1' : ''}}"></text>
+        <text class="fs22 color-78">全选</text>
+      </view>
+      <view class="collect-del-right flex" @tap="collect">
+        <view class="collect flex">
+          <image src="/images/collect.png"></image>
+          <text class="fs24">收藏</text>
+        </view>
+        <view class="del flex" @tap="del">
+          <image src="/images/del.png"></image>
+          <text class="fs24">删除</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="foot">
+    <view class="top">
+      <view class="flex">
+        <view class="top-left ">
+          <text class="mj fs14">满减</text>
+          <text class="fs22 color-23">购物满300减20</text>      
+        </view>
+        <navigator url="/pages/sort/product/product" hover-class="none">
+          <view class="top-right fs22">
+            去凑单 &gt;
+          </view>
+        </navigator> 
+      </view>
+    </view>
+    <view class="bottom flex">
+      <view class="bottom-1" @tap="checkAll">
+        <text class="check-all {{isCheckAll ? 'check1' : ''}}"></text>
+        <text class="fs22 color-78">全选</text>
+      </view>
+      <!-- <view><text class="fs24">管理</text></view> -->
+      <view>
+        <text class="fs24">总计</text>
+        <text class="fs20 color-78">(不含运费) </text>
+        <text class="price-all fs34">{{sum}}</text>
+      </view>
+      <view class="account" @tap="settle">
+        <text class="fs24">结算</text>
+      </view> 
+    </view>    
+  </view>
+</view>
+</template>
+<script>
+  import wepy from 'wepy'
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '购物车',
+      navigationBarBackgroundColor: '#da2524',
+      navigationBarTextStyle: '#fff'
+    }
+    data = {
+      sum: 0,
+      list: [
+        {
+          id: 1,
+          value: 1,
+          img: '/images/goods1-3.jpg',
+          title: '绵软粉糯即食板栗仁绵软粉糯即食板栗仁',
+          title1: '味BACK 燕山板栗仁 2袋入绵软粉糯即食板栗仁',
+          price: 35.00,
+          price1: 50.00
+        },
+        {
+          id: 2,
+          value: 1,
+          img: '/images/goods1-3.jpg',
+          title: '绵软粉糯即食板栗仁绵软粉糯即食板栗仁',
+          title1: '味BACK 燕山板栗仁 2袋入绵软粉糯2袋入绵软粉糯2袋入绵软粉糯即食板栗仁即食板栗仁2袋入绵软粉糯即食板栗仁即食板栗仁',
+          price: 35.00,
+          price1: 50.00
+        },
+        {
+          id: 3,
+          value: 1,
+          img: '/images/goods1-3.jpg',
+          title: '绵软粉糯即食板栗仁绵软粉糯即食板栗仁',
+          title1: '味BACK 燕山板栗仁 2袋入绵软粉糯2袋入绵软粉糯2袋入绵软粉糯即食板栗仁即食板栗仁2袋入绵软粉糯即食板栗仁即食板栗仁',
+          price: 35.00,
+          price1: 50.00
+        }
+      ],
+      flag: true,
+      delBtnWidth: 230,
+      txtStyle: 0,
+      isCheckAll: false
+    }
+    methods = {
+      settle() {
+        this.$navigate('./settle/settle')
+      },
+      check(id, idx, e) {
+        let bool = true
+        this.list.map((item, index) => {
+          if (item.id === id) {
+            item.check = !item.check
+          }
+          if (!item.check) {
+            bool = false
+          }
+        })
+        if (!bool) {
+          this.isCheckAll = false
+        } else {
+          this.isCheckAll = true
+        }
+        this.list.map((item, index) => {
+          if (item.check) {
+            this.sum += item.price * item.value
+          }
+        })
+        this.$apply()
+      },
+      checkAll() {
+        let sum = 0
+        if (this.isCheckAll) {
+          this.sum = 0
+        } else {
+          this.list.map((item, index) => {
+            sum += item.price * item.value
+          })
+        }
+        this.sum = sum
+        this.list.map((item, index) => {
+          item.check = !this.isCheckAll
+        })
+        this.isCheckAll = !this.isCheckAll
+      },
+      cut(value, id, idx, e) {
+        this.list.map((item, index) => {
+          if (item.id === id) {
+            if (value <= 1) {
+              item.value = 1
+            } else {
+              item.value -= 1
+            }
+          }
+        })
+        this.$apply()
+      },
+      add(value, id, idx, e) {
+        this.list.map((item, index) => {
+          if (item.id === id) {
+            item.value += 1
+          }
+        })
+        this.$apply()
+      },
+      collectDel(e) {
+        this.flag = false
+        this.$apply()
+      },
+      del(e) {
+        this.flag = false
+        this.$apply()
+      },
+      collect(e) {
+        this.flag = true
+        this.$apply()
+      },
+      touchS(e) {
+        if (e.touches.length === 1) {
+          this.startX = e.touches[0].clientX
+          this.$apply()
+        }
+      },
+      touchM(e) {
+        if (e.touches.length === 1) {
+          let moveX = e.touches[0].clientX
+          let disX = this.startX - moveX
+          let delBtnWidth = this.delBtnWidth
+          let txtStyle = 0
+          if (disX === 0 || disX < 0) {
+            txtStyle = 0
+          } else if (disX > 0) {
+            txtStyle = disX
+            if (disX >= delBtnWidth) {
+              txtStyle = delBtnWidth
+            }
+          }
+          this.txtStyle = txtStyle
+          this.$apply()
+        }
+      },
+      touchE(e) {
+        if (e.changedTouches.length === 1) {
+          let endX = e.changedTouches[0].clientX
+          let disX = this.startX - endX
+          let delBtnWidth = this.delBtnWidth
+          let txtStyle = disX > delBtnWidth / 2 ? delBtnWidth : 0
+          this.txtStyle = txtStyle
+          this.$apply()
+        }
+      }
+    }
+    onLoad() {
+      this.list.map((item, index) => {
+        item.check = false
+      })
+    }
+  }
+</script>

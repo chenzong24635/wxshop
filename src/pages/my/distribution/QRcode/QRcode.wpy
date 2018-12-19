@@ -1,0 +1,64 @@
+<style lang='less'>
+.code-bg{
+  position: absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:1274rpx;
+  z-index: -1;
+}
+.account{
+  position: absolute;
+  top:256rpx;
+  left:235rpx;
+}
+.account image{
+  width:60rpx;
+  height:60rpx;
+  margin-right: 20rpx;
+}
+.account-code{
+  position: absolute;
+  top:710rpx;
+  left:110rpx;
+  padding:20rpx;
+  border-radius:20rpx;
+  background: rgba(255,255,255,.7);
+}
+.account-code .img1{
+  width:240rpx;
+  height:240rpx;
+  margin-right: 24rpx;
+}
+.account-code .img2{
+  width:240rpx;
+  height:240rpx;
+}
+</style>
+<template>
+<view>
+  <image class="code-bg" src="/images/QRcode.jpg"></image>
+  <view class="account flex">
+    <image src="/images/client-pic.png"></image>
+    <text class="fs30 colorf bold">某某某023</text>
+  </view>
+  <view class="account-code">
+    <image class="img1" src="/images/code.jpg"></image>
+    <image class="img2" src="/images/print.png"></image>
+  </view>
+</view>
+</template>
+<script>
+import wepy from 'wepy'
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: '推广二维码'
+  }
+  data = {
+  }
+  methods = {
+  }
+  onLoad() {
+  }
+}
+</script>

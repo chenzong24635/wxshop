@@ -1,0 +1,178 @@
+<style>
+@import "/pages/my/appraise/appraise";
+.container{padding:0;}
+.head-nav{
+  position: relative;
+  padding:16rpx 20rpx;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+.tab{
+  flex-flow:row wrap;
+  justify-content: flex-start;
+  margin-left: 40rpx;
+  width:90%;
+  overflow: hidden;
+}
+.tab .active{
+  color:#f23838;
+  border-bottom:2px solid #f23838;
+}
+.tab >view{
+  width:30%;
+  margin-right: 1%;
+  height: 60rpx;
+}
+.head-nav text{
+  display: inline-block;
+  color:#232323;
+  height: 56rpx;
+  line-height: 56rpx;
+}
+.more{
+  position: absolute;
+  top:20rpx;
+  right:30rpx;
+  width:10%; 
+  height: 66rpx;
+  text-align:center;
+}
+.more image{
+  width:34rpx;
+  height: 15rpx;
+}
+.list{
+  padding:24rpx 20rpx 42rpx;
+}
+</style>
+<template>
+<view class="container">
+  <view class="head-nav flex" >
+    <view class="tab flex" style="{{showMore?'':'height: 66rpx;'}}">
+      <block wx:for="{{array}}">
+        <view>
+          <text class="fs24 {{index==id?'active':''}}"  wx:key="this" bindtap="active" data-id="{{index}}">{{item.name}}({{item.number}})</text>
+        </view>
+      </block>
+    </view>
+    <view class="more" bindtap="showMore"><image src="/images/more-2.jpg"></image></view>
+  </view>
+  <block wx:for="{{list}}" wx:key="list">
+    <view class="list">
+      <view class="top flex">
+        <view class="top-left flex">
+          <image src="{{item.avator}}"></image>
+          <view class="fs24">{{item.name}}</view>
+        </view>
+        <view class="top-right flex-col">
+          <view class="star">
+            <block wx:for="{{item.star}}">
+              <image src="/images/star1.jpg"></image>
+            </block>
+            <block wx:for="{{5-item.star}}">
+              <image src="/images/star2.jpg"></image>
+            </block>
+          </view>
+          <text class="time fs20">{{item.created}}</text>
+        </view>
+      </view>
+      <view class="appraisal">
+        <text class="fs22">{{item.content}}</text>
+      </view>
+      <view class="product1">
+        <block wx:for="{{item.pics}}" wx:key="pics" wx:for-item="item1">
+          <image src="{{item1}}"></image>
+        </block>
+      </view>
+      <view><text class="fs20 color-78">{{item.product}}</text></view>
+    </view>
+  </block>
+</view>
+</template>
+<script>
+  import wepy from 'wepy'
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: 'Index'
+    }
+    data = {
+      array: [
+        {'name': '全部', 'number': '1万+'},
+        {'name': '有图', 'number': '670'},
+        {'name': '好评', 'number': '1万+'},
+        {'name': '全部', 'number': '1万+'},
+        {'name': '有图', 'number': '670'},
+        {'name': '好评', 'number': '1万+'},
+        {'name': '全部', 'number': '1万+'},
+        {'name': '有图', 'number': '670'},
+        {'name': '好评', 'number': '1万+'}
+      ],
+      list: [
+        {
+          id: 1,
+          avator: '/images/client-pic.png',
+          name: '某某某',
+          star: 3,
+          content: '文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容',
+          pics: [
+            '/images/product.jpg',
+            '/images/product.jpg',
+            '/images/product.jpg'
+          ],
+          product: '觅食派 雪羹 综合四口味 八包入'
+        },
+        {
+          id: 2,
+          avator: '/images/client-pic.png',
+          name: '某某某某某某某某某某某某某某某某某某某某某某某某',
+          star: 2,
+          content: '文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容',
+          pics: [
+            '/images/product.jpg',
+            '/images/product.jpg',
+            '/images/product.jpg',
+            '/images/product.jpg',
+            '/images/product.jpg',
+            '/images/product.jpg'
+          ],
+          product: '觅食派 雪羹 综合四口味 八觅食派 雪羹 综合四口味 八包入觅食派 雪羹 综合四口味 八包入包入'
+        },
+        {
+          id: 3,
+          avator: '/images/client-pic.png',
+          name: '某某某3',
+          star: 1,
+          content: '文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容',
+          pics: [
+            '/images/product.jpg',
+            '/images/product.jpg',
+            '/images/product.jpg'
+          ],
+          product: '觅食派 雪羹 综合四口味 八包入'
+        }
+      ],
+      id: 0,
+      showMore: false,
+      len: 2
+    }
+    methods = {
+      active(e) {
+        let id = e.target.dataset.id
+        this.id = id
+        console.log(e, id)
+        this.$apply()
+      },
+      showMore() {
+        let more = this.showMore
+        if (more) {
+          this.showMore = false
+        } else {
+          this.showMore = true
+        }
+        this.$apply()
+      }
+    }
+    onLoad() {
+    }
+  }
+</script>

@@ -1,0 +1,75 @@
+<style lang='less'>
+.container{
+  padding:0 20rpx;
+}
+view{
+  padding: 0 20rpx;
+  height:108rpx;
+  border-bottom: 1px solid #eeeeee;
+}
+text{
+  color:#252525;
+  line-height:108rpx;
+}
+input{
+  width:500rpx;
+  color:#7e7e7e;
+  /* margin-top: 28rpx; */
+}
+image{
+  width:20rpx;
+  height:34rpx; 
+}
+.address .right text{
+  color:#7e7e7e;
+  margin-right: 8px;
+  line-height:108rpx;
+}
+.save{
+  position: fixed;
+  bottom:40rpx;
+  width:94%;
+}
+</style>
+<template>
+<view class="container">
+  <view class="name flex">
+    <text class="fs24">收货人</text>
+    <input class="fs24" value="18888888"></input>
+  </view>
+  <view class="phone flex">
+    <text class="fs24">手机号码</text>
+    <input class="fs24" value="18888888"></input>
+  </view>
+  <view class="address flex">
+    <text class="fs24">所在区域</text>
+    <view class="right flex">
+      <text class="fs24">请选择</text>
+      <image src="/images/link1.jpg"></image>
+    </view>
+  </view>
+  <view class="address-detail flex" >
+    <text class="fs24">详细地址</text>
+    <input class="fs24"></input>
+  </view>
+  <view class="default flex">
+    <text class="fl fs24">设为默认</text>
+    <switch checked />
+  </view>
+  <button class="save btn fs36">保存</button>
+</view>
+</template>
+<script>
+import wepy from 'wepy'
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: '编辑地址'
+  }
+  data = {
+  }
+  methods = {
+  }
+  onLoad() {
+  }
+}
+</script>

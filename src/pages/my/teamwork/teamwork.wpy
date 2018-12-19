@@ -1,0 +1,259 @@
+<style lang='less'>
+text{color:#232323}
+.container .top{
+  padding:20rpx;
+}
+.search{
+  position: relative;
+  width:640rpx;
+  height:60rpx;
+  border-radius:30rpx;
+  background: #f6f6f6;
+  color:#7e7e7e;
+}
+.search image{
+  width:36rpx;
+  height:36rpx;
+  margin:0 12rpx;
+}
+.search input{
+  width:600rpx;
+}
+.mes image{
+  width:46rpx;
+  height:42rpx;
+}
+
+.head-nav .true{
+  color:#f23838;
+  border-bottom:2px solid #f23838;
+}
+.head-nav{
+  /* padding:0 20rpx; */
+  background: #fff;
+  white-space: nowrap;
+}
+.head-nav view:last-child{
+  margin-right: 20rpx;
+}
+.head-nav view{
+  display: inline-block;
+  /* width:13%; */
+  height: 60rpx;
+  text-align: center;
+}
+.head-nav text{
+  display: inline-block;
+  height: 55rpx;
+  color:#232323;
+}
+
+.main{  background: #f9f9f9;}
+.main-content .list{
+  padding:0 20rpx;
+}
+.mes{
+  padding-left: 10px;
+  width:500rpx;
+  align-items: flex-start;
+}
+.mes1{
+  color:#232323;
+}
+.mes2{
+  color:#787878;
+  margin-top: 5rpx;
+}
+.sort-two{
+  display: flex;
+  flex-flow:wrap;
+  justify-content: flex-start;
+  padding:0 2%;
+}
+.sort-two .list{
+  width:49%;
+  padding:0;
+  padding-bottom: 20rpx;
+  background: #fff;
+  margin:10rpx 0;
+  border-bottom: none;
+}
+.sort-two .list:nth-child(2n-1){
+  margin-right:2%;
+}
+.sort-two .list .content{
+  flex-direction: column;
+  align-items:flex-start;
+  padding:10rpx;
+}
+.sort-two .list image{
+  width:300rpx;
+  height:300rpx;
+}
+.sort-two .mes{
+  width:270rpx;
+}
+.main-content .shop-cart{
+  padding:0 20rpx;
+  margin-top: 40rpx;
+}
+.shop-cart .pd{
+  display: block;
+  border-radius:6rpx;
+  text-align: center;
+  padding:6rpx 20rpx;
+  background: #f23737;
+  color:#fff;
+}
+.no-more{background: #f9f9f9}
+</style>
+<template>
+<view class="container">
+  <view class="top flex">
+    <view class="search flex">
+      <image src="/images/search1.png"></image>
+      <input></input>
+    </view>
+    <view class="mes" bindtap="message"><image src="/images/message.png"></image></view>
+  </view>
+  <scroll-view scroll-x  class="head-nav flex">
+      <view style="width:{{array.length>=8?'13%':len}}"  wx:for="{{array}}" wx:key="this" bindtap="active">
+        <text class="fs24 {{index==id}}" data-id="{{index}}">{{item}}</text>
+      </view>
+  </scroll-view>
+  <view class="main">
+    <view class="main-content sort-two">
+      <view class="list">
+        <view class="content flex" >
+          <view><image src="/images/goods1-2.jpg"></image></view>
+          <view class="mes flex-col">
+            <text class="mes1 fs24">绵软粉糯即食板栗仁</text>
+            <text class="mes2 fs20">味BACK 燕山板栗仁 2袋入</text>
+          </view>
+        </view>
+        <view class="shop-cart flex" >
+          <view class="price">
+            <text class="price1 fs24">35.00</text>
+          </view>
+          <navigator url="/pages/my/teamwork/detail" hover-class="none">
+            <text class="pd fs20">去拼单 ></text>
+          </navigator>
+        </view>
+      </view> 
+      <view class="list">
+        <view class="content flex" >
+          <view><image src="/images/goods1-1.jpg"></image></view>
+          <view class="mes flex-col">
+            <text class="mes1 fs24">绵软粉糯即食板栗仁</text>
+            <text class="mes2 fs20">味BACK 燕山板栗仁 2袋入</text>
+          </view>
+        </view>
+        <view class="shop-cart flex" >
+          <view class="price">
+            <text class="price1 fs24">35.00</text>
+          </view>
+          <navigator url="/pages/my/teamwork/detail" hover-class="none">
+            <text class="pd fs20">去拼单 ></text>
+          </navigator>
+        </view>
+      </view> 
+      <view class="list">
+        <view class="content flex" >
+          <view><image src="/images/goods1-2.jpg"></image></view>
+          <view class="mes flex-col">
+            <text class="mes1 fs24">绵软粉糯即食板栗仁</text>
+            <text class="mes2 fs20">味BACK 燕山板栗仁 2袋入</text>
+          </view>
+        </view>
+        <view class="shop-cart flex" >
+          <view class="price">
+            <text class="price1 fs24">35.00</text>
+          </view>
+          <navigator url="/pages/my/teamwork/detail" hover-class="none">
+            <text class="pd fs20">去拼单 ></text>
+          </navigator>
+        </view>
+      </view> 
+      <view class="list">
+        <view class="content flex" >
+          <view><image src="/images/goods1-1.jpg"></image></view>
+          <view class="mes flex-col">
+            <text class="mes1 fs24">绵软粉糯即食板栗仁</text>
+            <text class="mes2 fs20">味BACK 燕山板栗仁 2袋入</text>
+          </view>
+        </view>
+        <view class="shop-cart flex" >
+          <view class="price">
+            <text class="price1 fs24">35.00</text>
+          </view>
+          <navigator url="/pages/my/teamwork/detail" hover-class="none">
+            <text class="pd fs20">去拼单 ></text>
+          </navigator>
+        </view>
+      </view> 
+      <view class="list">
+        <view class="content flex" >
+          <view><image src="/images/goods1-2.jpg"></image></view>
+          <view class="mes flex-col">
+            <text class="mes1 fs24">绵软粉糯即食板栗仁</text>
+            <text class="mes2 fs20">味BACK 燕山板栗仁 2袋入</text>
+          </view>
+        </view>
+        <view class="shop-cart flex" >
+          <view class="price">
+            <text class="price1 fs24">35.00</text>
+          </view>
+          <navigator url="/pages/my/teamwork/detail" hover-class="none">
+            <text class="pd fs20">去拼单 ></text>
+          </navigator>
+        </view>
+      </view> 
+      <view class="list">
+        <view class="content flex" >
+          <view><image src="/images/goods1-1.jpg"></image></view>
+          <view class="mes flex-col">
+            <text class="mes1 fs24">绵软粉糯即食板栗仁</text>
+            <text class="mes2 fs20">味BACK 燕山板栗仁 2袋入</text>
+          </view>
+        </view>
+        <view class="shop-cart flex" >
+          <view class="price">
+            <text class="price1 fs24">35.00</text>
+          </view>
+          <navigator url="/pages/my/teamwork/detail" hover-class="none">
+            <text class="pd fs20">去拼单 ></text>
+          </navigator>
+        </view>
+      </view> 
+    </view>
+    <view class="no-more">
+      <text class="fs20">没有更多了</text>
+    </view>
+  </view>
+</view>
+</template>
+<script>
+import wepy from 'wepy'
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: 'Index'
+  }
+  data = {
+    array: ['热门', '服饰', '鞋包', '母婴', '百货', '食品', '电器', '水果', '热门', '服饰', '鞋包', '母婴', '百货', '食品', '电器', '水果'],
+    id: 0,
+    len: 0
+  }
+  methods = {
+    active(e) {
+      let id = e.target.dataset.id
+      this.id = id
+    },
+    message() {
+      this.$switch('/pages/message/message')
+    }
+  }
+  onLoad() {
+    this.len = 100 / this.array.length + '%'
+  }
+}
+</script>
