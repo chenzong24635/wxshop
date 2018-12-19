@@ -257,6 +257,7 @@
     methods = {
       accountSet() {
         console.log('d')
+        console.log('dad')
         this.$navigate('/pages/my/accountSet/accountSet')
       },
       accountMes() {
