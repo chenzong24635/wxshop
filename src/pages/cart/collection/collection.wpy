@@ -2,12 +2,12 @@
 @import "/pages/cart/cart";
 </style>
 <style>
-.shop-cart{
+.cart-img{
   position: absolute;
   right:20rpx;
   bottom:20rpx;
 }
-.shop-cart image{
+.cart-img image{
   width:54rpx;
   height:42rpx;
 }
@@ -15,159 +15,27 @@
 <template>
 <view class="container">
   <view class="main">
-    <view class="list">
-      <view class="check"></view>
-      <view class="content flex">
-        <view><image src="/images/goods1-1.jpg"></image></view>
-        <view class="mes flex-col">
-          <text class="mes1 fs30">绵软粉糯即食板栗仁</text>
-          <text class="mes2 fs24">味BACK 燕山板栗仁 2袋入</text>
-          <view class="price">
-            <text class="price1 fs24">35.00</text>
-            <text class="price2 fs20">59.00</text>
+    <block wx:for="{{list}}" wx:key="list">
+      <view class="list"  >
+        <view wx:if="{{txtStyle === 0}}" class="check {{item.check?'check1':''}}" ></view>
+        <view class="content flex">
+          <view class="list-l"><image src="{{item.img}}"></image></view>
+          <view class="list-r">
+            <view class="mes1 fs24 ov1">{{item.title}}</view>
+            <view class="mes2 fs20 ov1">{{item.title1}}</view>
+            <view class="clearfix">
+              <view class="price fl">
+                <text class="price1 fs24">{{item.price}}</text>
+                <text class="price2 fs20">{{item.price1}}</text>
+              </view>
+              <view class="cart-img" >
+                <image src="/images/cart.png"></image>
+              </view>
+            </view>
           </view>
         </view>
       </view>
-      <view class="shop-cart">
-        <image  src="/images/cart.png"></image>
-      </view>
-    </view>
-    <view class="list">
-      <view class="check"></view>
-      <view class="content flex">
-        <view><image src="/images/goods1-1.jpg"></image></view>
-        <view class="mes flex-col">
-          <text class="mes1 fs30">绵软粉糯即食板栗仁</text>
-          <text class="mes2 fs24">味BACK 燕山板栗仁 2袋入</text>
-          <view class="price">
-            <text class="price1 fs24">35.00</text>
-            <text class="price2 fs20">59.00</text>
-          </view>
-        </view>
-      </view>
-      <view class="shop-cart">
-        <image  src="/images/cart.png"></image>
-      </view>
-    </view>    
-    <view class="list">
-      <view class="check"></view>
-      <view class="content flex">
-        <view><image src="/images/goods1-1.jpg"></image></view>
-        <view class="mes flex-col">
-          <text class="mes1 fs30">绵软粉糯即食板栗仁</text>
-          <text class="mes2 fs24">味BACK 燕山板栗仁 2袋入</text>
-          <view class="price">
-            <text class="price1 fs24">35.00</text>
-            <text class="price2 fs20">59.00</text>
-          </view>
-        </view>
-      </view>
-      <view class="shop-cart">
-        <image  src="/images/cart.png"></image>
-      </view>
-    </view>
-    <view class="list">
-      <view class="check"></view>
-      <view class="content flex">
-        <view><image src="/images/goods1-1.jpg"></image></view>
-        <view class="mes flex-col">
-          <text class="mes1 fs30">绵软粉糯即食板栗仁</text>
-          <text class="mes2 fs24">味BACK 燕山板栗仁 2袋入</text>
-          <view class="price">
-            <text class="price1 fs24">35.00</text>
-            <text class="price2 fs20">59.00</text>
-          </view>
-        </view>
-      </view>
-      <view class="shop-cart">
-        <image  src="/images/cart.png"></image>
-      </view>
-    </view>
-    <view class="list">
-      <view class="check"></view>
-      <view class="content flex">
-        <view><image src="/images/goods1-1.jpg"></image></view>
-        <view class="mes flex-col">
-          <text class="mes1 fs30">绵软粉糯即食板栗仁</text>
-          <text class="mes2 fs24">味BACK 燕山板栗仁 2袋入</text>
-          <view class="price">
-            <text class="price1 fs24">35.00</text>
-            <text class="price2 fs20">59.00</text>
-          </view>
-        </view>
-      </view>
-      <view class="shop-cart">
-        <image  src="/images/cart.png"></image>
-      </view>
-    </view>    
-    <view class="list">
-      <view class="check"></view>
-      <view class="content flex">
-        <view><image src="/images/goods1-1.jpg"></image></view>
-        <view class="mes flex-col">
-          <text class="mes1 fs30">绵软粉糯即食板栗仁</text>
-          <text class="mes2 fs24">味BACK 燕山板栗仁 2袋入</text>
-          <view class="price">
-            <text class="price1 fs24">35.00</text>
-            <text class="price2 fs20">59.00</text>
-          </view>
-        </view>
-      </view>
-      <view class="shop-cart">
-        <image  src="/images/cart.png"></image>
-      </view>
-    </view>
-    <view class="list">
-      <view class="check"></view>
-      <view class="content flex">
-        <view><image src="/images/goods1-1.jpg"></image></view>
-        <view class="mes flex-col">
-          <text class="mes1 fs30">绵软粉糯即食板栗仁</text>
-          <text class="mes2 fs24">味BACK 燕山板栗仁 2袋入</text>
-          <view class="price">
-            <text class="price1 fs24">35.00</text>
-            <text class="price2 fs20">59.00</text>
-          </view>
-        </view>
-      </view>
-      <view class="shop-cart">
-        <image  src="/images/cart.png"></image>
-      </view>
-    </view>
-    <view class="list">
-      <view class="check"></view>
-      <view class="content flex">
-        <view><image src="/images/goods1-1.jpg"></image></view>
-        <view class="mes flex-col">
-          <text class="mes1 fs30">绵软粉糯即食板栗仁</text>
-          <text class="mes2 fs24">味BACK 燕山板栗仁 2袋入</text>
-          <view class="price">
-            <text class="price1 fs24">35.00</text>
-            <text class="price2 fs20">59.00</text>
-          </view>
-        </view>
-      </view>
-      <view class="shop-cart">
-        <image  src="/images/cart.png"></image>
-      </view>
-    </view>    
-    <view class="list">
-      <view class="check"></view>
-      <view class="content flex">
-        <view><image src="/images/goods1-1.jpg"></image></view>
-        <view class="mes flex-col">
-          <text class="mes1 fs30">绵软粉糯即食板栗仁</text>
-          <text class="mes2 fs24">味BACK 燕山板栗仁 2袋入</text>
-          <view class="price">
-            <text class="price1 fs24">35.00</text>
-            <text class="price2 fs20">59.00</text>
-          </view>
-        </view>
-      </view>
-      <view class="shop-cart">
-        <image  src="/images/cart.png"></image>
-      </view>
-    </view>
+    </block>
   </view>
 </view>
 </template>
@@ -175,9 +43,38 @@
 import wepy from 'wepy'
 export default class Index extends wepy.page {
   config = {
-    navigationBarTitleText: 'Index'
+    navigationBarTitleText: '收藏'
   }
   data = {
+    list: [
+      {
+        id: 1,
+        value: 1,
+        img: '/images/goods1-2.jpg',
+        title: '绵软粉糯即食板栗仁绵软粉糯即食板栗仁',
+        title1: '味BACK 燕山板栗仁 2袋入绵软粉糯即食板栗仁',
+        price: 35.00,
+        price1: 50.00
+      },
+      {
+        id: 2,
+        value: 1,
+        img: '/images/goods1-2.jpg',
+        title: '绵软粉糯即食板栗仁绵软粉糯即食板栗仁',
+        title1: '味BACK 燕山板栗仁 2袋入绵软粉糯2袋入绵软粉糯2袋入绵软粉糯即食板栗仁即食板栗仁2袋入绵软粉糯即食板栗仁即食板栗仁',
+        price: 35.00,
+        price1: 50.00
+      },
+      {
+        id: 3,
+        value: 1,
+        img: '/images/goods1-2.jpg',
+        title: '绵软粉糯即食板栗仁绵软粉糯即食板栗仁',
+        title1: '味BACK 燕山板栗仁 2袋入绵软粉糯2袋入绵软粉糯2袋入绵软粉糯即食板栗仁即食板栗仁2袋入绵软粉糯即食板栗仁即食板栗仁',
+        price: 35.00,
+        price1: 50.00
+      }
+    ]
   }
   methods = {
   }

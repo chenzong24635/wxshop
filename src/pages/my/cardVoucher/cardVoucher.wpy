@@ -1,5 +1,4 @@
 <style lang='less'>
-/* pages/account/cardVoucher/cardVoucher.wxss */
 .container{
   padding:15rpx 18rpx;
 }
@@ -72,82 +71,28 @@
 </style>
 <template>
 <view class="container">
-  <view class="list">
-    <image class="list-bg" src="/images/cardVoucher1.jpg"></image>
-    <view class="list-content">
-      <view class="list-top flex">
-        <view class="flex">
-          <text class="price fs60">20.00</text>
-          <view class="left2 flex-col">
-            <text class="fs26">全品类商品</text>
-            <text class="fs22">无门槛</text>
+  <block wx:for='{{list}}' wx:key='list'>
+    <view class="list">
+      <image class="list-bg" src="{{item.type === 1 ? '/images/cardVoucher1.jpg' : '/images/cardVoucher2.jpg'}}"></image>
+      <view class="list-content">
+        <view class="list-top flex">
+          <view class="flex">
+            <text class="{{item.type === 1 ? 'price' : 'discount'}} fs60">{{item.amount}}</text>
+            <view class="left2 flex-col">
+              <text class="fs26">{{item.userType}}</text>
+              <text class="fs22">{{item.userCondition}}</text>
+            </view>
           </view>
+          <navigator url="/pages/productSort/productList/productList" class="use" hover-class="none"><text class="fs24">去使用</text></navigator>
         </view>
-        <navigator url="/pages/productSort/productList/productList" class="use" hover-class="none"><text class="fs24">去使用</text></navigator>
-      </view>
-      <view class="list-bottom flex-col">
-        <view><text class="fs20">有效日期： 2019-06-12</text></view>
-        <view><text class="fs20">适用范围： 全场通用</text></view>
+        <view class="list-bottom flex-col">
+          <view><text class="fs20">有效日期： {{item.expiry}}</text></view>
+          <view><text class="fs20">适用范围： {{item.userRange}}</text></view>
+        </view>
       </view>
     </view>
-  </view>
-  <view class="list">
-    <image class="list-bg" src="/images/cardVoucher2.jpg"></image>
-    <view class="list-content">
-      <view class="list-top flex">
-        <view class="flex">
-          <text class="discount fs60">9</text>
-          <view class="left2 flex-col">
-            <text class="fs26">全品类商品</text>
-            <text class="fs22">满300可用</text>
-          </view>
-        </view>
-        <navigator url="/pages/productSort/productList/productList" class="use" hover-class="none"><text class="fs24">去使用</text></navigator>
-      </view>
-      <view class="list-bottom flex-col">
-        <view><text class="fs20">有效日期： 2019-06-12</text></view>
-        <view><text class="fs20">适用范围： 全场通用</text></view>
-      </view>
-    </view>
-  </view>
-  <view class="list">
-    <image class="list-bg" src="/images/cardVoucher1.jpg"></image>
-    <view class="list-content">
-      <view class="list-top flex">
-        <view class="flex">
-          <text class="price fs60">20.00</text>
-          <view class="left2 flex-col">
-            <text class="fs26">全品类商品</text>
-            <text class="fs22">无门槛</text>
-          </view>
-        </view>
-        <navigator url="/pages/productSort/productList/productList" class="use" hover-class="none"><text class="fs24">去使用</text></navigator>
-      </view>
-      <view class="list-bottom flex-col">
-        <view><text class="fs20">有效日期： 2019-06-12</text></view>
-        <view><text class="fs20">适用范围： 全场通用</text></view>
-      </view>
-    </view>
-  </view>
-  <view class="list">
-    <image class="list-bg" src="/images/cardVoucher2.jpg"></image>
-    <view class="list-content">
-      <view class="list-top flex">
-        <view class="flex">
-          <text class="discount fs60">9</text>
-          <view class="left2 flex-col">
-            <text class="fs26">全品类商品</text>
-            <text class="fs22">满300可用</text>
-          </view>
-        </view>
-        <navigator url="/pages/productSort/productList/productList" class="use" hover-class="none"><text class="fs24">去使用</text></navigator>
-      </view>
-      <view class="list-bottom flex-col">
-        <view><text class="fs20">有效日期： 2019-06-12</text></view>
-        <view><text class="fs20">适用范围： 全场通用</text></view>
-      </view>
-    </view>
-  </view>
+  </block>
+
 </view>
 </template>
 <script>
@@ -157,10 +102,60 @@ export default class Index extends wepy.page {
     navigationBarTitleText: '卡/券'
   }
   data = {
+    type: 1,
+    title: '卡/券',
+    list: [
+      {
+        id: 1,
+        type: 1,
+        amount: '20.00',
+        userType: '全品类商品',
+        userCondition: '满300可用',
+        expiry: '2018-6-12',
+        userRange: '全场通用'
+      },
+      {
+        id: 2,
+        type: 2,
+        amount: '9',
+        userType: '全品类商品',
+        userCondition: '无门槛',
+        expiry: '2018-6-12',
+        userRange: '全场通用'
+      },
+      {
+        id: 3,
+        type: 2,
+        amount: '9',
+        userType: '全品类商品',
+        userCondition: '无门槛',
+        expiry: '2018-6-12',
+        userRange: '全场通用'
+      },
+      {
+        id: 4,
+        type: 1,
+        amount: '20.00',
+        userType: '全品类商品',
+        userCondition: '满300可用',
+        expiry: '2018-6-12',
+        userRange: '全场通用'
+      }
+    ]
   }
   methods = {
   }
-  onLoad() {
+  onLoad(options) {
+    let type = options.type / 1
+    if (type === 1) {
+      this.title = '领券中心'
+    } else if (type === 2) {
+      this.title = '卡/券'
+    }
+    wepy.setNavigationBarTitle({
+      title: this.title
+    })
+    this.$apply()
   }
 }
 </script>
