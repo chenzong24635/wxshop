@@ -1,23 +1,29 @@
 <style >
 @import "/pages/cart/cart";
 </style>
-<style>
+<style lang='less'>
 .cart-img{
   position: absolute;
   right:20rpx;
   bottom:20rpx;
+  image{
+    width:45rpx;
+    height:35rpx;
+  }
 }
-.cart-img image{
-  width:54rpx;
-  height:42rpx;
+.collect-del{
+  bottom: 0;
+  .collect-del-right{
+    justify-content:flex-end;
+  }
 }
 </style>
 <template>
 <view class="container">
-  <view class="main">
+  <view class="main" @longpress="collectDel" >
     <block wx:for="{{list}}" wx:key="list">
-      <view class="list"  >
-        <view wx:if="{{txtStyle === 0}}" class="check {{item.check?'check1':''}}" ></view>
+      <view class="list" >
+        <view wx:if="{{!flag}}" class="check {{item.check?'check1':''}}" @tap="check({{item.id}}, {{index}})"></view>
         <view class="content flex">
           <view class="list-l"><image src="{{item.img}}"></image></view>
           <view class="list-r">
@@ -36,20 +42,36 @@
         </view>
       </view>
     </block>
+    <view class="collect-del flex" hidden='{{flag}}'>
+      <view class="collect-del-left" @tap="checkAll">
+        <text class="check-all {{isCheckAll ? 'check1' : ''}}"></text>
+        <text class="fs22 color-78">全选</text>
+      </view>
+      <view class="collect-del-right flex" >
+        <view class="del flex" @tap="del">
+          <image src="/images/del.png"></image>
+          <text class="fs24">删除</text>
+        </view>
+      </view>
+    </view>
   </view>
 </view>
 </template>
 <script>
 import wepy from 'wepy'
+import tip from '../../../utils/tip'
+
 export default class Index extends wepy.page {
   config = {
     navigationBarTitleText: '收藏'
   }
   data = {
+    type: 1,
+    isCheckAll: false,
+    flag: true,
     list: [
       {
         id: 1,
-        value: 1,
         img: '/images/goods1-2.jpg',
         title: '绵软粉糯即食板栗仁绵软粉糯即食板栗仁',
         title1: '味BACK 燕山板栗仁 2袋入绵软粉糯即食板栗仁',
@@ -58,7 +80,6 @@ export default class Index extends wepy.page {
       },
       {
         id: 2,
-        value: 1,
         img: '/images/goods1-2.jpg',
         title: '绵软粉糯即食板栗仁绵软粉糯即食板栗仁',
         title1: '味BACK 燕山板栗仁 2袋入绵软粉糯2袋入绵软粉糯2袋入绵软粉糯即食板栗仁即食板栗仁2袋入绵软粉糯即食板栗仁即食板栗仁',
@@ -67,7 +88,6 @@ export default class Index extends wepy.page {
       },
       {
         id: 3,
-        value: 1,
         img: '/images/goods1-2.jpg',
         title: '绵软粉糯即食板栗仁绵软粉糯即食板栗仁',
         title1: '味BACK 燕山板栗仁 2袋入绵软粉糯2袋入绵软粉糯2袋入绵软粉糯即食板栗仁即食板栗仁2袋入绵软粉糯即食板栗仁即食板栗仁',
@@ -77,8 +97,47 @@ export default class Index extends wepy.page {
     ]
   }
   methods = {
+    check(id, idx, e) {
+      let bool = true
+      this.list.map((item, index) => {
+        if (item.id === id) {
+          item.check = !item.check
+        }
+        if (!item.check) {
+          bool = false
+        }
+      })
+      if (!bool) {
+        this.isCheckAll = false
+      } else {
+        this.isCheckAll = true
+      }
+      this.$apply()
+    },
+    checkAll() {
+      this.list.map((item, index) => {
+        item.check = !this.isCheckAll
+      })
+      this.isCheckAll = !this.isCheckAll
+    },
+    collectDel(e) {
+      this.flag = !this.flag
+      this.$apply()
+    },
+    del(e) {
+      this.flag = true
+      tip.success('删除成功')
+      this.$apply()
+    }
   }
-  onLoad() {
+  onLoad(options) {
+    let type = options.type / 1
+    let tittle = type === 1 ? '收藏' : '足迹'
+    this.type = type
+    wepy.setNavigationBarTitle({
+      title: tittle
+    })
+    this.$apply()
   }
 }
 </script>

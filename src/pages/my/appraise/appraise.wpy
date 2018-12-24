@@ -106,9 +106,9 @@
 </style>
 <template>
 <view class="container">
-  <view class="head-nav flex" wx:if="{{type === 1}}" wx:key="headbar"><!-- 评价 -->
+  <view class="head-nav flex" wx:if="{{type === 1}}"><!-- 评价 -->
     <view class="tab flex" style="{{showMore?'':'height: 66rpx;'}}">
-      <block wx:for="{{array}}">
+      <block wx:for="{{array}}"  wx:key="headbar">
         <view>
           <text class="fs24 {{index==id?'active':''}}"  wx:key="this" bindtap="active" data-id="{{index}}">{{item.name}}({{item.number}})</text>
         </view>
@@ -116,7 +116,7 @@
     </view>
     <view class="more" bindtap="showMore"><image src="/images/more-2.jpg"></image></view>
   </view>
-  <block wx:for="{{list}}" wx:key="list">
+  <block wx:for="{{list}}" wx:key="list"  wx:key="list">
     <view class="list">
       <view class="top flex">
         <view class="top-left flex">
@@ -125,7 +125,7 @@
         </view>
         <view class="top-right flex-col">
           <view class="star">
-            <block wx:for="{{item.star}}">
+            <block wx:for="{{item.star}}"  wx:key="stars">
               <image src="/images/star1.jpg"></image>
             </block>
             <block wx:for="{{5-item.star}}">
@@ -247,8 +247,6 @@ export default class Index extends wepy.page {
     }
   }
   onLoad(options) {
-    console.log(options)
-    console.log(options.type)
     let type = options.type / 1
     let tittle = type === 1 ? '评价' : '我的评价'
     this.type = type

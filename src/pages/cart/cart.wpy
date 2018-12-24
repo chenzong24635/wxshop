@@ -128,7 +128,7 @@ input{
   bottom:0;
   width:230rpx;
   height:100%;
-  z-index:4;
+  z-index:20;
 }
 .collect-del2 >view{
   width:50%;
@@ -249,13 +249,13 @@ input{
         </view>
       </view>
     </block>
-    <view class="collect-del flex" hidden='{{flag ? true : false}}'>
+    <view class="collect-del flex" hidden='{{flag}}'>
       <view class="collect-del-left" @tap="checkAll">
         <text class="check-all {{isCheckAll ? 'check1' : ''}}"></text>
         <text class="fs22 color-78">全选</text>
       </view>
-      <view class="collect-del-right flex" @tap="collect">
-        <view class="collect flex">
+      <view class="collect-del-right flex" >
+        <view class="collect flex" @tap="collect">
           <image src="/images/collect.png"></image>
           <text class="fs24">收藏</text>
         </view>
@@ -300,6 +300,9 @@ input{
 </template>
 <script>
   import wepy from 'wepy'
+  import tip from '../../utils/tip'
+  import {returnFloat, mul, accAdd} from '../../utils/util'
+  
   export default class Index extends wepy.page {
     config = {
       navigationBarTitleText: '购物车',
@@ -361,9 +364,10 @@ input{
         } else {
           this.isCheckAll = true
         }
+        this.sum = 0
         this.list.map((item, index) => {
           if (item.check) {
-            this.sum += item.price * item.value
+            this.sum += mul(item.price, item.value)
           }
         })
         this.$apply()
@@ -374,7 +378,7 @@ input{
           this.sum = 0
         } else {
           this.list.map((item, index) => {
-            sum += item.price * item.value
+            sum += mul(item.price, item.value)
           })
         }
         this.sum = sum
@@ -391,6 +395,9 @@ input{
             } else {
               item.value -= 1
             }
+            if (item.check) {
+              this.sum -= item.price
+            }
           }
         })
         this.$apply()
@@ -399,20 +406,25 @@ input{
         this.list.map((item, index) => {
           if (item.id === id) {
             item.value += 1
+            if (item.check) {
+              this.sum += item.price
+            }
           }
         })
         this.$apply()
       },
       collectDel(e) {
-        this.flag = false
+        this.flag = !this.flag
         this.$apply()
       },
       del(e) {
-        this.flag = false
+        this.flag = true
+        tip.success('删除成功')
         this.$apply()
       },
       collect(e) {
         this.flag = true
+        tip.success('已收藏')
         this.$apply()
       },
       touchS(e) {

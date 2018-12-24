@@ -245,6 +245,29 @@ export default class Index extends wepy.page {
     manage: false
   }
   methods = {
+    check(id, idx, e) {
+      let bool = true
+      this.list.map((item, index) => {
+        if (item.id === id) {
+          item.check = !item.check
+        }
+        if (!item.check) {
+          bool = false
+        }
+      })
+      if (!bool) {
+        this.isCheckAll = false
+      } else {
+        this.isCheckAll = true
+      }
+      this.$apply()
+    },
+    checkAll() {
+      this.list.map((item, index) => {
+        item.check = !this.isCheckAll
+      })
+      this.isCheckAll = !this.isCheckAll
+    },
     manage() {
       this.manage = true
       this.$apply()

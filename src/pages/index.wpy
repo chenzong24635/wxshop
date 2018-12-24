@@ -234,14 +234,14 @@
     </view>
     <view class="swiper-container">
       <swiper class="swiper" autoplay="auto" interval="5000" duration="500" indicator-dots="{{indicatorDots}}" @change="swiperChange" curren-item-id="{{swiperCurrent}}"  >
-        <block wx:for="{{imgs1}}" wx:key="*this">
+        <block wx:for="{{imgs1}}" wx:key="banner">
           <swiper-item>
             <image src="{{item}}" class="img" data-id="{{index}}" @tap="link1To" />
           </swiper-item>
         </block>
       </swiper>
       <view class="dots">
-        <block wx:for="{{imgs1}}" wx:key="*this1">
+        <block wx:for="{{imgs1}}" wx:key="dots">
           <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
         </block>
       </view>  
@@ -302,7 +302,7 @@
         </view>
       </view> 
       <scroll-view scroll-x class="scroll-view-x" @scroll="scroll">
-        <block wx:for="{{activity}}" wx:key="this" >
+        <block wx:for="{{activity}}" wx:key="activity" >
           <view class="scroll-item" >
             <image src="{{item.img}}" data-id="{{id}}" @tap="link2To" ></image>
             <view class="bottom flex-col">

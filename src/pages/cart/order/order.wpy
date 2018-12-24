@@ -3,18 +3,19 @@
 </style>
 <style lang='less'>
 .container{background:#eee }
-.head-nav .true{
-  color:#f23838;
-  border-bottom:2px solid #f23838;
-}
 .head-nav{
   padding:0 20rpx;
   background: #fff;
-}
-.head-nav text{
-  display: inline-block;
-  padding:10rpx;
-  color:#232323;
+  text{
+    display: inline-block;
+    padding:10rpx;
+    color:#232323;
+    border-bottom:2px solid #fff;
+  }
+  .active{
+    color:#f23838;
+    border-bottom:2px solid #f23838;
+  }
 }
 .list{
   padding: 0 20rpx;
@@ -25,49 +26,53 @@
   right:20rpx;
   bottom:20rpx;
   color:#303030;
+  image{
+    width:14rpx;
+    height:14rpx;
+  }
 }
-.shop-number image{
-  width:14rpx;
-  height:14rpx;
+.main{
+  margin-bottom: 20px;
+  .head{
+    color:#797979;
+    background: #f9f9f9; 
+    padding:14rpx 20rpx;
+    .fr{
+      color:#f23737;
+    }
+  }
+  .foot{
+    box-sizing: border-box;
+    position: static;
+    text-align: right;
+  }
 }
-.main{margin-bottom: 20px;}
-.main .head{
-  color:#797979;
-   background: #f9f9f9; 
-  padding:14rpx 20rpx;
-}
-.main .head .fr{
-  color:#f23737;
-}
-.main .foot{
-  box-sizing: border-box;
-  position: static;
-  text-align: right;
-}
-.main .foot-top{  padding:20rpx;background: #f9f9f9;}
-.main .foot-top text{
-  color:#303030;
+.main .foot-top{  
+  padding:20rpx;
+  background: #f9f9f9;
+  text{
+    color:#303030;
+  }
 }
 .main .foot-bottom{
-   padding:30rpx 0;
+  padding:30rpx 0;
+  text{
+    display: inline-block;
+    box-sizing: border-box;
+    padding:0 40rpx;
+    width:200rpx;
+    height:60rpx;
+    border-radius: 40rpx;
+    text-align: center;
+    margin-right: 20rpx;
+  }
  } 
-.main .foot-bottom text{
-  display: inline-block;
-  box-sizing: border-box;
-  padding:0 40rpx;
-  width:200rpx;
-  height:60rpx;
-  border-radius: 40rpx;
-  text-align: center;
-  margin-right: 20rpx;
- 
-}
-.cancle{
+.btn1{
   line-height: 60rpx;
   color:#a3a3a3;
    border:1px solid #a3a3a3;
 }
-.pay{
+.btn2{
   line-height: 60rpx;
   color:#f23838;
   border:1px solid #f23838;
@@ -77,210 +82,63 @@
 <template>
 <view class="container mb">
   <view class="head-nav flex" >
-    <text class="fs24 {{index==id}}" data-id="{{index}}" wx:for="{{array}}" wx:key="this" bindtap="active">{{item}}</text>
+    <text class="fs24 {{index === tabId ? 'active' : ''}}" data-id="{{index}}" wx:for="{{array}}" wx:key="this" @tap="active">{{item}}</text>
   </view>
-  <view class="main">
-    <view class="head clearfix ">
-      <view class="fl">
-        <text class="fs22">订单编号：</text>
-        <text class="fs22">000000000000</text>
+  <block wx:for='{{list}}' wx:key='list'>
+    <view class="main">
+      <view class="head clearfix ">
+        <view class="fl">
+          <text class="fs22">订单编号：</text>
+          <text class="fs22">{{item.orderNumber}}</text>
+        </view>
+        <text class="fr fs22" wx:if="{{item.type === 1}}">待付款</text>
+        <text class="fr fs22" wx:elif="{{item.type === 2}}">待发货</text>
+        <text class="fr fs22" wx:elif="{{item.type === 3}}">待收货</text>
+        <text class="fr fs22" wx:elif="{{item.type === 4}}">待评价</text>
       </view>
-      <text class="fr fs22">待付款</text>
-    </view>
-    <view class="list" bindtap="payDetail">
-      <view class="content flex">
-        <view><image src="/images/goods1-1.jpg"></image></view>
-        <view class="mes flex-col">
-          <text class="mes1 fs24">绵软粉糯即食板栗仁</text>
-          <text class="mes2 fs20">味BACK 燕山板栗仁 2袋入</text>
-          <view class="price">
-            <text class="price1 fs24">35.00</text>
-            <text class="price2 fs20">59.00</text>
+      <view class="list" @tap="detail({{item.id}}, {{item.type}})">
+        <view class="content flex">
+          <view class="list-l"><image src="{{item.img}}"></image></view>
+          <view class="list-r">
+            <view class="mes1 fs24 ov1">{{item.title}}</view>
+            <view class="mes2 fs20 ov1">{{item.title1}}</view>
+            <view class="clearfix">
+              <view class="price fl">
+                <text class="price1 fs24">{{item.price}}</text>
+                <text class="price2 fs20">{{item.price1}}</text>
+              </view>
+              <view class="shop-number fs24">
+                <image src="/images/icon.jpg"></image>
+                <text class="shop-num fs24">1</text>
+              </view>
+            </view>
           </view>
         </view>
       </view>
-      <view class="shop-number fs24">
-        <image src="/images/icon.jpg"></image>
-        <text class="shop-num fs24">1</text>
-      </view>
-    </view>
-    <view class="list" bindtap="payDetail">
-      <view class="content flex">
-        <view><image src="/images/goods1-1.jpg"></image></view>
-        <view class="mes flex-col">
-          <text class="mes1 fs24">绵软粉糯即食板栗仁</text>
-          <text class="mes2 fs20">味BACK 燕山板栗仁 2袋入</text>
-          <view class="price">
-            <text class="price1 fs24">35.00</text>
-            <text class="price2 fs20">59.00</text>
-          </view>
+      <view class="foot">
+        <view class="foot-top">
+            <text class="fs22">共1件商品  合计￥ </text>
+            <text class="fs32">106.00</text>
+            <text class="fs24"> （含运费￥6.00）</text>
+        </view>
+        <view class="foot-bottom" wx:if="{{item.type === 1}}">
+            <text class="btn1 fs22" @cancle="cancle({{item.id}})">取消订单 </text>
+            <text class="btn2 fs22" @cancle="pay({{item.id}})">付款</text>
+        </view>
+        <view class="foot-bottom" wx:if="{{item.type === 2}}">
+            <text class="btn1 fs22" @cancle="cancle({{item.id}})">取消订单 </text>
+        </view>
+        <view class="foot-bottom" wx:elif="{{item.type === 3}}">
+            <text class="btn1 fs22" @Logistics="logistics({{item.id}})">查看物流 </text>
+            <text class="btn2 fs22" @sure="sure({{item.id}})">确认收货</text>
+        </view>
+        <view class="foot-bottom" wx:elif="{{item.type === 4}}">
+            <text class="btn1 fs22" @del="del({{item.id}})">删除订单 </text>
+            <text class="btn2 fs22" @appraise="appraise({{item.id}})">评价</text>
         </view>
       </view>
-      <view class="shop-number fs24">
-        <image src="/images/icon.jpg"></image>
-        <text class="shop-num fs24">1</text>
-      </view>
     </view>
-    <view class="foot">
-       <view class="foot-top">
-          <text class="fs22">共1件商品  合计￥ </text>
-          <text class="fs32">106.00</text>
-          <text class="fs24"> （含运费￥6.00）</text>
-       </view>
-       <view class="foot-bottom">
-          <text class="cancle fs22">取消订单 </text>
-          <text class="pay fs22">付款</text>
-       </view>
-    </view>
-  </view>
-  <view class="main" >
-    <view class="head clearfix ">
-      <view class="fl">
-        <text class="fs22">订单编号：</text>
-        <text class="fs22">000000000000</text>
-      </view>
-      <text class="fr fs22">待发货</text>
-    </view>
-    <view class="list" bindtap="deliverDetail">
-      <view class="content flex">
-        <view><image src="/images/goods1-1.jpg"></image></view>
-        <view class="mes flex-col">
-          <text class="mes1 fs24">绵软粉糯即食板栗仁</text>
-          <text class="mes2 fs20">味BACK 燕山板栗仁 2袋入</text>
-          <view class="price">
-            <text class="price1 fs24">35.00</text>
-            <text class="price2 fs20">59.00</text>
-          </view>
-        </view>
-      </view>
-      <view class="shop-number fs24">
-        <image src="/images/icon.jpg"></image>
-        <text class="shop-num fs24">1</text>
-      </view>
-    </view>
-    <view class="list">
-      <view class="content flex">
-        <view><image src="/images/goods1-1.jpg"></image></view>
-        <view class="mes flex-col">
-          <text class="mes1 fs24">绵软粉糯即食板栗仁</text>
-          <text class="mes2 fs20">味BACK 燕山板栗仁 2袋入</text>
-          <view class="price">
-            <text class="price1 fs24">35.00</text>
-            <text class="price2 fs20">59.00</text>
-          </view>
-        </view>
-      </view>
-      <view class="shop-number fs24">
-        <image src="/images/icon.jpg"></image>
-        <text class="shop-num fs24">1</text>
-      </view>
-    </view>
-    <view class="foot">
-       <view class="foot-top">
-          <text class="fs22">共1件商品  合计￥ </text>
-          <text class="fs32">106.00</text>
-          <text class="fs24"> （含运费￥6.00）</text>
-       </view>
-       <!-- <view class="foot-bottom">
-          <text class="cancle fs22">取消订单 </text>
-          <text class="pay fs22">付款</text>
-       </view> -->
-    </view>
-  </view>
-  <view class="main">
-    <view class="head clearfix ">
-      <view class="fl">
-        <text class="fs22">订单编号：</text>
-        <text class="fs22">000000000000</text>
-      </view>
-      <text class="fr fs22">待收货</text>
-    </view>
-    <view class="list" bindtap="receiveDetail">
-      <view class="content flex">
-        <view><image src="/images/goods1-1.jpg"></image></view>
-        <view class="mes flex-col">
-          <text class="mes1 fs24">绵软粉糯即食板栗仁</text>
-          <text class="mes2 fs20">味BACK 燕山板栗仁 2袋入</text>
-          <view class="price">
-            <text class="price1 fs24">35.00</text>
-            <text class="price2 fs20">59.00</text>
-          </view>
-        </view>
-      </view>
-      <view class="shop-number fs24">
-        <image src="/images/icon.jpg"></image>
-        <text class="shop-num fs24">1</text>
-      </view>
-    </view>
-    <view class="foot">
-       <view class="foot-top">
-          <text class="fs22">共1件商品  合计￥ </text>
-          <text class="fs32">106.00</text>
-          <text class="fs24"> （含运费￥6.00）</text>
-       </view>
-       <view class="foot-bottom">
-          <text class="cancle fs22">查看物流 </text>
-          <text class="pay fs22">确认收货</text>
-       </view>
-    </view>
-  </view>
-  <view class="main">
-    <view class="head clearfix ">
-      <view class="fl">
-        <text class="fs22">订单编号：</text>
-        <text class="fs22">000000000000</text>
-      </view>
-      <text class="fr fs22">待评价</text>
-    </view>
-    <view class="list">
-      <view class="content flex">
-        <view><image src="/images/goods1-1.jpg"></image></view>
-        <view class="mes flex-col">
-          <text class="mes1 fs24">绵软粉糯即食板栗仁</text>
-          <text class="mes2 fs20">味BACK 燕山板栗仁 2袋入</text>
-          <view class="price">
-            <text class="price1 fs24">35.00</text>
-            <text class="price2 fs20">59.00</text>
-          </view>
-        </view>
-      </view>
-      <view class="shop-number fs24">
-        <image src="/images/icon.jpg"></image>
-        <text class="shop-num fs24">1</text>
-      </view>
-    </view>
-    <view class="list">
-      <view class="content flex">
-        <view><image src="/images/goods1-1.jpg"></image></view>
-        <view class="mes flex-col">
-          <text class="mes1 fs24">绵软粉糯即食板栗仁</text>
-          <text class="mes2 fs20">味BACK 燕山板栗仁 2袋入</text>
-          <view class="price">
-            <text class="price1 fs24">35.00</text>
-            <text class="price2 fs20">59.00</text>
-          </view>
-        </view>
-      </view>
-      <view class="shop-number fs24">
-        <image src="/images/icon.jpg"></image>
-        <text class="shop-num fs24">1</text>
-      </view>
-    </view>
-    <view class="foot">
-       <view class="foot-top">
-          <text class="fs22">共1件商品  合计￥ </text>
-          <text class="fs32">106.00</text>
-          <text class="fs24"> （含运费￥6.00）</text>
-       </view>
-       <view class="foot-bottom">
-          <text class="cancle fs22">删除订单 </text>
-          <text class="cancle fs22">评价</text>
-       </view>
-    </view>
-  </view>
-  <view class="no-more">
-    <text class="fs20">没有更多了</text>
-  </view>
+  </block>
 </view>
 </template>
 <script>
@@ -291,25 +149,69 @@ export default class Index extends wepy.page {
   }
   data = {
     array: ['全部', '待付款', '待发货', '待收货', '待评价'],
-    id: 0
+    tabId: 0,
+    list: [
+      {
+        id: 1,
+        orderNumber: '00000000',
+        type: 1,
+        value: 1,
+        img: '/images/goods1-2.jpg',
+        title: '绵软粉糯即食板栗仁绵软粉糯即食板栗仁',
+        title1: '味BACK 燕山板栗仁 2袋入绵软粉糯即食板栗仁',
+        price: 35.00,
+        price1: 50.00
+      },
+      {
+        id: 2,
+        orderNumber: '00000000',
+        type: 2,
+        value: 1,
+        img: '/images/goods1-2.jpg',
+        title: '绵软粉糯即食板栗仁绵软粉糯即食板栗仁',
+        title1: '味BACK 燕山板栗仁 2袋入绵软粉糯2袋入绵软粉糯2袋入绵软粉糯即食板栗仁即食板栗仁2袋入绵软粉糯即食板栗仁即食板栗仁',
+        price: 35.00,
+        price1: 50.00
+      },
+      {
+        id: 3,
+        orderNumber: '00000000',
+        type: 3,
+        value: 1,
+        img: '/images/goods1-2.jpg',
+        title: '绵软粉糯即食板栗仁绵软粉糯即食板栗仁',
+        title1: '味BACK 燕山板栗仁 2袋入绵软粉糯2袋入绵软粉糯2袋入绵软粉糯即食板栗仁即食板栗仁2袋入绵软粉糯即食板栗仁即食板栗仁',
+        price: 35.00,
+        price1: 50.00
+      },
+      {
+        id: 3,
+        orderNumber: '00000000',
+        type: 4,
+        value: 1,
+        img: '/images/goods1-2.jpg',
+        title: '绵软粉糯即食板栗仁绵软粉糯即食板栗仁',
+        title1: '味BACK 燕山板栗仁 2袋入绵软粉糯2袋入绵软粉糯2袋入绵软粉糯即食板栗仁即食板栗仁2袋入绵软粉糯即食板栗仁即食板栗仁',
+        price: 35.00,
+        price1: 50.00
+      }
+    ]
   }
   methods = {
     active(e) {
       let id = e.target.dataset.id
-      this.id = id
+      this.tabId = id
+      this.$apply()
       console.log(e, id)
     },
-    payDetail() {
-      this.$navigate('pay/pay')
-    },
-    deliverDetail() {
-      this.$navigate('deliver/deliver')
-    },
-    receiveDetail() {
-      this.$navigate('receive/receive')
+    detail(id, type, e) {
+      this.$navigate('detail/detail?id=' + id + '&type=' + type)
     }
   }
-  onLoad() {
+  onLoad(options) {
+    this.tabId = options.index / 1
+    this.$apply()
+    console.log(this.tabId)
   }
 }
 </script>

@@ -121,8 +121,8 @@
   <view class="top">
     <image class="top-bg" src="/images/account-bg.jpg"></image>
     <view class="top-set-mes flex">
-      <image bindtap="accountSet" src="/images/account-set.png"></image>
-      <image bindtap="accountMes" src="/images/account-mes.png"></image>
+      <image @tap="accountSet" src="/images/account-set.png"></image>
+      <image @tap="accountMes" src="/images/account-mes.png"></image>
     </view>
     <view class="avator flex-col">
       <image src="/images/account-img.png"></image>
@@ -132,7 +132,7 @@
       </view>
     </view>
     <view class="mes flex">
-      <view class="flex-col" bindtap="cardVoucher">
+      <view class="flex-col" @tap="cardVoucher">
         <text class="num fs22">0</text>
         <text class="message fs24">卡/券</text>
       </view>
@@ -140,7 +140,7 @@
         <text class="num fs22">103</text>
         <text class="message fs24">积分</text>
       </view>
-      <view class="flex-col" bindtap="overage">
+      <view class="flex-col" @tap="overage">
         <text class="num fs22">30.18</text>
         <text class="message fs24">余额</text>
       </view>
@@ -149,35 +149,35 @@
   <view class="order">
     <view class="order-top clearfix">
       <text class="order-top-myorder fs24 fl">我的订单</text>
-      <text class="order-top-all fs24 fr" bindtap="order">查看全部</text>
+      <text class="order-top-all fs24 fr" @tap="order(0)">查看全部</text>
     </view>
     <view class="order-main flex">
-      <view class="order-main-list" bindtap='order'>
+      <view class="order-main-list" @tap='order(1)'>
         <image src="/images/account_1.jpg"></image>
         <view><text class="message fs24">待付款</text><text class="num fs24">1</text></view>
       </view>
-      <view class="order-main-list" bindtap='order'>
+      <view class="order-main-list" @tap='order(2)'>
         <image  src="/images/account_2.jpg"></image>
         <view><text class="message fs24">待发货</text><text class="num fs24">1</text></view>
       </view>
-      <view class="order-main-list" bindtap='order'>
+      <view class="order-main-list" @tap='order(3)'>
         <image src="/images/account_3.jpg"></image>
         <view><text class="message fs24">待收货</text><text class="num fs24">1</text></view>
       </view>
-      <view class="order-main-list" bindtap='order'>
+      <view class="order-main-list" @tap='order(4)'>
         <image  src="/images/account_4.jpg"></image>
         <view><text class="message fs24">待评价</text><text class="num fs24">1</text></view>
       </view>
     </view>
   </view>
   <view class="bottom flex">
-    <navigator class="bottom-list" url="/pages/cart/collection/collection" hover-class="none"> 
+    <navigator class="bottom-list" url="/pages/my/collectionTrace/collectionTrace?type=1" hover-class="none"> 
       <view class=" flex-col">
         <image src="/images/account-1.png"></image>
         <text class="message fs24">收藏</text>
       </view>
     </navigator>
-    <navigator class="bottom-list" url="/pages/cart/trace/trace" hover-class="none"> 
+    <navigator class="bottom-list" url="/pages/my/collectionTrace/collectionTrace?type=2" hover-class="none"> 
       <view class=" flex-col">
         <image src="/images/account-2.png"></image>
         <text class="message fs24">足迹</text>
@@ -267,8 +267,8 @@
       overage() {
         this.$navigate('/pages/my/overange/overange')
       },
-      order() {
-        this.$navigate('/pages/cart/order/order')
+      order(index) {
+        this.$navigate('/pages/cart/order/order?index=' + index)
       }
     }
     onLoad() {
