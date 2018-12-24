@@ -103,22 +103,22 @@ input{
 .collect-del > view, .collect-del-right > view{
   width:50%;
 }
- .collect-del-right view > text{
+.collect-del-right view > text{
   display: inline-block;
   height:100rpx;
   line-height:100rpx;
   text-align: center;
   vertical-align: middle;
 } 
- .collect-del-right .collect{
+.collect-del-right .collect{
   background: #f4b148;
   justify-content:center;
 }
- .collect-del-right image{
-   width:42rpx;
-   height:42rpx;
- }
- .collect-del-right .del{
+.collect-del-right image{
+  width:42rpx;
+  height:42rpx;
+}
+.collect-del-right .del{
   background: #f23737;
   justify-content:center;
 }
@@ -466,6 +466,7 @@ input{
       this.list.map((item, index) => {
         item.check = false
       })
+      this.$apply()
     }
   }
 </script>

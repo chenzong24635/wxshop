@@ -266,7 +266,7 @@
           <text class="fs20">申请分销商</text>
         </view>
       </navigator>
-      <navigator url="/pages/my/teamwork/teamwork" hover-class="none">
+      <navigator url="/pages/my/packet/packet" hover-class="none">
         <view class="flex-col activity-item">
           <image src="/images/index-4.png"></image>
           <text class="fs20">邀请领红包</text>
@@ -464,7 +464,6 @@
           c: 13
         }
       ],
-      totalSeconds: 60000,
       width: 0,
       searchShow: true,
       imgs1: [
@@ -477,6 +476,7 @@
       duration: 1000,
       indicatorActiveColor: '#fff',
       swiperCurrent: 0,
+      totalSeconds: 60000,
       timeOut: false,
       day: 0,
       day1: 0,
@@ -535,7 +535,7 @@
     onLoad() {
       this.width = wepy.getSystemInfoSync().windowWidth
       console.log(this.totalSeconds)
-      this.countDown()
+      this.countDown(this.totalSeconds)
       this.$apply()
     }
     onShareAppMessage() {
@@ -546,9 +546,9 @@
       this.searchShow = true
       this.$apply()
     }
-    countDown() {
+    countDown(times) {
       let _this = this
-      let totalSeconds = this.totalSeconds
+      let totalSeconds = times / 1
       this.day = this.dateFormat(totalSeconds).day
       this.day1 = this.dateFormat(totalSeconds).day1
       this.hr = this.dateFormat(totalSeconds).hr
@@ -563,7 +563,7 @@
       }
       setTimeout(function () {
         _this.totalSeconds -= 10
-        _this.countDown()
+        _this.countDown(_this.totalSeconds)
       }, 10)
       this.$apply()
     }

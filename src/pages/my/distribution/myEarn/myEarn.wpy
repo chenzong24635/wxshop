@@ -46,110 +46,21 @@
     <text class="price color-red fs48 bold">13131.00</text>
   </view>
   <view class="bg"></view>
-  <view class="list flex-col">
-    <view class="list-top flex">
-      <view>
-        <text class="rank one fs18">一级</text>
-        <text class="number fs24">某某某</text>
+  <block wx:for='{{list}}' wx:key='list'>
+    <view class="list flex-col">
+      <view class="list-top flex">
+        <view>
+          <text class="rank one fs18">{{item.level}}</text>
+          <text class="number fs24">{{item.name}}</text>
+        </view>
+        <text class="in bold fs26">+{{item.amout}}</text>
       </view>
-      <text class="in bold fs26">+1135.00</text>
-    </view>
-    <view class="list-bottom flex-col">
-      <text class="fs20">[消费收益]</text>
-      <text class="fs20">2018-05-30   16:30:23</text>
-    </view>
-  </view>
-  <view class="list flex-col">
-    <view class="list-top flex">
-      <view>
-        <text class="rank one fs18">一级</text>
-        <text class="number fs24">某某某</text>
+      <view class="list-bottom flex-col">
+        <text class="fs20">[{{item.type}}]</text>
+        <text class="fs20">{{item.created}}</text>
       </view>
-      <text class="in bold fs26">+1135.00</text>
     </view>
-    <view class="list-bottom flex-col">
-      <text class="fs20">[消费收益]</text>
-      <text class="fs20">2018-05-30   16:30:23</text>
-    </view>
-  </view>
-  <view class="list flex-col">
-    <view class="list-top flex">
-      <view>
-        <text class="rank two fs18">二级</text>
-        <text class="number fs24">某某某</text>
-      </view>
-      <text class="in bold fs26">+1135.00</text>
-    </view>
-    <view class="list-bottom flex-col">
-      <text class="fs20">[申请分销商收益]</text>
-      <text class="fs20">2018-05-30   16:30:23</text>
-    </view>
-  </view>
-  <view class="list flex-col">
-    <view class="list-top flex">
-      <view>
-        <text class="rank three fs18">三级</text>
-        <text class="number fs24">某某某</text>
-      </view>
-      <text class="in bold fs26">+1135.00</text>
-    </view>
-    <view class="list-bottom flex-col">
-      <text class="fs20">[消费收益]</text>
-      <text class="fs20">2018-05-30   16:30:23</text>
-    </view>
-  </view>
-  <view class="list flex-col">
-    <view class="list-top flex">
-      <view>
-        <text class="rank one fs18">一级</text>
-        <text class="number fs24">某某某</text>
-      </view>
-      <text class="in bold fs26">+1135.00</text>
-    </view>
-    <view class="list-bottom flex-col">
-      <text class="fs20">[消费收益]</text>
-      <text class="fs20">2018-05-30   16:30:23</text>
-    </view>
-  </view>
-  <view class="list flex-col">
-    <view class="list-top flex">
-      <view>
-        <text class="rank one fs18">一级</text>
-        <text class="number fs24">某某某</text>
-      </view>
-      <text class="in bold fs26">+1135.00</text>
-    </view>
-    <view class="list-bottom flex-col">
-      <text class="fs20">[消费收益]</text>
-      <text class="fs20">2018-05-30   16:30:23</text>
-    </view>
-  </view>
-  <view class="list flex-col">
-    <view class="list-top flex">
-      <view>
-        <text class="rank two fs18">二级</text>
-        <text class="number fs24">某某某</text>
-      </view>
-      <text class="in bold fs26">+1135.00</text>
-    </view>
-    <view class="list-bottom flex-col">
-      <text class="fs20">[申请分销商收益]</text>
-      <text class="fs20">2018-05-30   16:30:23</text>
-    </view>
-  </view>
-  <view class="list flex-col">
-    <view class="list-top flex">
-      <view>
-        <text class="rank three fs18">三级</text>
-        <text class="number fs24">某某某</text>
-      </view>
-      <text class="in bold fs26">+1135.00</text>
-    </view>
-    <view class="list-bottom flex-col">
-      <text class="fs20">[消费收益]</text>
-      <text class="fs20">2018-05-30   16:30:23</text>
-    </view>
-  </view>
+  </block>
 </view>
 </template>
 <script>
@@ -159,6 +70,40 @@ export default class Index extends wepy.page {
     navigationBarTitleText: '我的分润'
   }
   data = {
+    list: [
+      {
+        id: 0,
+        amout: 123.00,
+        level: '一级',
+        type: '消费收益',
+        name: '某某某',
+        created: '2018-05-30 16:30:23'
+      },
+      {
+        id: 1,
+        amout: 123.00,
+        level: '二级',
+        type: '消费收益',
+        name: '某某某',
+        created: '2018-05-30 16:30:23'
+      },
+      {
+        id: 2,
+        amout: 123.00,
+        level: '一级',
+        type: '消费收益',
+        name: '某某某',
+        created: '2018-05-30 16:30:23'
+      },
+      {
+        id: 3,
+        amout: 123.00,
+        level: '一级',
+        type: '申请分销商收益',
+        name: '某某某',
+        created: '2018-05-30 16:30:23'
+      }
+    ]
   }
   methods = {
   }

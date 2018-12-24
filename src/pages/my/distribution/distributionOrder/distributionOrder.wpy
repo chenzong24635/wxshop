@@ -1,7 +1,7 @@
 <style >
 @import "/pages/my/overangeDetail/overangeDetail.wxss";
 </style>
-<style lang='less'>
+<style>
 .list-bottom{
   width:100%;
 }
@@ -10,74 +10,23 @@
 <template>
 <view class="container">
   <view class="head-nav flex" >
-    <text class="fs24 {{index==id}}" data-id="{{index}}" wx:for="{{array}}" wx:key="this" bindtap="active">{{item}}</text>
+    <text class="fs24 {{index==id ? 'active' : ''}}" data-id="{{index}}" wx:for="{{array}}" wx:key="tab" @tap="active">{{item}}</text>
   </view>
-  <view class="list flex-col">
-    <view class="list-top flex">
-      <text class="number fs24">订单编号： 88888888888</text>
-      <text class="in fs26">代付款</text>
+  <block wx:for='{{list}}' wx:key='list'>
+    <view class="list flex-col">
+      <view class="list-top flex">
+        <text class="number fs24">订单编号： {{item.number}}</text>
+        <text class="in fs26" wx:if="{{item.status === 0}}">待付款</text>
+        <text class="in fs26" wx:elif="{{item.status === 1}}">已付款</text>
+        <text class="in fs26 {{item.status === 2 ? 'out' : ''}}" wx:elif="{{item.status === 2}}">完成</text>
+      </view>
+      <text class="fs20">[{{item.level}}] {{item.name}}</text>
+      <view class="list-bottom flex">
+        <text class="time fs20">{{item.created}}</text>
+        <text class="fs26">{{item.amout}}</text>
+      </view>
     </view>
-    <text class="fs20">[一级] 某某某</text>
-    <view class="list-bottom flex">
-     <text class="time fs20">2018-05-30   16:30:23</text>
-     <text class="fs26">106.00</text>
-    </view>
-  </view>
-  <view class="list flex-col">
-    <view class="list-top flex">
-      <text class="number fs24">订单编号： 88888888888</text>
-      <text class="in fs26">已付款</text>
-    </view>
-    <text class="fs20">[二级] 某某某</text>
-    <view class="list-bottom flex">
-     <text class="time fs20">2018-05-30   16:30:23</text>
-     <text class="fs26">106.00</text>
-    </view>
-  </view>
-  <view class="list flex-col">
-    <view class="list-top flex">
-      <text class="number fs24">订单编号： 88888888888</text>
-      <text class="out fs26">完成</text>
-    </view>
-    <text class="fs20">[一级] 某某某</text>
-    <view class="list-bottom flex">
-     <text class="time fs20">2018-05-30   16:30:23</text>
-     <text class="fs26">106.00</text>
-    </view>
-  </view>
-  <view class="list flex-col">
-    <view class="list-top flex">
-      <text class="number fs24">订单编号： 88888888888</text>
-      <text class="in fs26">已付款</text>
-    </view>
-    <text class="fs20">[二级] 某某某</text>
-    <view class="list-bottom flex">
-     <text class="time fs20">2018-05-30   16:30:23</text>
-     <text class="fs26">106.00</text>
-    </view>
-  </view>
-  <view class="list flex-col">
-    <view class="list-top flex">
-      <text class="number fs24">订单编号： 88888888888</text>
-      <text class="out fs26">完成</text>
-    </view>
-    <text class="fs20">[一级] 某某某</text>
-    <view class="list-bottom flex">
-     <text class="time fs20">2018-05-30   16:30:23</text>
-     <text class="fs26">106.00</text>
-    </view>
-  </view>
-  <view class="list flex-col">
-    <view class="list-top flex">
-      <text class="number fs24">订单编号： 88888888888</text>
-      <text class="out fs26">完成</text>
-    </view>
-    <text class="fs20">[一级] 某某某</text>
-    <view class="list-bottom flex">
-     <text class="time fs20">2018-05-30   16:30:23</text>
-     <text class="fs26">106.00</text>
-    </view>
-  </view>
+  </block>
 </view>
 </template>
 <script>
@@ -87,8 +36,37 @@ export default class Index extends wepy.page {
     navigationBarTitleText: '分销订单'
   }
   data = {
-    array: ['一级', '二级', '三级'],
-    id: 0
+    array: ['全部', '代付款', '已付款', '完成'],
+    id: 0,
+    list: [
+      {
+        id: 0,
+        number: 12354664,
+        status: 0,
+        amout: 123.00,
+        level: '一级',
+        name: '某某某',
+        created: '2018-05-30 16:30:23'
+      },
+      {
+        id: 1,
+        number: 12354664,
+        status: 1,
+        amout: 123.00,
+        level: '二级',
+        name: '某某某',
+        created: '2018-05-30 16:30:23'
+      },
+      {
+        id: 2,
+        number: 12354664,
+        status: 2,
+        amout: 123.00,
+        level: '一级',
+        name: '某某某',
+        created: '2018-05-30 16:30:23'
+      }
+    ]
   }
   methods = {
     active(e) {

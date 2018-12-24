@@ -61,11 +61,11 @@ input{
       <text class="fl fs24">实名认证</text>
       <image src="/images/link1.jpg"></image>
     </view>
-    <view class="address-manage flex" bindtap="address">
+    <view class="address-manage flex" @tap="address">
       <text class="fl fs24">地址管理</text>
       <image src="/images/link1.jpg"></image>
     </view>
-    <view class="change-password flex" bindtap="password">
+    <view class="change-password flex" @tap="password">
       <text class="fl fs24">修改密码</text>
       <image src="/images/link1.jpg"></image>
     </view>

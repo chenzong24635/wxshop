@@ -99,12 +99,12 @@ text{color:#232323}
       <image src="/images/search1.png"></image>
       <input />
     </view>
-    <view class="mes" bindtap="message"><image src="/images/message.png"></image></view>
+    <view class="mes" @tap="message"><image src="/images/message.png"></image></view>
   </view>
   <view class="main clearfix" style="height:{{height}}px">
     <scroll-view scroll-y  class="scroll-left fl"  style="height:{{height}}px">
       <view  class="nav-bar flex-col ">
-          <view class="{{index==id?'active':''}}" wx:for="{{barList}}" data-id="{{index}}" bindtap="active" wx:key="bar">
+          <view class="{{index==id?'active':''}}" wx:for="{{barList}}" data-id="{{index}}" @tap="active" wx:key="bar">
             <text class="fs24" >{{item}}</text>
           </view>
       </view>
@@ -116,7 +116,7 @@ text{color:#232323}
             <text class="bar-show-top fs24">{{item.title}}</text>
             <view class="bar-show-main flex">
               <block wx:for="{{item.list1}}" wx:key="list1" wx:for-item="item1">
-                <view class="flex-col" bindtap="productList">
+                <view class="flex-col" @tap="productList">
                   <image src="{{item1.img}}"></image>
                   <view class="fs22 ov1">{{item1.name}}</view>
                 </view>

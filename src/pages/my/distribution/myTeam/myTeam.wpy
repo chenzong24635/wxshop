@@ -9,40 +9,18 @@
 <template>
 <view class="container">
   <view class="head-nav flex" >
-    <text class="fs24 {{index==id}}" data-id="{{index}}" wx:for="{{array}}" wx:key="this" bindtap="active">{{item}}</text>
+    <text class="fs24 {{index==id ? 'active' : ''}}" data-id="{{index}}" wx:for="{{array}}" wx:key="this" @tap="active">{{item}}</text>
   </view>
-  <view class="list flex-col">
-    <view class="list-top flex">
-      <text class="number fs24">某某某</text>
-      <text class="in fs26">+1135.00</text>
+  <block wx:for='{{list}}' wx:key='list'>
+    <view class="list flex-col">
+      <view class="list-top flex">
+        <text class="number fs24">{{item.name}}</text>
+        <text class="in fs26">+{{item.amout}}</text>
+      </view>
+      <text class="fs20">[{{item.type}}]</text>
+      <text class="fs20">申请时间  {{item.created}}</text>
     </view>
-    <text class="fs20">[累计消费]</text>
-    <text class="fs20">申请时间  2018-05-30   16:30:23</text>
-  </view>
-  <view class="list flex-col">
-    <view class="list-top flex">
-      <text class="number fs24">某某某</text>
-      <text class="in fs26">+1135.00</text>
-    </view>
-    <text class="fs20">[累计消费]</text>
-    <text class="fs20">申请时间  2018-05-30   16:30:23</text>
-  </view>
-  <view class="list flex-col">
-    <view class="list-top flex">
-      <text class="number fs24">某某某</text>
-      <text class="in fs26">+1135.00</text>
-    </view>
-    <text class="fs20">[累计消费]</text>
-    <text class="fs20">申请时间  2018-05-30   16:30:23</text>
-  </view>
-  <view class="list flex-col">
-    <view class="list-top flex">
-      <text class="number fs24">某某某</text>
-      <text class="in fs26">+1135.00</text>
-    </view>
-    <text class="fs20">[累计消费]</text>
-    <text class="fs20">申请时间  2018-05-30   16:30:23</text>
-  </view>
+  </block>
 </view>
 </template>
 <script>
@@ -53,7 +31,37 @@ export default class Index extends wepy.page {
   }
   data = {
     array: ['一级', '二级', '三级'],
-    id: 0
+    id: 0,
+    list: [
+      {
+        id: 0,
+        amout: 123.00,
+        type: '累计消费',
+        name: '某某某',
+        created: '2018-05-30 16:30:23'
+      },
+      {
+        id: 1,
+        amout: 123.00,
+        type: '累计消费',
+        name: '某某某',
+        created: '2018-05-30 16:30:23'
+      },
+      {
+        id: 2,
+        amout: 123.00,
+        type: '累计消费',
+        name: '某某某',
+        created: '2018-05-30 16:30:23'
+      },
+      {
+        id: 3,
+        amout: 123.00,
+        type: '累计消费',
+        name: '某某某',
+        created: '2018-05-30 16:30:23'
+      }
+    ]
   }
   methods = {
     active(e) {

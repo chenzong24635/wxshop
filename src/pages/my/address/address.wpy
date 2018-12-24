@@ -1,15 +1,16 @@
 <style lang='less'>
-/* pages/account/address/address.wxss */
 page{position: relative;}
 .container{
   position: relative;
   border-top: 1px solid #eee;
 }
 .address,.address-list{position: relative;}
-.address > view{
+.address-list{
   padding:0 22rpx;
+  border-bottom: 1px solid #eee;
 }
-.addressManage > view{
+.address-default{border-bottom: none;}
+.addressManage .address-list{
    padding:0 40rpx 0 60rpx; 
 }
 .address .check{
@@ -22,7 +23,19 @@ page{position: relative;}
   border:1px solid #b2b2b2;
   border-radius:50%;
 }
-.address-list{border-bottom: 1px solid #eee}
+.check1:after{
+  content:'';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 60%;
+  height: 60%;
+  border-radius: 50%;
+  background-color: #f23737;
+}
 .top{
   margin-top: 30rpx;
 }
@@ -64,18 +77,9 @@ page{position: relative;}
   height:80rpx;
 }
 .btns button{
-  display: inline-block;
+  display: block;
   margin:0;
 }
-.btn1{
-  width:20%;
-  background: #eee;
-  color:#000;
-}
-.btn2{
-  width:80%;
-}
-
 .foot{
   position: fixed;
   bottom:0;
@@ -83,18 +87,18 @@ page{position: relative;}
   width:100%;
   height:100rpx;
   background: #fff;
-}
-.foot .add{
-  width:20%;  
-  height: 100%;
-}
-.foot .add image{
-  width:54rpx;
-  height:54rpx;
-  margin-top: 4px;
-}
-.foot .add text{
-  color:#434343;
+  .add{
+    width:20%;  
+    height: 100%;
+    image{
+      width:54rpx;
+      height:54rpx;
+      margin-top: 4px;
+    }
+    text{
+      color:#434343;
+    }
+  }
 }
 .foot .update,
 .foot .del{
@@ -103,108 +107,50 @@ page{position: relative;}
   height: 100%;
   background: #f4b148;
   text-align: center;
+  image{
+    width:42rpx;
+    height:42rpx;
+    margin-right:4px ;
+  }
+  text{
+    color:#fff;
+  }
 }
 .foot .del{background: #f23737;}
-.foot .update image,
-.foot .del image{
-  width:42rpx;
-  height:42rpx;
-  margin-right:4px ;
-}
-.foot .update text,
-.foot .del text{
-  color:#fff;
-}
 </style>
 <template>
-<view class="container mb">
-  <view class="address {{manage?'addressManage':''}}">
-    <view class="{{manage?'check':''}}"><text></text></view>
-    <view class="top flex">
-      <text class="name fs26">某某某</text>
-      <text class="phone fs26">188888888</text>
-    </view>
-    <view class="bottom">
-      <text class="default fs15">默认</text>
-      <text class="detail fs22">浙江省宁波市海曙区丽园北路668号美丽园大厦602</text>
-    </view>
+<view class="container mb" @longpress="manage">
+  <view class="address {{manage?'addressManage':''}}" >
+    <navigator class="address-list address-default"  url="../addressManage/addressManage" hover-class="none">
+      <view  class="check " wx:if="{{manage}}"  ><text></text></view>
+      <view class="top flex">
+        <text class="name fs26">某某某</text>
+        <text class="phone fs26">188888888</text>
+      </view>
+      <view class="bottom">
+        <text class="default fs15">默认</text>
+        <text class="detail fs22">浙江省宁波市海曙区丽园北路668号美丽园大厦602</text>
+      </view>
+    </navigator>
     <view class="bg-img">
       <image src="/images/address-bg.jpg"></image>
       <view class="bg"></view>
     </view>
   </view>
   <view class="address {{manage?'addressManage':''}}">
-    <view class="address-list">
-      <view class="check" wx:if="{{manage}}"><text></text></view>
-      <view class="top flex">
-        <text class="name fs26">某某某</text>
-        <text class="phone fs26">188888888</text>
-      </view>
-      <view class="bottom">
-        <text class="detail fs22">浙江省宁波市海曙区丽园北路668号美丽园大厦602</text>
-      </view>
-    </view>
-    <view class="address-list">
-      <view class="check" wx:if="{{manage}}"><text></text></view>
-      <view class="top flex">
-        <text class="name fs26">某某某</text>
-        <text class="phone fs26">188888888</text>
-      </view>
-      <view class="bottom">
-        <text class="detail fs22">浙江省宁波市海曙区丽园北路668号美丽园大厦602</text>
-      </view>
-    </view>
-    <view class="address-list">
-      <view class="check" wx:if="{{manage}}"><text></text></view>
-      <view class="top flex">
-        <text class="name fs26">某某某</text>
-        <text class="phone fs26">188888888</text>
-      </view>
-      <view class="bottom">
-        <text class="detail fs22">浙江省宁波市海曙区丽园北路668号美丽园大厦602</text>
-      </view>
-    </view>
-    <view class="address-list">
-      <view class="check" wx:if="{{manage}}"><text></text></view>
-      <view class="top flex">
-        <text class="name fs26">某某某</text>
-        <text class="phone fs26">188888888</text>
-      </view>
-      <view class="bottom">
-        <text class="detail fs22">浙江省宁波市海曙区丽园北路668号美丽园大厦602</text>
-      </view>
-    </view>
-    <view class="address-list">
-      <view class="check" wx:if="{{manage}}"><text></text></view>
-      <view class="top flex">
-        <text class="name fs26">某某某</text>
-        <text class="phone fs26">188888888</text>
-      </view>
-      <view class="bottom">
-        <text class="detail fs22">浙江省宁波市海曙区丽园北路668号美丽园大厦602</text>
-      </view>
-    </view>
-    <view class="address-list">
-      <view class="check" wx:if="{{manage}}"><text></text></view>
-      <view class="top flex">
-        <text class="name fs26">某某某</text>
-        <text class="phone fs26">188888888</text>
-      </view>
-      <view class="bottom">
-        <text class="detail fs22">浙江省宁波市海曙区丽园北路668号美丽园大厦602</text>
-      </view>
-    </view>
-    <view class="address-list">
-      <view class="check" wx:if="{{manage}}"><text></text></view>
-      <view class="top flex">
-        <text class="name fs26">某某某</text>
-        <text class="phone fs26">188888888</text>
-      </view>
-      <view class="bottom">
-        <text class="detail fs22">浙江省宁波市海曙区丽园北路668号美丽园大厦602</text>
-      </view>
-    </view>
-    <view class="address-list">
+    <block wx:for='{{list}}' wx:key='list'>
+      <navigator class="address-list" url="../addressManage/addressManage" hover-class="none">
+        <view class="check {{item.check?'check1':''}}" wx:if="{{manage}}"  @tap.stop="check({{item.id}}, {{index}})"><text></text></view>
+        <view class="top flex">
+          <text class="name fs26">{{item.name}}</text>
+          <text class="phone fs26">{{item.phone}}</text>
+        </view>
+        <view class="bottom">
+          <text class="detail fs22">{{item.address}}</text>
+        </view>
+      </navigator>
+    </block>
+    <view class="address-list" >
       <view class="check" wx:if="{{manage}}"><text></text></view>
       <view class="top flex">
         <text class="name fs26">某某某</text>
@@ -216,15 +162,15 @@ page{position: relative;}
     </view>
   </view>
   <view class="btns" wx:if="{{!manage}}">
-    <button class="btn btn1" bindtap="manage" >管理</button>
-    <button class="btn btn2" bindtap="add">添加新地址</button>
+    <!-- <button class="btn btn1" @tap="manage" >管理</button> -->
+    <button class="btn" @tap="add">添加新地址</button>
   </view>
   <view class="foot flex" wx:if="{{manage}}">
-    <view class="add flex-col" bindtap="add">
+    <view class="add flex-col" @tap="add">
       <image src="/images/add.png"></image>
       <text class="fs15">添加新地址</text>
     </view>
-    <view class="update flex" bindtap="add">
+    <view class="update flex" @tap="add">
       <image src="/images/update.png"></image>
       <text class="fs30">修改</text>
     </view>
@@ -239,27 +185,45 @@ page{position: relative;}
 import wepy from 'wepy'
 export default class Index extends wepy.page {
   config = {
-    navigationBarTitleText: 'Index'
+    navigationBarTitleText: '收货地址'
   }
   data = {
-    manage: false
+    manage: false,
+    list: [
+      {
+        id: 0,
+        name: '某某某某某某某某',
+        phone: 12364599,
+        address: '浙江省宁波市海曙江省宁波市海曙区丽区丽园北路668号美丽园大厦602'
+      },
+      {
+        id: 1,
+        name: '某某某某',
+        phone: 12364599,
+        address: '浙江省宁波市海曙区丽园北路668号美丽园大厦602'
+      },
+      {
+        id: 2,
+        name: '某某某某',
+        phone: 12364599,
+        address: '浙江省宁波市海曙区丽园北路668号美丽园大厦602'
+      },
+      {
+        id: 3,
+        name: '某某某某',
+        phone: 12364599,
+        address: '浙江省宁波市海曙区丽园北路668号美丽园大厦602'
+      }
+    ]
   }
   methods = {
     check(id, idx, e) {
-      let bool = true
+      console.log(id, idx)
       this.list.map((item, index) => {
         if (item.id === id) {
           item.check = !item.check
         }
-        if (!item.check) {
-          bool = false
-        }
       })
-      if (!bool) {
-        this.isCheckAll = false
-      } else {
-        this.isCheckAll = true
-      }
       this.$apply()
     },
     checkAll() {
@@ -267,9 +231,10 @@ export default class Index extends wepy.page {
         item.check = !this.isCheckAll
       })
       this.isCheckAll = !this.isCheckAll
+      this.$apply()
     },
     manage() {
-      this.manage = true
+      this.manage = !this.manage
       this.$apply()
     },
     add() {
@@ -277,6 +242,10 @@ export default class Index extends wepy.page {
     }
   }
   onLoad() {
+    this.list.map((item, index) => {
+      item.check = false
+    })
+    this.$apply()
   }
 }
 </script>

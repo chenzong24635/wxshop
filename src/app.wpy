@@ -32,6 +32,9 @@
     background: #eee;
     height: 30rpx;
   }
+  .tal{text-align: left;}
+  .tar{text-align: right;}
+  .tac{text-align: center;}
   .bold{font-weight: bold;}
   .mb{margin-bottom: 110rpx;}
   .mb1{margin-bottom: 230rpx;}
@@ -82,7 +85,7 @@
     background: #f23737;
     height:80rpx;
     line-height: 80rpx;
-    border-radius: 0;
+    border-radius: 5rpx 5rpx 0 0;
   }
   .price1{
     color:#f23737;
@@ -159,6 +162,9 @@ import {
 export default class extends wepy.app {
   config = {
     pages: [
+      'pages/my/packet/packet',
+      'pages/my/lottery/lottery',
+      'pages/my/packet/packetget',
       'pages/index',
       'pages/sort/sort',
       'pages/sort/product/product',
@@ -170,10 +176,10 @@ export default class extends wepy.app {
       'pages/cart/order/order',
       'pages/cart/order/detail/detail',
       'pages/my/my',
-      'pages/my/collectionTrace/collectionTrace',
-      'pages/my/accountSet/accountSet',
       'pages/my/address/address',
       'pages/my/addressManage/addressManage',
+      'pages/my/collectionTrace/collectionTrace',
+      'pages/my/accountSet/accountSet',
       'pages/my/appraise/appraise',
       'pages/my/applyDistribution/applyDistribution',
       'pages/my/cardVoucher/cardVoucher',
@@ -191,9 +197,7 @@ export default class extends wepy.app {
       'pages/my/cut/cut',
       'pages/my/cut/cutDetail/cutDetail',
       'pages/my/cut/myCut/myCut',
-      'pages/my/teamwork/teamwork',
-      'pages/my/teamwork/detail',
-      'pages/my/lottery/lottery'
+      'pages/my/teamwork/teamwork'
     ],
     window: {
       backgroundTextStyle: 'light',

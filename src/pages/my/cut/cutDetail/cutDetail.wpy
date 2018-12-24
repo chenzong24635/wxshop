@@ -1,5 +1,4 @@
 <style lang='less'>
-/* pages/account/cut/cutDetail.wxss */
 .cutDetail-bg{
   position: absolute;
   top:0;
@@ -175,7 +174,7 @@
           </view>
         </view>
         <navigator url="/pages/sort/detail/detail" hover-class="none" class="product-detail flex">
-            <view><image src="/images/goods1-3.jpg"></image></view>
+            <view><image src="/images/goods1-2.jpg"></image></view>
             <view class="mes flex-col">
               <text class="mes1 fs24">绵软粉糯即食板栗仁</text>
               <text class="mes2 fs20">味BACK 燕山板栗仁 2袋入</text>
@@ -196,55 +195,55 @@
           <view class="cut-bar2"><view class="circle"><text>￥</text></view></view>
         </view>
       </view>
-      <view class="share-btn" bindtap="onShareAppMessage">
+      <view class="share-btn" @tap="onShareAppMessage">
         <image class="share-bg" src="/images/btn.png"></image>
         <text class="fs30">分享给好友，帮忙砍价</text>
       </view>
       <view class="friend-cut">
-         <view class="more flex" bindtap="more"><image src="/images/more.png"></image></view>
-         <view class="friend-cut-top"><text class="fs24">好友砍价</text></view>
-         <view class="friend-cut-content" style="height:{{height}}rpx;">
-            <view class="item flex">
-              <view class="avator flex">
-                <image src="/images/client-pic.png"></image>
-                <text class="fs24">某某某2231</text>
-              </view>
-              <view class="cuted flex">
-                <image src="/images/cutDetail-cut.png"></image>
-                <text class="fs24">砍掉了3.21元</text>
-              </view>
-            </view> 
-            <view class="item flex">
-              <view class="avator flex">
-                <image src="/images/client-pic.png"></image>
-                <text class="fs24">某某某2231</text>
-              </view>
-              <view class="cuted flex">
-                <image src="/images/cutDetail-cut.png"></image>
-                <text class="fs24">砍掉了3.21元</text>
-              </view>
-            </view> 
-            <view class="item flex">
-              <view class="avator flex">
-                <image src="/images/client-pic.png"></image>
-                <text class="fs24">某某某2231</text>
-              </view>
-              <view class="cuted flex">
-                <image src="/images/cutDetail-cut.png"></image>
-                <text class="fs24">砍掉了3.21元</text>
-              </view>
-            </view> 
-            <view class="item flex">
-              <view class="avator flex">
-                <image src="/images/client-pic.png"></image>
-                <text class="fs24">某某某2231</text>
-              </view>
-              <view class="cuted flex">
-                <image src="/images/cutDetail-cut.png"></image>
-                <text class="fs24">砍掉了3.21元</text>
-              </view>
-            </view> 
-         </view>
+        <view class="more flex" @tap="more"><image src="/images/more.png"></image></view>
+        <view class="friend-cut-top"><text class="fs24">好友砍价</text></view>
+        <view class="friend-cut-content" style="height:{{height}}rpx;">
+          <view class="item flex">
+            <view class="avator flex">
+              <image src="/images/client-pic.png"></image>
+              <text class="fs24">某某某2231</text>
+            </view>
+            <view class="cuted flex">
+              <image src="/images/cutDetail-cut.png"></image>
+              <text class="fs24">砍掉了3.21元</text>
+            </view>
+          </view> 
+          <view class="item flex">
+            <view class="avator flex">
+              <image src="/images/client-pic.png"></image>
+              <text class="fs24">某某某2231</text>
+            </view>
+            <view class="cuted flex">
+              <image src="/images/cutDetail-cut.png"></image>
+              <text class="fs24">砍掉了3.21元</text>
+            </view>
+          </view> 
+          <view class="item flex">
+            <view class="avator flex">
+              <image src="/images/client-pic.png"></image>
+              <text class="fs24">某某某2231</text>
+            </view>
+            <view class="cuted flex">
+              <image src="/images/cutDetail-cut.png"></image>
+              <text class="fs24">砍掉了3.21元</text>
+            </view>
+          </view> 
+          <view class="item flex">
+            <view class="avator flex">
+              <image src="/images/client-pic.png"></image>
+              <text class="fs24">某某某2231</text>
+            </view>
+            <view class="cuted flex">
+              <image src="/images/cutDetail-cut.png"></image>
+              <text class="fs24">砍掉了3.21元</text>
+            </view>
+          </view> 
+        </view>
       </view>
   </view>
 </view>

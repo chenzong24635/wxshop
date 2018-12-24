@@ -108,15 +108,15 @@
 <view class="container">
   <view class="head-nav flex" wx:if="{{type === 1}}"><!-- 评价 -->
     <view class="tab flex" style="{{showMore?'':'height: 66rpx;'}}">
-      <block wx:for="{{array}}"  wx:key="headbar">
+      <block wx:for="{{array}}" wx:key="headbar">
         <view>
-          <text class="fs24 {{index==id?'active':''}}"  wx:key="this" bindtap="active" data-id="{{index}}">{{item.name}}({{item.number}})</text>
+          <text class="fs24 {{index==id?'active':''}}"  wx:key="this" @tap="active" data-id="{{index}}">{{item.name}}({{item.number}})</text>
         </view>
       </block>
     </view>
-    <view class="more" bindtap="showMore"><image src="/images/more-2.jpg"></image></view>
+    <view class="more" @tap="showMore"><image src="/images/more-2.jpg"></image></view>
   </view>
-  <block wx:for="{{list}}" wx:key="list"  wx:key="list">
+  <block wx:for="{{list}}" wx:key="list" >
     <view class="list">
       <view class="top flex">
         <view class="top-left flex">

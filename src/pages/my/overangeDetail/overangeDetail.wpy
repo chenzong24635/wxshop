@@ -3,9 +3,9 @@
   margin-bottom: 0;
 }
 .number{color:#1c1c1c;}
-.out{color:#57a090;}
 .in{color:#f23737;}
-.head-nav .true{
+.out{color:#57a090;}
+.head-nav .active{
   color:#f23838;
   border-bottom:2px solid #f23838;
 }
@@ -17,6 +17,7 @@
 .head-nav text{
   color:#232323;
   padding-bottom: 16rpx;
+  border-bottom: 2px solid #fff;
 }
 .list{
   justify-content: space-between;
@@ -31,7 +32,7 @@
 <template>
 <view class="container">
   <view class="head-nav flex" >
-    <text class="fs24 {{index==id}}" data-id="{{index}}" wx:for="{{array}}" wx:key="this" bindtap="active">{{item}}</text>
+    <text class="fs24 {{index==id ? 'active' : ''}}" data-id="{{index}}" wx:for="{{array}}" wx:key="this" @tap="active">{{item}}</text>
   </view>
   <view class="list flex-col">
     <view class="list-top flex">

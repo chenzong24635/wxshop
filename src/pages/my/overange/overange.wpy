@@ -55,14 +55,14 @@
       <text class="amout fs72">31.05</text>
   </view>
   <view class="bottom">
-    <view class="recharge flex" bindtap="recharge">
+    <view class="recharge flex" @tap="recharge">
       <view class="flex">
         <image src="/images/recharge.png"></image>
         <text class="txt fs24">充值</text> 
       </view>
       <image src="/images/link1.jpg"></image>
     </view>
-    <view class="withdraw flex" bindtap="withdraw">
+    <view class="withdraw flex" @tap="withdraw">
       <view class="flex">
         <image src="/images/widthdraw.png"></image>
         <text class="txt fs24">提现</text>

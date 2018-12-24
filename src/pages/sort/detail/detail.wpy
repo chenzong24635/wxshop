@@ -295,9 +295,44 @@ input{
   text-align: center;
   color:#494949;
 }
+.float-bottom{
+  padding: 0;
+  height: 100rpx;
+}
+.left{
+  width:40%;
+  height: 100%;
+}
+.left >navigator,.left >view{
+  width:33.3%;
+  height: 100%;
+  justify-content:center;
+}
+.left image{
+  width:38rpx;
+  height:38rpx;
+  margin-bottom:6rpx;
+}
+.right{
+  width:60%;
+  height: 100%;
+}
+.right text{color:#fff;}
+.right1,.right2{
+  justify-content:center;
+  height: 100rpx;
+}
+.right1{
+  width:40%;
+  background: #ffa0a0;
+}
+.right2{
+  width:60%;
+  background: #f23737;
+}
 </style>
 <template>
-<view class="container">
+<view class="container {{item.type === 1 ? 'mb' : ''}}">
   <view class="top">
     <view class="top-img">
       <swiper indicator-dots="{{indicatorDots}}" indicator-active-color="{{indicatorActiveColor}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
@@ -320,11 +355,12 @@ input{
       <text class="fs32">绵软粉糯即食板栗仁</text>
       <view class="flex top-b">
           <text class="fare fs20">运费：6.00</text>
-          <text class="sales fs20">月销量  (1111)</text>
+          <text  wx:if="{{type === 0}}"  class="sales fs20">月销量  (1111)</text>
+          <text wx:if="{{type === 1}}" class="sales fs20">已拼5004件.2人拼单</text>
       </view>
     </view>
   </view>
-  <view class="one"><!-- 规格，参数 -->
+  <view class="one" wx:if="{{type === 0}}"><!-- 规格，参数 -->
     <view class="flex" @tap="size" data-statu="open1">
       <view class="size" >
         <text class="fs24 size-1" >规格</text>
@@ -340,8 +376,6 @@ input{
       <text class="fs38 more">...</text>
     </view>
   </view>
-
-  
   <view>
     <!--mask-->
     <view class="drawer-screen" @tap="size" data-statu="close" wx:if="{{modal1}}"></view>
@@ -357,7 +391,6 @@ input{
               <text class="choosed-size fs24 ">{{list2}}</text>
             </view>
           </view>
-          
         </view>
         <view class="close-img" @tap="size" data-statu="close" wx:if="{{modal1}}"><image  src="/images/close.jpg" ></image></view>
       </view>
@@ -367,7 +400,6 @@ input{
           <block wx:for="{{lists}}">
             <text class="fs24 {{index==id?'active':''}}" data-id="{{index}}" @tap="choose">{{item}}</text>
           </block>
-         
         </view>
       </view>
       <view class="drawer-bottom flex">
@@ -421,7 +453,6 @@ input{
       <button class="btn fs30" @tap="argument" data-statu="close">加入购物车</button>
     </view>
   </view>
-
   <view class="two"><!-- 评价 -->
     <view class="flex">
       <text class="fs24">评价(5555)</text>
@@ -434,9 +465,9 @@ input{
     <view class="client-appraise">
       <text class="fs22">文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容，详细说明，文字评，详文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容，详细说明，文字评价内容，详细说明，文字评，详</text>
     </view>
-     <navigator url="/pages/my/appraise/appraise?type=1" hover-class="none">
+    <navigator url="/pages/my/appraise/appraise?type=1" hover-class="none">
       <button class="assess fs22" >查看全部评价</button>
-     </navigator>
+    </navigator>
   </view>
   <view class="three">
     <text class="line fs22"></text>
@@ -449,9 +480,36 @@ input{
   </view>
   <view class="four">
     <image src="/images/productDetail.jpg"></image>
-      <view class="scroll-img" @tap="scrollTop">
-         <image src="/images/scrollTop.png"></image>
+    <view class="scroll-img" @tap="scrollTop">
+        <image src="/images/scrollTop.png"></image>
+    </view>
+  </view>
+  <view class="float-bottom flex" wx:if="{{type === 1}}">
+    <view class="left flex">
+      <navigator url="" class="flex-col" hover-class="none">
+        <image src="/images/service.jpg"></image>
+        <text class="fs22">客服</text>
+      </navigator>
+      <view class="flex-col" @tap="collect">
+        <image wx:if="{{!collect}}" src="/images/collect.jpg"></image>
+        <image wx:else="{{collect}}" src="/images/star1.jpg"></image>
+        <text class="fs22">收藏</text>
       </view>
+      <navigator url="" class="flex-col" hover-class="none">
+        <image src="/images/share.jpg"></image>
+        <text class="fs22">分享</text>
+      </navigator>
+    </view>
+    <view class="right flex">
+      <navigator url="" hover-class="none" class="right1 flex-col">
+        <text class="price fs22">35.00</text>
+        <text class="fs22">发起拼单</text>
+      </navigator>
+      <navigator url="" hover-class="none" class="right2 flex-col">
+        <text class="price fs22">35.00</text>
+        <text class="fs22">发起拼单</text>
+      </navigator>
+    </view>
   </view>
 </view>
 </template>
@@ -462,6 +520,7 @@ input{
       navigationBarTitleText: '产品详情'
     }
     data = {
+      type: 0,
       banner: [
         '/images/product-img.jpg',
         '/images/product-img.jpg',
@@ -557,7 +616,11 @@ input{
       }
       this.$apply()
     }
-    onLoad() {
+    onLoad(options) {
+      let type = options.type / 1 || 0
+      console.log(type)
+      this.type = type
+      this.$apply()
     }
   }
 </script>

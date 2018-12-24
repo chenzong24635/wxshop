@@ -23,15 +23,13 @@ text{color:#232323}
   width:46rpx;
   height:42rpx;
 }
-
-.head-nav .true{
-  color:#f23838;
-  border-bottom:2px solid #f23838;
-}
 .head-nav{
-  /* padding:0 20rpx; */
   background: #fff;
   white-space: nowrap;
+}
+.head-nav .active{
+  color:#f23838;
+  border-bottom:2px solid #f23838;
 }
 .head-nav view:last-child{
   margin-right: 20rpx;
@@ -114,120 +112,34 @@ text{color:#232323}
       <image src="/images/search1.png"></image>
       <input></input>
     </view>
-    <view class="mes" bindtap="message"><image src="/images/message.png"></image></view>
+    <view class="mes" @tap="message"><image src="/images/message.png"></image></view>
   </view>
   <scroll-view scroll-x  class="head-nav flex">
-      <view style="width:{{array.length>=8?'13%':len}}"  wx:for="{{array}}" wx:key="this" bindtap="active">
-        <text class="fs24 {{index==id}}" data-id="{{index}}">{{item}}</text>
+      <view style="width:{{array.length>=8?'13%':len}}"  wx:for="{{array}}" wx:key="this" @tap="active">
+        <text class="fs24 {{index === id ? 'active' : ''}}" data-id="{{index}}">{{item}}</text>
       </view>
   </scroll-view>
   <view class="main">
     <view class="main-content sort-two">
-      <view class="list">
-        <view class="content flex" >
-          <view><image src="/images/goods1-2.jpg"></image></view>
-          <view class="mes flex-col">
-            <text class="mes1 fs24">绵软粉糯即食板栗仁</text>
-            <text class="mes2 fs20">味BACK 燕山板栗仁 2袋入</text>
+      <block wx:for='{{list}}' wx:key='list'>
+        <view class="list">
+          <view class="content flex" >
+            <view><image src="{{item.img}}"></image></view>
+            <view class="mes flex-col">
+              <text class="mes1 fs24">{{item.title}}</text>
+              <text class="mes2 fs20">{{item.title1}}</text>
+            </view>
           </view>
-        </view>
-        <view class="shop-cart flex" >
-          <view class="price">
-            <text class="price1 fs24">35.00</text>
+          <view class="shop-cart flex" >
+            <view class="price">
+              <text class="price1 fs24">{{item.amout}}</text>
+            </view>
+            <navigator url="/pages/sort/detail/detail?type=1" hover-class="none">
+              <text class="pd fs20">去拼单 ></text>
+            </navigator>
           </view>
-          <navigator url="/pages/my/teamwork/detail" hover-class="none">
-            <text class="pd fs20">去拼单 ></text>
-          </navigator>
-        </view>
-      </view> 
-      <view class="list">
-        <view class="content flex" >
-          <view><image src="/images/goods1-1.jpg"></image></view>
-          <view class="mes flex-col">
-            <text class="mes1 fs24">绵软粉糯即食板栗仁</text>
-            <text class="mes2 fs20">味BACK 燕山板栗仁 2袋入</text>
-          </view>
-        </view>
-        <view class="shop-cart flex" >
-          <view class="price">
-            <text class="price1 fs24">35.00</text>
-          </view>
-          <navigator url="/pages/my/teamwork/detail" hover-class="none">
-            <text class="pd fs20">去拼单 ></text>
-          </navigator>
-        </view>
-      </view> 
-      <view class="list">
-        <view class="content flex" >
-          <view><image src="/images/goods1-2.jpg"></image></view>
-          <view class="mes flex-col">
-            <text class="mes1 fs24">绵软粉糯即食板栗仁</text>
-            <text class="mes2 fs20">味BACK 燕山板栗仁 2袋入</text>
-          </view>
-        </view>
-        <view class="shop-cart flex" >
-          <view class="price">
-            <text class="price1 fs24">35.00</text>
-          </view>
-          <navigator url="/pages/my/teamwork/detail" hover-class="none">
-            <text class="pd fs20">去拼单 ></text>
-          </navigator>
-        </view>
-      </view> 
-      <view class="list">
-        <view class="content flex" >
-          <view><image src="/images/goods1-1.jpg"></image></view>
-          <view class="mes flex-col">
-            <text class="mes1 fs24">绵软粉糯即食板栗仁</text>
-            <text class="mes2 fs20">味BACK 燕山板栗仁 2袋入</text>
-          </view>
-        </view>
-        <view class="shop-cart flex" >
-          <view class="price">
-            <text class="price1 fs24">35.00</text>
-          </view>
-          <navigator url="/pages/my/teamwork/detail" hover-class="none">
-            <text class="pd fs20">去拼单 ></text>
-          </navigator>
-        </view>
-      </view> 
-      <view class="list">
-        <view class="content flex" >
-          <view><image src="/images/goods1-2.jpg"></image></view>
-          <view class="mes flex-col">
-            <text class="mes1 fs24">绵软粉糯即食板栗仁</text>
-            <text class="mes2 fs20">味BACK 燕山板栗仁 2袋入</text>
-          </view>
-        </view>
-        <view class="shop-cart flex" >
-          <view class="price">
-            <text class="price1 fs24">35.00</text>
-          </view>
-          <navigator url="/pages/my/teamwork/detail" hover-class="none">
-            <text class="pd fs20">去拼单 ></text>
-          </navigator>
-        </view>
-      </view> 
-      <view class="list">
-        <view class="content flex" >
-          <view><image src="/images/goods1-1.jpg"></image></view>
-          <view class="mes flex-col">
-            <text class="mes1 fs24">绵软粉糯即食板栗仁</text>
-            <text class="mes2 fs20">味BACK 燕山板栗仁 2袋入</text>
-          </view>
-        </view>
-        <view class="shop-cart flex" >
-          <view class="price">
-            <text class="price1 fs24">35.00</text>
-          </view>
-          <navigator url="/pages/my/teamwork/detail" hover-class="none">
-            <text class="pd fs20">去拼单 ></text>
-          </navigator>
-        </view>
-      </view> 
-    </view>
-    <view class="no-more">
-      <text class="fs20">没有更多了</text>
+        </view> 
+      </block>
     </view>
   </view>
 </view>
@@ -236,12 +148,49 @@ text{color:#232323}
 import wepy from 'wepy'
 export default class Index extends wepy.page {
   config = {
-    navigationBarTitleText: 'Index'
+    navigationBarTitleText: '拼团'
   }
   data = {
     array: ['热门', '服饰', '鞋包', '母婴', '百货', '食品', '电器', '水果', '热门', '服饰', '鞋包', '母婴', '百货', '食品', '电器', '水果'],
     id: 0,
-    len: 0
+    len: 0,
+    list: [
+      {
+        id: 0,
+        img: '/images/goods1-2.jpg',
+        title: '绵软粉糯即食板栗仁',
+        title1: '味BACK 燕山板栗仁 2袋入',
+        amout: '35.00'
+      },
+      {
+        id: 1,
+        img: '/images/goods1-2.jpg',
+        title: '绵软粉糯即食板栗仁',
+        title1: '味BACK 燕山板栗仁 2袋入',
+        amout: '35.00'
+      },
+      {
+        id: 2,
+        img: '/images/goods1-2.jpg',
+        title: '绵软粉糯即食板栗仁',
+        title1: '味BACK 燕山板栗仁 2袋入',
+        amout: '35.00'
+      },
+      {
+        id: 3,
+        img: '/images/goods1-2.jpg',
+        title: '绵软粉糯即食板栗仁',
+        title1: '味BACK 燕山板栗仁 2袋入',
+        amout: '35.00'
+      },
+      {
+        id: 4,
+        img: '/images/goods1-2.jpg',
+        title: '绵软粉糯即食板栗仁',
+        title1: '味BACK 燕山板栗仁 2袋入',
+        amout: '35.00'
+      }
+    ]
   }
   methods = {
     active(e) {

@@ -312,7 +312,7 @@
         this.$apply()
       },
       productDetail() {
-        this.$navigate('/pages/sort/detail/detail')
+        this.$navigate('/pages/sort/detail/detail?type=0')
       }
     }
     onLoad() {

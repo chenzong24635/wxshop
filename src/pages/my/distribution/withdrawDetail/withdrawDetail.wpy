@@ -82,90 +82,37 @@
 <template>
 <view class="container">
   <text class="circle circle0 bg0"></text>
-  <view class="list">
-    <view class="line"><text class="circle bg1"></text></view>
-    <view class="list-top flex">
-      <text class="number fs22">提现单号：1233443</text>
-      <text class="time fs20">2018-05-30  18:13:20</text>
-    </view>
-    <view class="list-bottom flex">
-      <view class="flex-col">
-        <text class="fs22">金额</text>
-        <text class="color-red fs22">120.0</text>
+  <block wx:for='{{list}}' wx:key='list'>
+    <view class="list">
+      <view class="line">
+        <text wx:if="{{item.status === 0}}" class="circle bg1"></text>
+        <text wx:if="{{item.status === 1}}" class="circle bg2"></text>
+        <text wx:if="{{item.status === 2}}" class="circle bg3"></text>
+        <text wx:if="{{item.status === 3}}" class="circle bg4"></text>
       </view>
-      <view class="flex-col">
-        <text class="fs22">状态</text>
-        <text class="c1 fs22">审核中</text>
+      <view class="list-top flex">
+        <text class="number fs22">提现单号：{{item.number}}</text>
+        <text class="time fs20">{{item.created}}</text>
       </view>
-      <view class="flex-col">
-        <text class="fs22">备注</text>
-        <text class="c0 fs22"></text>
-      </view>
-    </view>
-  </view>
-  <view class="list">
-    <view class="line"><text class="circle bg2"></text></view>
-    <view class="list-top flex">
-      <text class="number fs22">提现单号：1233443</text>
-      <text class="time fs20">2018-05-30  18:13:20</text>
-    </view>
-    <view class="list-bottom flex">
-      <view class="flex-col">
-        <text class="fs22">金额</text>
-        <text class="color-red fs22">120.0</text>
-      </view>
-      <view class="flex-col">
-        <text class="fs22">状态</text>
-        <text class="c2 fs22">待打款</text>
-      </view>
-      <view class="flex-col">
-        <text class="fs22">备注</text>
-        <text class="c0 fs22"></text>
+      <view class="list-bottom flex">
+        <view class="flex-col">
+          <text class="fs22">金额</text>
+          <text class="color-red fs22">{{item.amout}}</text>
+        </view>
+        <view class="flex-col">
+          <text class="fs22">状态</text>
+          <text  wx:if="{{item.status === 0}}" class="c1 fs22">{{item.status1}}</text>
+          <text  wx:if="{{item.status === 1}}" class="c2 fs22">{{item.status1}}</text>
+          <text  wx:if="{{item.status === 2}}" class="c3 fs22">{{item.status1}}</text>
+          <text  wx:if="{{item.status === 3}}" class="c4 fs22">{{item.status1}}</text>
+        </view>
+        <view class="flex-col">
+          <text class="fs22">备注</text>
+          <text class="c0 fs22">{{item.remarks}}</text>
+        </view>
       </view>
     </view>
-  </view>
-  <view class="list">
-    <view class="line"><text class="circle bg3"></text></view>
-    <view class="list-top flex">
-      <text class="number fs22">提现单号：1233443</text>
-      <text class="time fs20">2018-05-30  18:13:20</text>
-    </view>
-    <view class="list-bottom flex">
-      <view class="flex-col">
-        <text class="fs22">金额</text>
-        <text class="color-red fs22">120.0</text>
-      </view>
-      <view class="flex-col">
-        <text class="fs22">状态</text>
-        <text class="c3 fs22">已打款</text>
-      </view>
-      <view class="flex-col">
-        <text class="fs22">备注</text>
-        <text class="c0 fs22"></text>
-      </view>
-    </view>
-  </view>
-  <view class="list">
-    <view class="line"><text class="circle bg4"></text></view>
-    <view class="list-top flex">
-      <text class="number fs22">提现单号：1233443</text>
-      <text class="time fs20">2018-05-30  18:13:20</text>
-    </view>
-    <view class="list-bottom flex">
-      <view class="flex-col">
-        <text class="fs22">金额</text>
-        <text class="color-red fs22">120.0</text>
-      </view>
-      <view class="flex-col">
-        <text class="fs22">状态</text>
-        <text class="c4 fs22">无效</text>
-      </view>
-      <view class="flex-col">
-        <text class="fs22">备注</text>
-        <text class="c0 fs22">审核未通过</text>
-      </view>
-    </view>
-  </view>
+  </block>
 </view>
 </template>
 <script>
@@ -175,10 +122,63 @@ export default class Index extends wepy.page {
     navigationBarTitleText: '提现明细'
   }
   data = {
+    list: [
+      {
+        id: 0,
+        number: 123455,
+        amout: 123.00,
+        status: 0,
+        remarks: '备注',
+        created: '2018-05-30 16:30:23'
+      },
+      {
+        id: 1,
+        number: 123455,
+        amout: 123.00,
+        status: 1,
+        remarks: '备注',
+        created: '2018-05-30 16:30:23'
+      },
+      {
+        id: 2,
+        number: 123455,
+        amout: 123.00,
+        status: 2,
+        remarks: '备注',
+        created: '2018-05-30 16:30:23'
+      },
+      {
+        id: 3,
+        number: 123455,
+        amout: 123.00,
+        status: 3,
+        remarks: '备注',
+        created: '2018-05-30 16:30:23'
+      }
+    ]
   }
   methods = {
   }
   onLoad() {
+    this.list.map((item, index) => {
+      let status = item.status / 1
+      switch (status) {
+        case 0:
+          item.status1 = '审核中'
+          break
+        case 1:
+          item.status1 = '待打款'
+          break
+        case 2:
+          item.status1 = '已打款'
+          break
+        case 3:
+          item.status1 = '无效'
+          break
+        default:
+          break
+      }
+    })
   }
 }
 </script>

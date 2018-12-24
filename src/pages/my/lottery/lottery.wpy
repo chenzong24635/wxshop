@@ -9,7 +9,7 @@
   import wepy from 'wepy'
   export default class Lottery extends wepy.page {
     config = {
-      navigationBarTitleText: 'lottery'
+      navigationBarTitleText: '抽奖'
     }
     data = {
     }

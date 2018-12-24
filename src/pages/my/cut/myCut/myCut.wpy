@@ -1,19 +1,195 @@
+<style>
+@import "/pages/my/cut/cut";
+</style>
 <style lang='less'>
+.list{
+  padding: 0;
+  border-bottom: 20rpx solid #eee;
+  .content{
+    box-sizing: border-box;
+    padding: 10rpx 30rpx;
+    .list-r{
+      width: 450rpx;
+    }
+  }
+}
+.mes-bottom{
+  text{
+    font-size: 20rpx;
+    color:#787878;
+  }
+  .mes3{
+    font-size: 30rpx;
+    color:#e91414;
+  }
+  .mes4{
+    color:#e91414;
+  }
+}
+.countdown{
+  font-size: 30rpx;
+  color:#8f2020;
+}
+.countdown-mes{
+  font-size: 22rpx;
+  color:#232323;
+  margin: 0 20rpx 0 10rpx;
+}
+.cut-bottom{
+  border-top: 1px solid #eee;
+  padding: 30rpx 16rpx;
+}
+.shop{
+  position: static;
+  display:inline-block;
+}
 </style>
 <template>
+  <view class="container">
+    <view class="main-content sort-one">
+      <block wx:for='{{list}}' wx:key='list'>
+        <view class="list"  >
+          <view class="content flex" >
+            <view class="list-l"><image src="{{item.img}}"></image></view>
+            <view class="list-r">
+              <view class="mes1 fs24 ov1">{{item.title}}</view>
+              <view class="mes2 fs20 ov1">{{item.title1}}</view>
+              <view class="mes-bottom" wx:if="{{item.status === 0}}">
+                <text>已砍</text>
+                <text class="mes3 fs20">{{item.price}}</text>
+                <text>元， 还剩</text>
+                <text class="mes4 fs20">{{item.price1}}</text>
+                <text>元</text>
+              </view>
+              <view class="mes-bottom" wx:if="{{item.status === 1}}">
+                <text class="mes4 fs20">未在24小时内完成砍价，砍价已过期</text>
+              </view>
+              <view class="mes-bottom" wx:if="{{item.status === 2}}">
+                <text class="mes4 fs20">恭喜您，砍价成功</text>
+              </view>
+            </view>
+          </view>
+          <view class="tar cut-bottom">
+            <text wx:if="{{item.status === 0}}" class="countdown">{{hr1}}{{hr%10}} : {{min1}}{{min%10}} : {{sec1}}{{sec%10}}</text>
+            <text wx:if="{{item.status === 0}}" class="countdown-mes">后结束</text>
+            <navigator url="/pages/my/cut/cutDetail/cutDetail" class="shop" hover-class="none">
+              <text class="fs22" wx:if="{{item.status === 0}}">继续砍价</text>
+              <text class="fs22" wx:if="{{item.status === 1}}">重新砍价</text>
+              <text class="fs22" wx:if="{{item.status === 2}}">查看订单</text>
+            </navigator>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
 </template>
 <script>
 import wepy from 'wepy'
 
 export default class Index extends wepy.page {
   config = {
-    navigationBarTitleText: 'Index'
+    navigationBarTitleText: '我的砍价'
   }
   data = {
+    totalSeconds: 660000,
+    timeOut: false,
+    day: 0,
+    day1: 0,
+    hr: 0,
+    hr1: 0,
+    min: 0,
+    min1: 0,
+    sec: 0,
+    sec1: 0,
+    list: [
+      {
+        id: 0,
+        status: 0,
+        img: '/images/goods1-2.jpg',
+        title: '绵软粉糯即食板栗仁绵软粉糯即食板栗仁',
+        title1: '味BACK 燕山板栗仁 2袋入绵软粉糯即食板栗仁',
+        price: 35.00,
+        price1: 50.00
+      },
+      {
+        id: 1,
+        status: 1,
+        img: '/images/goods1-2.jpg',
+        title: '绵软粉糯即食板栗仁绵软粉糯即食板栗仁',
+        title1: '味BACK 燕山板栗仁 2袋入绵软粉糯即食板栗仁',
+        price: 35.00,
+        price1: 50.00
+      },
+      {
+        id: 2,
+        status: 1,
+        img: '/images/goods1-2.jpg',
+        title: '绵软粉糯即食板栗仁绵软粉糯即食板栗仁',
+        title1: '味BACK 燕山板栗仁 2袋入绵软粉糯2袋入绵软粉糯2袋入绵软粉糯即食板栗仁即食板栗仁2袋入绵软粉糯即食板栗仁即食板栗仁',
+        price: 35.00,
+        price1: 50.00
+      },
+      {
+        id: 3,
+        status: 2,
+        img: '/images/goods1-2.jpg',
+        title: '绵软粉糯即食板栗仁绵软粉糯即食板栗仁',
+        title1: '味BACK 燕山板栗仁 2袋入绵软粉糯2袋入绵软粉糯2袋入绵软粉糯即食板栗仁即食板栗仁2袋入绵软粉糯即食板栗仁即食板栗仁',
+        price: 35.00,
+        price1: 50.00
+      }
+    ]
   }
   methods = {
+
   }
   onLoad() {
+    this.countDown(this.totalSeconds)
+  }
+  countDown(times) {
+    let _this = this
+    let totalSeconds = times / 1
+    this.day = this.dateFormat(totalSeconds).day
+    this.day1 = this.dateFormat(totalSeconds).day1
+    this.hr = this.dateFormat(totalSeconds).hr
+    this.hr1 = this.dateFormat(totalSeconds).hr1
+    this.min = this.dateFormat(totalSeconds).min
+    this.min1 = this.dateFormat(totalSeconds).min1
+    this.sec = this.dateFormat(totalSeconds).sec
+    this.sec1 = this.dateFormat(totalSeconds).sec1
+    if (totalSeconds <= 0) {
+      this.timeOut = true
+      return
+    }
+    setTimeout(function () {
+      _this.totalSeconds -= 10
+      _this.countDown(_this.totalSeconds)
+    }, 10)
+    this.$apply()
+  }
+  dateFormat(microSecond) {
+    let second = Math.floor(microSecond / 1000)
+    let day = this.fillZeroPrefix(Math.floor(Math.floor(second / 3600 / 24)))
+    let day1 = parseInt(this.fillZeroPrefix(Math.floor(Math.floor(second / 3600 / 24))) / 10)
+    let hr = this.fillZeroPrefix(Math.floor(Math.floor(second / 3600 % 24)))
+    let hr1 = parseInt(this.fillZeroPrefix(Math.floor(Math.floor(second / 3600 % 24))) / 10)
+    let min = this.fillZeroPrefix(Math.floor((second - day * 24 * 3600 - hr * 3600) / 60))
+    let min1 = parseInt(this.fillZeroPrefix(Math.floor((second - day * 24 * 3600 - hr * 3600) / 60)) / 10)
+    let sec = this.fillZeroPrefix((second - day * 24 * 3600 - hr * 3600 - min * 60))
+    let sec1 = parseInt(this.fillZeroPrefix((second - day * 24 * 3600 - hr * 3600 - min * 60)) / 10)
+    return {
+      day: day,
+      day1: day1,
+      hr: hr,
+      hr1: hr1,
+      min: min,
+      min1: min1,
+      sec: sec,
+      sec1: sec1
+    }
+  }
+  fillZeroPrefix(num) {
+    return num < 10 ? '0' + num : num
   }
 }
 </script>

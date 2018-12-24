@@ -206,6 +206,7 @@
         <image src="/images/account-6.png"></image>
         <text class="message fs24">砍价</text>
       </view>
+      <text></text>
     </navigator>
     <navigator class="bottom-list" url="/pages/my/lottery/lottery" hover-class="none">  
       <view class=" flex-col">
@@ -213,7 +214,7 @@
         <text class="message fs24">抽奖</text>
       </view>
     </navigator>
-    <navigator class="bottom-list" url="" hover-class="none">  
+    <navigator class="bottom-list" url="/pages/my/packet/packetget" hover-class="none">  
       <view class=" flex-col">
         <image src="/images/account-8.png"></image>
         <text class="message fs24">红包</text>

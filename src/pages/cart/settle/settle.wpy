@@ -10,6 +10,7 @@
 .name{
   margin-right: 60rpx;
 }
+.top{padding:0 30rpx;}
 .list{
   position: relative;
   padding:0 20rpx;
@@ -116,8 +117,8 @@
 }
 .buyermsg text,
 .buyermsg textarea{
-   height:60rpx; 
-   line-height: 60rpx;
+  height:60rpx; 
+  line-height: 60rpx;
 }
 .buyermsg text{
   display: inline-block;
@@ -127,15 +128,15 @@
   width:580rpx;
 }
 .bottom{
-  padding: 0 40rpx;
+  padding: 0 30rpx;
   text-align: right;
+  margin: 20rpx 0;
 }
 .price{
   color:#f23737;
 }
 .bottom-address{
   height:200rpx;
-  /* background: #f1f1f1; */
 }
 .bottom-address image{
   width: 100%;
@@ -186,7 +187,7 @@
 <template>
 <view class="container mb">
   <view class="address">
-    <view class="top flex" bindtap="address">
+    <view class="top flex" @tap="address">
       <view>
         <text class="name fs30">某某某</text>
         <text class="phone fs30">188888888</text>
@@ -248,14 +249,14 @@
     <view >
       <text class="bill-top fs22">发票类型</text>
       <view class="bill-type flex">
-        <text class="{{index==id1}} fs18" data-id="{{index}}" wx:for="{{billType}}" bindtap="billType">{{item}}</text>
+        <text class="{{index==id1}} fs18" data-id="{{index}}" wx:for="{{billType}}" @tap="billType">{{item}}</text>
       </view>
       <text class="bill-mes fs18">电子发票与纸质发票举报同等法律效力，可支持报销入账</text>
     </view>
     <view >
       <text class="bill-top fs22">发票抬头</text>
       <view class="bill-type bill-personal">
-        <text class="{{index==id2}} fs18" data-id="{{index}}" wx:for="{{billPersonal}}" bindtap="billPersonal">{{item}}</text>
+        <text class="{{index==id2}} fs18" data-id="{{index}}" wx:for="{{billPersonal}}" @tap="billPersonal">{{item}}</text>
       </view>
       <view class="ipt"><input class="fs22" placeholder-class="ipt-p" placeholder='请输入单位名称'></input></view>
       <view class="ipt ipt1"><input class="fs22" placeholder-class="ipt-p" placeholder='税号'></input></view>
@@ -268,14 +269,14 @@
     <view >
       <text class="bill-top fs22">发票内容</text>
       <view class="bill-type bill-personal">
-        <text class="{{index==id3}} fs18" data-id="{{index}}" wx:for="{{billMes}}" bindtap="billMes">{{item}}</text>
+        <text class="{{index==id3}} fs18" data-id="{{index}}" wx:for="{{billMes}}" @tap="billMes">{{item}}</text>
       </view>
-       <text class="bill-mes fs18">发票内容将显示详细商品名称与价格信息</text>
+      <text class="bill-mes fs18">发票内容将显示详细商品名称与价格信息</text>
     </view>
   </view>
   <view class="buyermsg flex">
-     <text class="fs22">买家留言</text>
-     <input class="fs22" placeholder-class="ipt-p" placeholder='可选填'></input>
+    <text class="fs22">买家留言</text>
+    <input class="fs22" placeholder-class="ipt-p" placeholder='可选填'></input>
   </view>
   <view class="bottom">
     <text class="fs22">共2件商品 小计</text>
@@ -287,8 +288,8 @@
     <text class="fs20">收货地址：浙江省宁波市海曙区丽园北路668号美丽园大厦602</text>
   </view> 
   <view class="foot clearfix">
-    <navigator url="/pages/shoppingCart/order/pay/pay" class="account fr" bindtap="settle">
-     <text class="fs24">提交订单</text>
+    <navigator url="/pages/shoppingCart/order/pay/pay" class="account fr" @tap="settle">
+    <text class="fs24">提交订单</text>
     </navigator>
     <view class="flex fr">
       <text class="fs24">总计</text>
@@ -319,24 +320,28 @@ export default class Index extends wepy.page {
     switchChange(e) {
       let val = e.detail.value
       this.isShow = val
+      this.$apply()
     },
     billType(e) {
       let id = e.target.dataset.id
       this.id1 = id
+      this.$apply()
       console.log(e, id)
     },
     billPersonal(e) {
       let id = e.target.dataset.id
       this.id2 = id
+      this.$apply()
       console.log(e, id)
     },
     billMes(e) {
       let id = e.target.dataset.id
       this.id3 = id
+      this.$apply()
       console.log(e, id)
     },
     address() {
-      this.$navigate('/pages/account/address/address')
+      this.$navigate('/pages/my/address/address')
     }
   }
   onLoad() {

@@ -51,7 +51,7 @@
 }
 .withdraw{
   display: inline-block;
-  padding:4rpx 6rpx;
+  padding:0 12rpx;
   border:1px solid #fff;
 }
 .middle{
