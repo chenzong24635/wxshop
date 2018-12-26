@@ -2,8 +2,9 @@
 page{height: 100%;}
 .container{
   position: relative;
+  box-sizing: border-box;
   height: 100%;
-  min-height: 1100rpx;
+  min-height: 800rpx;
   background-color: #f6302d;
   padding: 44rpx 0;
   &>view{z-index: 2;position:relative;}
@@ -23,9 +24,27 @@ page{height: 100%;}
       right: 0;
       margin: auto;
       background-color: #fff;
-      width: 300rpx;
-      min-height: 300rpx;
+      width: 450rpx;
+      max-height: 600rpx;
       padding: 20rpx;
+    }
+    .modal-top{
+      font-size: 40rpx;
+      height: 80rpx;
+      line-height: 80rpx;
+      text{
+        position: absolute;
+        right:10rpx;
+        top:0;
+        width:60rpx;
+        font-size:60rpx;
+        height:60rpx;
+        line-height:60rpx;
+
+      }
+    }
+    .modal-detail{
+      line-height: 2;
     }
   }
   .c-bg{
@@ -38,9 +57,9 @@ page{height: 100%;}
   }
   .rule{
     text{
-      padding: 0 10rpx;
+      padding: 0 10rpx 0 16rpx;
       background-color: #ffda2c;
-      font-size: 18rpx;
+      font-size: 22rpx;
       color:#c91e1e;
       border-radius: 10rpx 0 0 10rpx;
     }
@@ -49,20 +68,93 @@ page{height: 100%;}
     font-size: 40rpx;
     color:#ffe28f;
     font-weight: bold;
-  }
+    padding-top:40rpx;
 
+  }
+  .packet{
+    position: relative;
+    width: 430rpx;
+    height: 540rpx;
+    margin: 30rpx auto 50rpx;
+    .packet-bg{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      image{
+        width: 100%;
+        height: 100%;
+
+      }
+    }
+    .packet-title{
+      position: relative;
+      color:#ffd459;
+      font-size: 32rpx;
+      z-index: 2;
+      margin-top: 130rpx;
+    }
+  }
+}
+.swiper_container {
+  position:relative;
+  z-index:2;
+  height: 170rpx;
+  width: 100%;
+}
+.swiper_item {
+  display: flex;
+  text-align: left;
+  max-width: 400rpx;
+  margin: 0 auto;
+  color:#fff;
+  font-size: 20rpx;
+  text{
+    flex:2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  text:first-child{
+    flex:1;
+    margin-right: 40rpx;
+  }
 }
 </style>
 <template>
   <view class='container tac'>
-    <image class="c-bg" src="/images/packet-bg.jpg" alt=""></image>
-    <view class="modal">
+    <image class="c-bg" src="/images/packet-bg.jpg" ></image>
+    <view class="modal" hidden="{{modalShow}}">
       <view class="modal-view">
-        <!-- <view></view> -->
+        <view class="modal-top ">
+          规则
+          <text @tap="close">×</text>
+        </view>
+        <view class="modal-detail tal">
+          <view>1.活动时间为24小时，所一定要在24小内完成砍价</view>
+          <view>2.每个人一天只能砍价三次，同一件商品每个人只能砍价一次</view>
+          <view>3.活动时间为24小时，所一定要在24小内完成砍价</view>
+          <view>4.每个人一天只能砍价三次，同一件商品每个人只能砍价一次</view>
+        </view>
       </view>
     </view>
-    <view class="rule tar"><text>规则</text></view>
+    <view class="rule tar" @tap="show"><text>规则</text></view>
     <view class="p-title">您有一个现金红包未领取</view>
+    <view class="packet clearfix" @tap="packet">
+      <view class="packet-bg"><image src="/images/packet-bg1.png" ></image></view>
+      <view class="packet-title">最高可领取100元</view>
+    </view>
+    <swiper class="swiper_container" vertical="true" autoplay="true" circular="true" interval="1000" display-multiple-items='3'>
+      <block wx:for="{{list}}" wx:key="list">
+        <swiper-item>
+          <view class="swiper_item">
+            <text>{{item.name}}</text>
+            <text>{{item.title}}</text>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
   </view>
 </template>
 <script>
@@ -72,10 +164,30 @@ export default class Index extends wepy.page {
     navigationBarTitleText: '红包'
   }
   data = {
+    modalShow: true,
+    scrollTop: 0,
+    list: [
+      { name: 'mmmmmmmmmm', title: '1多地首套房贷利率上浮 热点城市渐迎零折扣时代' },
+      { name: 'm1m', title: '2多地首套房贷利率上浮 热点城市渐迎零折扣时代' },
+      { name: 'mm2', title: '3多地首套房贷利率上浮 热点城市渐迎零折扣时代' },
+      { name: 'mm3', title: '4多地首套房贷利率上浮 热点城市渐迎零折扣时代' }
+    ]
   }
   methods = {
+    close() {
+      this.modalShow = true
+      this.$apply()
+    },
+    show() {
+      this.modalShow = false
+      this.$apply()
+    },
+    packet() {
+      this.$navigate('./packetget')
+    }
   }
   onLoad() {
+
   }
 }
 </script>

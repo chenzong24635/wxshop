@@ -1,7 +1,120 @@
 <style lang='less'>
+page,.container{
+  position: relative;
+  height: 100%;
+}
+.container{
+  padding: 60rpx 20rpx;
+  &>view{z-index: 2;position: relative;}
+}
+.container-top{
+  padding: 50rpx 0;
+  background-color: rgba(255, 255, 255, .9);
+  border-radius: 10rpx;
+  .money{
+    color:#232323;
+    font-size: 30rpx;
+    text{
+      color:#ee0e0e;
+    }
+    .amout{
+      font-size: 50rpx;
+      font-weight: bold;
+      margin-left: 4rpx;
+    }
+    .tx{
+      font-size: 20rpx;
+      padding: 0 8rpx;
+      border: 1px solid #ee0e0e;
+      margin-left: 16rpx;
+    }
+  }
+  .time{
+    color:#7b2427;
+    font-size: 30rpx;
+    margin: 60rpx 0;  
+    text{
+      color:#232323;
+      font-size: 30rpx;
+      margin-left: 10rpx;
+    }
+  }
+  .share{
+    width: 420rpx;
+    height: 64rpx;
+    line-height: 64rpx;
+    font-size: 30rpx;
+    color:#fff;
+    background-color: #c70c13;
+    border-radius: 28rpx;
+    box-shadow: 0 0 2px 1px #eee;
+    margin: 0 auto;
+  }
+}
+.content{
+  padding: 0 60rpx;
+}
+.content-top{
+  text-align: center;
+  color:#fff;
+  font-size: 30rpx;
+  font-weight: bold;
+  padding-bottom: 10rpx;
+  border-bottom: 1px solid #ffb4b4;
+  margin: 60rpx 0 50rpx;
+}
+.swiper_container {
+  position:relative;
+  z-index:2;
+  height: 400rpx;
+  width: 100%;
+}
+.swiper_item {
+  text-align: left;
+  margin: 0 auto;
+  color:#fff;
+  font-size: 20rpx;
+  .swiper_item_r{color: #ffff52;}
+  .swiper_item_l{
+    text{
+      width: 160rpx;
+    }
+  }
+  &>view{
+    width: 250rpx;
+    image{
+      width: 80rpx;
+      height: 80rpx;
+    }
+  }
+}
 </style>
 <template>
   <view class='container'>
+    <image class="img-bg" src="/images/packetget-bg.jpg"></image>
+    <view class="container-top tac">
+      <view class="money">
+        已拆得 <text class="amout">3.10</text> 元 <text class="tx">提现</text>
+      </view>
+      <view class="time">{{hr1}}{{hr%10}} : {{min1}}{{min%10}} : {{sec1}}{{sec%10}}<text>后红包失效，赶快邀好友一起来拆</text></view>
+      <view class="share">分享领取现金</view>
+    </view>
+    <view class="content">
+      <view class="content-top">领取红包记录</view>
+      <swiper class="swiper_container" vertical="true" autoplay="true" circular="true" interval="1000" display-multiple-items='4'>
+        <block wx:for="{{list}}" wx:key="list">
+          <swiper-item>
+            <view class="swiper_item flex">
+              <view class="swiper_item_l flex">
+                <image src={{item.avatar}} ></image>
+                <text class="ov1">{{item.name}}</text>
+              </view>
+              <view class="swiper_item_r ov1">领取了你的红包</view>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
   </view>
 </template>
 <script>
@@ -11,10 +124,75 @@ export default class Index extends wepy.page {
     navigationBarTitleText: '我的红包'
   }
   data = {
+    totalSeconds: 660000,
+    timeOut: false,
+    day: 0,
+    day1: 0,
+    hr: 0,
+    hr1: 0,
+    min: 0,
+    min1: 0,
+    sec: 0,
+    sec1: 0,
+    scrollTop: 0,
+    list: [
+      {avatar: '/images/client-pic.png', name: 'mmmmmmmmmm'},
+      {avatar: '/images/client-pic.png', name: 'mmmmmmmmmm'},
+      {avatar: '/images/client-pic.png', name: 'mmmmmmmmmm'},
+      {avatar: '/images/client-pic.png', name: 'mmmmmmmmmm'},
+      {avatar: '/images/client-pic.png', name: 'mmmmmmmmmm'},
+      {avatar: '/images/client-pic.png', name: 'mmmmmmmmmm'}
+    ]
   }
   methods = {
   }
   onLoad() {
+    this.countDown(this.totalSeconds)
+  }
+  countDown(times) {
+    let _this = this
+    let totalSeconds = times / 1
+    this.day = this.dateFormat(totalSeconds).day
+    this.day1 = this.dateFormat(totalSeconds).day1
+    this.hr = this.dateFormat(totalSeconds).hr
+    this.hr1 = this.dateFormat(totalSeconds).hr1
+    this.min = this.dateFormat(totalSeconds).min
+    this.min1 = this.dateFormat(totalSeconds).min1
+    this.sec = this.dateFormat(totalSeconds).sec
+    this.sec1 = this.dateFormat(totalSeconds).sec1
+    if (totalSeconds <= 0) {
+      this.timeOut = true
+      return
+    }
+    setTimeout(function () {
+      _this.totalSeconds -= 10
+      _this.countDown(_this.totalSeconds)
+    }, 10)
+    this.$apply()
+  }
+  dateFormat(microSecond) {
+    let second = Math.floor(microSecond / 1000)
+    let day = this.fillZeroPrefix(Math.floor(Math.floor(second / 3600 / 24)))
+    let day1 = parseInt(this.fillZeroPrefix(Math.floor(Math.floor(second / 3600 / 24))) / 10)
+    let hr = this.fillZeroPrefix(Math.floor(Math.floor(second / 3600 % 24)))
+    let hr1 = parseInt(this.fillZeroPrefix(Math.floor(Math.floor(second / 3600 % 24))) / 10)
+    let min = this.fillZeroPrefix(Math.floor((second - day * 24 * 3600 - hr * 3600) / 60))
+    let min1 = parseInt(this.fillZeroPrefix(Math.floor((second - day * 24 * 3600 - hr * 3600) / 60)) / 10)
+    let sec = this.fillZeroPrefix((second - day * 24 * 3600 - hr * 3600 - min * 60))
+    let sec1 = parseInt(this.fillZeroPrefix((second - day * 24 * 3600 - hr * 3600 - min * 60)) / 10)
+    return {
+      day: day,
+      day1: day1,
+      hr: hr,
+      hr1: hr1,
+      min: min,
+      min1: min1,
+      sec: sec,
+      sec1: sec1
+    }
+  }
+  fillZeroPrefix(num) {
+    return num < 10 ? '0' + num : num
   }
 }
 </script>

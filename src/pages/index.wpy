@@ -215,7 +215,7 @@
 </style>
 <template>
   <view class="container">
-    <!-- <list :lists="arr"></list> -->
+    <list :list="arr"></list>
     <view class="top flex">
       <view class="search" wx:if="{{searchShow}}" @tap="search">
         <image src="/images/search.png"></image>
@@ -458,11 +458,11 @@
         }
       ],
       arr: [
-        {
-          a: 1,
-          b: 12,
-          c: 13
-        }
+        '啊打大爱的',
+        '啊打大爱的',
+        '啊打大爱的',
+        '啊打大爱的',
+        '啊打大爱的'
       ],
       width: 0,
       searchShow: true,

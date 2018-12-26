@@ -1,19 +1,258 @@
 <style lang='less'>
+page,.container{
+  position: relative;
+  height: 100%;
+}
+.container{
+  view{z-index: 2;position: relative;}
+}
+.container .modal{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 400rpx;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, .8);
+  .modal-view{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    background-color: #fff;
+    width: 450rpx;
+    max-height: 600rpx;
+    padding: 20rpx;
+  }
+  .close{
+    position: absolute;
+    right:0;
+    top:-10rpx;
+    font-size:60rpx;
+    width:60rpx;
+    height:60rpx;
+    line-height:60rpx;
+  }
+  .modal-top{
+    font-size: 40rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+
+  }
+  .modal-detail{
+    line-height: 2;
+  }
+  .modal-view1{
+    position: absolute;
+    top: 250rpx;
+    left: 0;
+    right: 0;
+    width: 450rpx;
+    margin: 0 auto;
+    .close{
+      top:-30rpx;
+      right:30rpx;
+      color:#fff;
+    }
+    .modal-view1-top{
+      position: relative;
+      padding-top:50rpx;
+      box-sizing:border-box;
+      width:350rpx;
+      height:320rpx;
+      margin:0 auto;
+      image{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width:100%;
+        height:100%;
+      }
+      view{
+        font-size: 30rpx;
+        color:#ae100f;
+      }
+    }
+    .modal-view1-tip{
+      margin: 40rpx 0;
+      color:#ffd800;
+      font-size: 24rpx;
+    }
+    .share{
+      width: 340rpx;
+      height: 80rpx;
+      line-height: 80rpx;
+      font-size: 30rpx;
+      color:#fff;
+      background-color: #ff2100;
+      border-radius: 10rpx;
+      margin:0 auto;
+      animation: moving  .8s ease-out infinite;
+    }
+  }
+}
+.rule{
+  margin-top: 30rpx;
+  text{
+    padding: 0 10rpx 0 16rpx;
+    background-color: #ff2100;
+    font-size: 22rpx;
+    color:#fff;
+    border-radius: 10rpx 0 0 10rpx;
+  }
+}
+.box{
+  position: relative;
+  width: 580rpx;
+  height: 580rpx;
+  margin: 200rpx auto 66rpx;
+  &>view{
+    position: relative;
+    z-index: 2;
+  }
+  .box-bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transition:all 2s ease;
+  }
+  .cj{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    width: 160rpx;
+    height: 170rpx;
+    z-index: 2;
+  }
+}
+.count{
+  margin-top: 30rpx;
+  font-size: 24rpx;
+  text{
+    color:#ff000a;
+  }
+}
+@keyframes moving {
+  0%, 15%, 45%, 75%{
+    transform: scale(0.9)
+  }
+  30%, 60%, 90%{
+    transform: scale(1.1)
+  }
+}
+.xz{
+  animation: xz  0.5s ease-out 3;
+}
+@keyframes xz {
+  0%{
+    transform: rotate(0deg)
+  }
+  100%{
+    transform: rotate(360deg)
+  }
+}
 </style>
 <template>
-<view class='container'>
-  抽奖
+<view class='container tac'>
+  <image class="img-bg" src="/images/lottery.jpg" ></image>
+  <view class="modal" hidden="{{modalShow}}">
+    <view class="modal-view" wx:if="{{modalType === 1}}">
+      <view class="modal-top ">
+        规则
+        <text class="close" @tap="close">×</text>
+      </view>
+      <view class="modal-detail tal">
+        <block wx:for='{{list}}' wx:key='list'>
+          <view>{{item}}</view>
+        </block>
+      </view>
+    </view>
+    <view class="modal-view1 clearfix tac" wx:if="{{modalType === 2}}">
+      <text class="close" @tap="close">×</text>
+      <view class="modal-view1-top">
+        <image src="/images/lottery1.png" ></image>
+        <view>恭喜</view>
+        <view>抽中 {{award}}</view>
+      </view>
+      <view class="modal-view1-tip">分享给好友后，即可领取!</view>
+      <view class="share">立即分享</view>
+    </view>
+  </view>
+
+  <view class="rule tar" @tap="show"><text>规则</text></view>
+  <view class="box">
+    <image class="box-bg" src="/images/lottery21.png" style="{{isRotate?'transform:rotate('+isRotate+'deg)':''}};"></image>
+    <image @tap="cj" class="cj " src="/images/lottery3.png" c></image>
+  </view>
+  <view class="count">今天还有 <text>{{count}}</text> 次抽奖机会</view>
 </view>
 </template>
 <script>
   import wepy from 'wepy'
+
   export default class Lottery extends wepy.page {
     config = {
       navigationBarTitleText: '抽奖'
     }
+    components = {
+    }
     data = {
+      bool: true,
+      isRotate: 0,
+      award: '爱的商贸',
+      count: 9,
+      list: [
+        '1',
+        '2',
+        '3',
+        '4',
+        '5'
+      ],
+      modalShow: true,
+      modalType: 0
     }
     methods = {
+      close() {
+        console.log('close')
+        this.modalShow = true
+        this.modalType = 0
+        this.$apply()
+      },
+      show() {
+        console.log('show')
+        this.modalShow = false
+        this.modalType = 1
+        this.$apply()
+      },
+      cj() {
+        if (this.bool) {
+          this.bool = false
+          let that = this
+          let n = that.isRotate
+          let rand = Math.random() * 1000
+          n = n + rand - (rand % 60) + 1440
+          console.log(n % 360)
+          that.isRotate = n
+          console.log(that.isRotate)
+          this.count = this.count - 1
+          let timeout = setTimeout(() => {
+            this.bool = true
+            clearTimeout(timeout)
+          }, 2200)
+          this.$apply()
+        }
+        // this.modalShow = false
+        // this.modalType = 2
+      }
     }
     onLoad() {
     }
